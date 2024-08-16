@@ -4,8 +4,8 @@ A side project that I'm building in public for the vibes.
 
 ## TODO:
 
-- [ ] Make it deploy (w/ Vercel)
-- [ ] Scoffold basic ui with mock data
+- [x] Make it deploy (w/ Vercel)
+- [x] Scoffold basic ui with mock data
 - [ ] Actually set up a database
 - [ ] Attach database to UI
 - [ ] Create Movie Search API

@@ -14,7 +14,20 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${GeistSans.variable}`}>
-      <body>{children}</body>
+      <body className="flex flex-col gap-4">
+        <TopNav />
+        {children}
+      </body>
     </html>
+  );
+}
+
+function TopNav() {
+  return (
+    <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
+      <div>Fliekie</div>
+
+      <div>Sign In</div>
+    </nav>
   );
 }
