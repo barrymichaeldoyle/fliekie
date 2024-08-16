@@ -6,8 +6,8 @@ A side project that I'm building in public for the vibes.
 
 - [x] Make it deploy (w/ Vercel)
 - [x] Scoffold basic ui with mock data
-- [ ] Actually set up a database
-- [ ] Attach database to UI
+- [x] Actually set up a database
+- [x] Attach database to UI
 - [ ] Create Movie Search API
 - [ ] Add Movie to Watch List
 - [ ] Add authentication (w/ clerk)
