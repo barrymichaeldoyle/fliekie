@@ -8,7 +8,7 @@ A side project that I'm building in public for the vibes.
 - [x] Scoffold basic ui with mock data
 - [x] Actually set up a database
 - [x] Attach database to UI
-- [ ] Create Movie Search API
+- [x] Create Movie Search API
 - [ ] Add Movie to Watch List
 - [ ] Add authentication (w/ clerk)
 - [ ] Error management (w/ Sentry)
