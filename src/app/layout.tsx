@@ -1,3 +1,10 @@
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from "@clerk/nextjs";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { PropsWithChildren } from "react";
@@ -13,31 +20,40 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
-    <html
-      lang="en"
-      className={`${GeistSans.variable}`}
-      suppressHydrationWarning
-    >
-      <body className="flex flex-col gap-2">
-        <ThemeProvider
-          attribute="class"
-          forcedTheme="dark"
-          disableTransitionOnChange
-        >
-          <TopNav />
-          {children}
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html
+        lang="en"
+        className={`${GeistSans.variable} bg-background text-foreground`}
+        suppressHydrationWarning
+      >
+        <body className="flex flex-col gap-2">
+          <ThemeProvider
+            attribute="class"
+            forcedTheme="dark"
+            disableTransitionOnChange
+          >
+            <TopNav />
+            {children}
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
 
 function TopNav() {
   return (
-    <nav className="flex w-full items-center justify-between border-b p-4 text-xl font-semibold">
+    <nav className="flex w-full items-center justify-between border-b p-4 px-6 text-xl font-semibold">
       <div>Fliekie</div>
 
-      <div>Sign In</div>
+      <div>
+        <SignedOut>
+          <SignInButton />
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+      </div>
     </nav>
   );
 }

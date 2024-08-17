@@ -10,7 +10,7 @@ A side project that I'm building in public for the vibes.
 - [x] Attach database to UI
 - [x] Create Movie Search API
 - [ ] Add Movie to Watch List
-- [ ] Add authentication (w/ clerk)
+- [x] Add authentication (w/ clerk)
 - [ ] Error management (w/ Sentry)
 - [ ] Routing/movie page (parallel route)
 - [ ] Remove Movie From Watch List (w/ Server Actions)
