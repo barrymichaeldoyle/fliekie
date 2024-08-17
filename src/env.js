@@ -12,7 +12,7 @@ export const env = createEnv({
     POSTGRES_URL_NO_SSL: z.string().url(),
     POSTGRES_URL_NON_POOLING: z.string().url(),
     POSTGRES_USER: z.string(),
-    POSTGRES_HOST: z.string().url(),
+    POSTGRES_HOST: z.string(),
     POSTGRES_PASSWORD: z.string(),
     POSTGRES_DATABASE: z.string(),
     TMDB_API_KEY: z.string(),
