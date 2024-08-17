@@ -1,4 +1,4 @@
-import { SeenButton } from "./SeenButton/SeenButton";
+import { SeenButton } from "./SeenButton";
 
 export function MovieResult(props: { movie: any }) {
   return (
