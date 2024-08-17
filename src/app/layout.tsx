@@ -18,7 +18,7 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
       className={`${GeistSans.variable}`}
       suppressHydrationWarning
     >
-      <body className="flex flex-col gap-4">
+      <body className="flex flex-col gap-2">
         <ThemeProvider
           attribute="class"
           forcedTheme="dark"
