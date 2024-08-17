@@ -11,6 +11,7 @@ import { PropsWithChildren } from "react";
 
 import "~/styles/globals.css";
 import { ThemeProvider } from "~/components/ThemeProvider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Fliekie",
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
           >
             <TopNav />
             {children}
+            <Toaster closeButton />
           </ThemeProvider>
         </body>
       </html>

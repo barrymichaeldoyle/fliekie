@@ -1,10 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, useMemo } from "react";
+import debounce from "lodash.debounce";
 import { Search } from "lucide-react";
 
 import { Input } from "~/components/ui/input";
-import debounce from "lodash.debounce";
 
 export function MoviesSearchInput(props: { defaultValue?: string }) {
   const router = useRouter();
