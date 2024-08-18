@@ -11,6 +11,8 @@ export async function MovieResults(props: { query: string }) {
     return <div>Failed to fetch movie results</div>;
   }
 
+  console.log(response.results[0]);
+
   return (
     <div className="flex w-full flex-col gap-2">
       {response.results.map((movie: any) => (
