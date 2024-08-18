@@ -10,7 +10,7 @@ export type SearchMoviesResponse =
 export type SearchMoviesQueryParams =
   paths["/3/search/movie"]["get"]["parameters"]["query"] & { api_key: string };
 
-type Movie = NonNullable<SearchMoviesResponse["results"]>[number];
+export type Movie = NonNullable<SearchMoviesResponse["results"]>[number];
 
 export type EnrichedMovie = Movie & { seen: boolean };
 

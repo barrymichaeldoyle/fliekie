@@ -6,7 +6,7 @@ import { revalidatePath } from "next/cache";
 
 import { db } from "../db";
 import { movies, seenList, users } from "../db/schema";
-import type { Status } from "./types";
+import type { Movie, Status } from "./types";
 
 /**
  * A helper function to ensure that the user exists in the database
@@ -42,7 +42,7 @@ async function ensureUserExists(): Promise<Status<{ clerkId: string }>> {
  * @returns The insterted or existing movie id
  */
 async function getOrCreateMovie(
-  movie: any,
+  movie: Movie,
 ): Promise<Status<{ movieId: string }>> {
   const existingMovie = await db
     .select()
@@ -58,8 +58,8 @@ async function getOrCreateMovie(
     .insert(movies)
     .values({
       tmdbId: movie.id,
-      title: movie.title,
-      releaseDate: new Date(movie.release_date),
+      title: movie.title || "",
+      releaseDate: movie.release_date ? new Date(movie.release_date) : null,
       posterUrl: movie.poster_path,
     })
     .returning({ id: movies.id });
@@ -71,7 +71,7 @@ async function getOrCreateMovie(
   return { type: "success", movieId: insertedMovie.id };
 }
 
-export async function addMovieToSeenList(movie: any): Promise<Status> {
+export async function addMovieToSeenList(movie: Movie): Promise<Status> {
   const ensureUserExistsStatus = await ensureUserExists();
 
   if (ensureUserExistsStatus.type === "error") {
