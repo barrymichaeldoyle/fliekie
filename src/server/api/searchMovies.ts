@@ -21,9 +21,13 @@ export async function searchMovies(
 
   const results = await response.json();
 
-  if (clerkId) {
-    const tmdbIds = results.results.map((movie: any) => movie.id);
+  const tmdbIds = results.results.map((movie: any) => movie.id);
 
+  if (tmdbIds.length === 0) {
+    return { type: "success", results: [] };
+  }
+
+  if (clerkId) {
     const seenMovies = await db
       .select({
         tmdbId: movies.tmdbId,
