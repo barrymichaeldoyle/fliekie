@@ -1,20 +1,31 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { ChangeEvent, useMemo } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { ChangeEvent, useCallback, useMemo } from "react";
 import debounce from "lodash.debounce";
 import { Search } from "lucide-react";
 
 import { Input } from "~/components/ui/input";
 
-export function MoviesSearchInput(props: { defaultValue?: string }) {
+export function MoviesSearchInput() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+      return params.toString();
+    },
+    [searchParams],
+  );
 
   const debouncedChange = useMemo(
     () =>
       debounce((query: string) => {
-        router.replace(`?search=${query}`);
+        const newQueryString = createQueryString("search", query);
+        router.replace(`?${newQueryString}`);
       }, 500),
-    [router],
+    [router, createQueryString],
   );
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -25,7 +36,7 @@ export function MoviesSearchInput(props: { defaultValue?: string }) {
     <div className="relative w-full">
       <Search className="text-muted-foreground absolute left-2 top-2.5 h-4 w-4" />
       <Input
-        defaultValue={props.defaultValue}
+        defaultValue={searchParams.get("search") || ""}
         onChange={handleChange}
         placeholder="Search Movies"
         className="pl-8"

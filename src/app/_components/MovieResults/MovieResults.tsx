@@ -2,6 +2,8 @@ import { searchMovies } from "~/server/api/searchMovies";
 
 import { MovieResult } from "./MovieResult/MovieResult";
 
+export const dynamic = "force-dynamic";
+
 export async function MovieResults(props: { query: string }) {
   const response = await searchMovies(props.query);
 

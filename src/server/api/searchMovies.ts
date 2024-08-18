@@ -11,10 +11,6 @@ export async function searchMovies(
 ): Promise<Status<{ results: any[] }>> {
   const { userId: clerkId } = auth();
 
-  if (!clerkId) {
-    return { type: "error", message: "User not authenticated" };
-  }
-
   const response = await fetch(
     `https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB_API_KEY}&query=${query}`,
   );
@@ -25,21 +21,32 @@ export async function searchMovies(
 
   const results = await response.json();
 
-  const tmdbIds = results.results.map((movie: any) => movie.id);
+  if (clerkId) {
+    const tmdbIds = results.results.map((movie: any) => movie.id);
 
-  const seenMovies = await db
-    .select({
-      tmdbId: movies.tmdbId,
-    })
-    .from(seenList)
-    .innerJoin(movies, eq(seenList.movieId, movies.id))
-    .where(and(eq(seenList.clerkId, clerkId), inArray(movies.tmdbId, tmdbIds)));
+    const seenMovies = await db
+      .select({
+        tmdbId: movies.tmdbId,
+      })
+      .from(seenList)
+      .innerJoin(movies, eq(seenList.movieId, movies.id))
+      .where(
+        and(eq(seenList.clerkId, clerkId), inArray(movies.tmdbId, tmdbIds)),
+      );
 
-  const seenMovieIds = new Set(seenMovies.map((movie) => movie.tmdbId));
+    const seenMovieIds = new Set(seenMovies.map((movie) => movie.tmdbId));
+
+    const enrichedResults = results.results.map((movie: any) => ({
+      ...movie,
+      seen: seenMovieIds.has(movie.id),
+    }));
+
+    return { type: "success", results: enrichedResults };
+  }
 
   const enrichedResults = results.results.map((movie: any) => ({
     ...movie,
-    seen: seenMovieIds.has(movie.id),
+    seen: false,
   }));
 
   return { type: "success", results: enrichedResults };

@@ -2,6 +2,7 @@
 
 import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 import { db } from "../db";
 import { movies, seenList, users } from "../db/schema";
@@ -107,6 +108,8 @@ export async function addMovieToSeenList(movie: any): Promise<Status> {
     rating: null,
     review: "",
   });
+
+  revalidatePath("/");
 
   return { type: "success" };
 }

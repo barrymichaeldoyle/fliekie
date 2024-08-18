@@ -8,9 +8,7 @@ export function MovieResult(props: { movie: any }) {
     >
       <div className="flex flex-1 flex-col gap-1">
         <div>{props.movie.title}</div>
-        <div className="text-muted-foreground">
-          {props.movie.release_date?.substring(0, 4)}
-        </div>
+        <div className="text-muted-foreground">{props.movie.release_date}</div>
       </div>
       <SeenButton movie={props.movie} />
     </div>
