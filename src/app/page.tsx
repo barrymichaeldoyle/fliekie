@@ -12,7 +12,7 @@ export default async function HomePage({
   const query = searchParams.search;
 
   return (
-    <main className="p-4">
+    <main className="flex-1 p-4">
       <div className="flex flex-wrap gap-4">
         <MoviesSearchInput />
         {query && <MovieResults query={query} />}

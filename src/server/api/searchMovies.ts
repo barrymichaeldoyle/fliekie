@@ -2,6 +2,7 @@
 
 import { auth } from "@clerk/nextjs/server";
 import { and, eq, inArray } from "drizzle-orm";
+
 import { db } from "../db";
 import { seenList, movies } from "../db/schema";
 import type { Status } from "./types";
