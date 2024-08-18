@@ -1,6 +1,8 @@
+import { EnrichedMovie } from "~/server/api/types";
+
 import { SeenButton } from "./SeenButton";
 
-export function MovieResult(props: { movie: any }) {
+export function MovieResult(props: { movie: EnrichedMovie }) {
   return (
     <div
       key={props.movie.id}

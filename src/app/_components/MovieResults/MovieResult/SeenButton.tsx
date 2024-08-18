@@ -5,13 +5,17 @@ import { toast } from "sonner";
 
 import { SubmitButton } from "~/components/SubmitButton";
 import { addMovieToSeenList } from "~/server/api/addMovieToSeenList";
+import { EnrichedMovie } from "~/server/api/types";
 
-export function SeenButton(props: { movie: any }) {
+export function SeenButton(props: { movie: EnrichedMovie }) {
   const { isSignedIn } = useAuth();
-  const [optimisticMovie, setOptimisticMovie] = useOptimistic(
-    { seen: props.movie.seen },
-    (state, newSeenStatus) => ({ ...state, seen: newSeenStatus }),
-  );
+  const [optimisticMovie, setOptimisticMovie] = useOptimistic<
+    { seen: boolean },
+    boolean
+  >({ seen: props.movie.seen }, (state, newSeenStatus) => ({
+    ...state,
+    seen: newSeenStatus,
+  }));
   const [pending, startTransition] = useTransition();
 
   async function onAddMovieToSeenListSubmit(e: FormEvent) {

@@ -5,27 +5,48 @@ import { and, eq, inArray } from "drizzle-orm";
 
 import { db } from "../db";
 import { seenList, movies } from "../db/schema";
-import type { Status } from "./types";
+import type {
+  EnrichedSearchMoviesResponse,
+  SearchMoviesQueryParams,
+  SearchMoviesResponse,
+  Status,
+} from "./types";
 
 export async function searchMovies(
   query: string,
-): Promise<Status<{ results: any[] }>> {
+): Promise<Status<{ data: EnrichedSearchMoviesResponse }>> {
   const { userId: clerkId } = auth();
 
-  const response = await fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${process.env.TMDB_API_KEY}&query=${query}`,
+  const searchParams: SearchMoviesQueryParams = {
+    query,
+    api_key: process.env.TMDB_API_KEY!,
+  };
+  const url = new URL("https://api.themoviedb.org/3/search/movie");
+  Object.keys(searchParams).forEach((key) =>
+    url.searchParams.append(key, (searchParams as any)[key]),
   );
+
+  const response = await fetch(url.toString());
 
   if (response.status !== 200) {
     return { type: "error", message: "Failed to fetch movies" };
   }
 
-  const results = await response.json();
+  const data: SearchMoviesResponse = await response.json();
 
-  const tmdbIds = results.results.map((movie: any) => movie.id);
+  const emptySuccess: Status<{ data: EnrichedSearchMoviesResponse }> = {
+    type: "success",
+    data: { page: 0, total_pages: 0, total_results: 0, results: [] },
+  };
+
+  if (!data.results) {
+    return emptySuccess;
+  }
+
+  const tmdbIds = data.results.map((movie) => movie.id);
 
   if (tmdbIds.length === 0) {
-    return { type: "success", results: [] };
+    return emptySuccess;
   }
 
   if (clerkId) {
@@ -41,18 +62,18 @@ export async function searchMovies(
 
     const seenMovieIds = new Set(seenMovies.map((movie) => movie.tmdbId));
 
-    const enrichedResults = results.results.map((movie: any) => ({
+    const enrichedResults = data.results.map((movie) => ({
       ...movie,
       seen: seenMovieIds.has(movie.id),
     }));
 
-    return { type: "success", results: enrichedResults };
+    return { type: "success", data: { ...data, results: enrichedResults } };
   }
 
-  const enrichedResults = results.results.map((movie: any) => ({
+  const enrichedResults = data.results.map((movie) => ({
     ...movie,
     seen: false,
   }));
 
-  return { type: "success", results: enrichedResults };
+  return { type: "success", data: { ...data, results: enrichedResults } };
 }

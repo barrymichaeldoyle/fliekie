@@ -11,11 +11,13 @@ export async function MovieResults(props: { query: string }) {
     return <div>Failed to fetch movie results</div>;
   }
 
-  console.log(response.results[0]);
+  if (response.data.results.length === 0) {
+    return <div>No results found</div>;
+  }
 
   return (
     <div className="flex w-full flex-col gap-2">
-      {response.results.map((movie: any) => (
+      {response.data.results.map((movie) => (
         <MovieResult key={movie.id} movie={movie} />
       ))}
     </div>
