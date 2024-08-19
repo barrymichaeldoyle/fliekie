@@ -2,14 +2,14 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-import { PropsWithChildren } from "react";
+import { type PropsWithChildren } from "react";
 import { Toaster } from "sonner";
 
 import "~/styles/globals.css";
 import { ThemeProvider } from "~/components/ThemeProvider";
 
-import { TopNav } from "./_components/layout/TopNav";
 import { SideBar } from "./_components/layout/SideBar";
+import { TopNav } from "./_components/layout/TopNav";
 
 export const metadata: Metadata = {
   title: "Fliekie",

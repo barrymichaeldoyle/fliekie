@@ -1,11 +1,11 @@
 "use client";
 import { useAuth } from "@clerk/nextjs";
-import { FormEvent, useOptimistic, useTransition } from "react";
+import { type FormEvent, useOptimistic, useTransition } from "react";
 import { toast } from "sonner";
 
 import { SubmitButton } from "~/components/SubmitButton";
 import { addMovieToSeenList } from "~/server/api/addMovieToSeenList";
-import { Movie } from "~/server/api/types";
+import { type Movie } from "~/server/api/types";
 
 export function SeenButton(props: { movie: Movie }) {
   const { isSignedIn } = useAuth();

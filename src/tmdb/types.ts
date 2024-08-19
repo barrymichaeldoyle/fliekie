@@ -2909,9 +2909,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -3059,9 +3057,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -3148,9 +3144,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -3279,9 +3273,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -3521,9 +3513,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -3605,9 +3595,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -3695,9 +3683,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -3810,9 +3796,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             images?: {
@@ -3850,9 +3834,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /** @example 5256c89f19c2956ff6046d47 */
@@ -4026,9 +4008,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /** @example 2011-04-17 */
@@ -4216,9 +4196,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -4296,9 +4274,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             backdrops?: {
@@ -4420,9 +4396,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             backdrops?: {
@@ -4545,9 +4519,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -4610,9 +4582,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -4671,9 +4641,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -4761,9 +4729,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -4851,9 +4817,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -4937,9 +4901,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -4985,9 +4947,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -5035,9 +4995,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -5083,9 +5041,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -5205,9 +5161,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -5245,9 +5199,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             changes?: {
@@ -5292,9 +5244,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -5400,9 +5350,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -5435,9 +5383,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -5475,9 +5421,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -5547,9 +5491,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": Record<string, never>;
         };
@@ -5569,9 +5511,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -5620,9 +5560,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -5689,9 +5627,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -5774,9 +5710,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -5829,9 +5763,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -5885,9 +5817,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -9475,9 +9405,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -9510,9 +9438,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -9538,9 +9464,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -9568,9 +9492,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -9605,9 +9527,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -9640,9 +9560,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -9675,9 +9593,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -9715,9 +9631,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             movie_results?: {
@@ -9795,9 +9709,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -9865,9 +9777,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             changes?: {
@@ -9912,9 +9822,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             changes?: {
@@ -9967,9 +9875,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -10027,9 +9933,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             cast?: {
@@ -10166,9 +10070,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             cast?: {
@@ -10302,9 +10204,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             cast?: {
@@ -10443,9 +10343,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -10495,9 +10393,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -10624,9 +10520,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -10673,9 +10567,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -10786,9 +10678,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -10874,9 +10764,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -10962,9 +10850,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             dates?: {
@@ -11056,9 +10942,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             dates?: {
@@ -11149,9 +11033,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -11227,9 +11109,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -11304,9 +11184,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -11381,9 +11259,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -11455,9 +11331,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -11545,9 +11419,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -11707,9 +11579,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             cast?: {
@@ -11834,9 +11704,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -11870,9 +11738,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             results?: {
@@ -11907,9 +11773,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             cast?: {
@@ -12010,9 +11874,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             results?: {
@@ -12074,9 +11936,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -12126,9 +11986,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -12166,9 +12024,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -12252,9 +12108,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -12324,9 +12178,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -12372,9 +12224,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -12453,9 +12303,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -12505,9 +12353,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -12561,9 +12407,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -14667,9 +14511,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -14702,9 +14544,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -14736,9 +14576,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -14786,9 +14624,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             cast?: {
@@ -14916,9 +14752,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             changes?: {
@@ -14966,9 +14800,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             cast?: {
@@ -15069,9 +14901,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -15110,9 +14940,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -15159,9 +14987,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -15219,9 +15045,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             cast?: {
@@ -15363,9 +15187,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -15411,9 +15233,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -15461,9 +15281,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -15531,9 +15349,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -15568,9 +15384,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -15600,9 +15414,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             avatar?: {
@@ -15654,9 +15466,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -15723,9 +15533,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -15813,9 +15621,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -15899,9 +15705,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -15994,9 +15798,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -16085,9 +15887,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -16180,9 +15980,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -16270,9 +16068,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -16360,9 +16156,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -16399,9 +16193,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -16427,9 +16219,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             certifications?: {
@@ -16945,9 +16735,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             certifications?: {
@@ -17412,9 +17200,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             results?: {
@@ -17464,9 +17250,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             results?: {
@@ -17516,9 +17300,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             results?: {
@@ -17568,9 +17350,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -17657,9 +17437,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -17746,9 +17524,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -17792,9 +17568,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /** @example  */
@@ -17833,9 +17607,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -17867,9 +17639,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -17928,9 +17698,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /** @example cast */
@@ -18071,9 +17839,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             genres?: {
@@ -18103,9 +17869,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             genres?: {
@@ -18139,9 +17903,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -18233,9 +17995,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -18323,9 +18083,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -18413,9 +18171,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             results?: {
@@ -18445,9 +18201,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             results?: {
@@ -18802,9 +18556,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             results?: {
@@ -19158,9 +18910,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -19192,9 +18942,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -19285,9 +19033,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /** @example travisbell */
@@ -19381,9 +19127,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -19414,9 +19158,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -19454,9 +19196,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /** @example The item/record was created successfully. */
@@ -19503,9 +19243,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -19542,9 +19280,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -19575,9 +19311,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -19605,9 +19339,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /** @example New York City, New York */
@@ -19643,9 +19375,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -19677,9 +19407,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -19738,9 +19466,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /** @example 640b2aeecaaca20079decdcc */
@@ -19807,9 +19533,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -19829,9 +19553,7 @@ export interface operations {
       };
       /** @description 401 */
       401: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -19867,9 +19589,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -21925,9 +21645,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /** @example AD */
@@ -21952,9 +21670,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /** @example Production */
@@ -21976,9 +21692,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /** @example bi */
@@ -22003,9 +21717,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": string[];
         };
@@ -22023,9 +21735,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /** @example AD */
@@ -22054,9 +21764,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -22084,9 +21792,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -22139,9 +21845,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             changes?: {
@@ -22176,9 +21880,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /** @example Comedians in Cars organized in Netflix's collections. */
@@ -22298,9 +22000,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -22353,9 +22053,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -22416,9 +22114,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
@@ -22466,9 +22162,7 @@ export interface operations {
     responses: {
       /** @description 200 */
       200: {
-        headers: {
-          [name: string]: unknown;
-        };
+        headers: Record<string, unknown>;
         content: {
           "application/json": {
             /**
