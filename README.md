@@ -4,8 +4,6 @@ A side project that I'm building in public for the vibes.
 
 ## TODO:
 
-- [ ] Implement TMDB attribution
-
 - [ ] Error management (w/ Sentry)
 - [ ] Analytics (posthog)
 - [ ] Ratelimiting (upstash)

@@ -1,5 +1,6 @@
 import { MoviesSearchInput } from "./_components/MoviesSearchInput";
 import { MovieResults } from "./_components/MovieResults/MovieResults";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +13,11 @@ export default async function HomePage(props: {
     <main className="flex-1 p-4">
       <div className="flex flex-wrap gap-4">
         <MoviesSearchInput />
-        {query && <MovieResults query={query} />}
+        {query && (
+          <Suspense fallback={<div>Loading...</div>}>
+            <MovieResults query={query} />
+          </Suspense>
+        )}
       </div>
     </main>
   );
