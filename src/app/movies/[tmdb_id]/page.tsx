@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import Image from "next/image";
+
 import { TMDBPrimaryLong } from "~/components/images/TMDBPrimaryLong";
 import { getMovie } from "~/server/api/getMovie";
 
@@ -15,6 +17,7 @@ export default async function MoviePage(props: {
     return <div>Movie not found</div>;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
   const backdropPath = response.data.backdrop_path
     ? `https://image.tmdb.org/t/p/w1280${response.data.backdrop_path}`
     : null;
@@ -35,6 +38,7 @@ export default async function MoviePage(props: {
             {response.data.poster_path && (
               <Image
                 src={`https://image.tmdb.org/t/p/w500${response.data.poster_path}`}
+                // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
                 alt={response.data.title}
                 width={300}
                 height={450}

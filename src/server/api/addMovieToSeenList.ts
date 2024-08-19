@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache";
 
 import { db } from "../db";
 import { movies, seenList, users } from "../db/schema";
+
 import type { Movie, Status } from "./types";
 
 /**
@@ -58,7 +59,7 @@ async function getOrCreateMovie(
     .insert(movies)
     .values({
       tmdbId: movie.id,
-      title: movie.title || "",
+      title: movie.title ?? "",
       releaseDate: movie.release_date ? new Date(movie.release_date) : null,
       posterUrl: movie.poster_path,
     })

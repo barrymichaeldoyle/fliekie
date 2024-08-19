@@ -1,10 +1,8 @@
 import Image from "next/image";
-
-import { Movie } from "~/server/api/types";
-
-import { SeenButton } from "./SeenButton";
 import Link from "next/link";
+
 import { Button } from "~/components/ui/button";
+import { type Movie } from "~/server/api/types";
 
 export function MovieResult(props: { movie: Movie }) {
   const posterBaseUrl = "https://image.tmdb.org/t/p/w500";

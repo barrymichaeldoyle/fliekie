@@ -1,11 +1,11 @@
 "use client";
-import { useRouter, useSearchParams } from "next/navigation";
-import { ChangeEvent, useCallback, useMemo } from "react";
 import debounce from "lodash.debounce";
 import { Search } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { type ChangeEvent, useCallback, useMemo } from "react";
 
-import { Input } from "~/components/ui/input";
 import { TMDBAltShort } from "~/components/images/TMDBAltShort";
+import { Input } from "~/components/ui/input";
 
 export function MoviesSearchInput() {
   const router = useRouter();
@@ -37,7 +37,7 @@ export function MoviesSearchInput() {
     <div className="relative w-full">
       <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
       <Input
-        defaultValue={searchParams.get("search") || ""}
+        defaultValue={searchParams.get("search") ?? ""}
         onChange={handleChange}
         placeholder="Search Movies"
         className="pl-8 pr-24"

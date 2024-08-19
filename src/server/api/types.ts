@@ -1,4 +1,4 @@
-import { paths } from "~/tmdb/types";
+import { type paths } from "~/tmdb/types";
 
 export type Status<T = object> = ErrorStatus | SuccessStatus<T>;
 export type ErrorStatus = { type: "error"; message: string };

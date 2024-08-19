@@ -1,6 +1,7 @@
-import { MoviesSearchInput } from "./_components/MoviesSearchInput";
-import { MovieResults } from "./_components/MovieResults/MovieResults";
 import { Suspense } from "react";
+
+import { MovieResults } from "./_components/MovieResults/MovieResults";
+import { MoviesSearchInput } from "./_components/MoviesSearchInput";
 
 export const dynamic = "force-dynamic";
 

@@ -1,11 +1,11 @@
 import {
+  index,
   integer,
   pgTableCreator,
   text,
   timestamp,
   uuid,
   varchar,
-  index,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
