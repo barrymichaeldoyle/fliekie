@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "~/components/ui/button";
-import { type Movie } from "~/server/api/types";
+import { type TMDBMovieSearchResult } from "~/server/api/types";
 
-export function MovieResult(props: { movie: Movie }) {
+export function MovieResult(props: { movie: TMDBMovieSearchResult }) {
   const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   return (

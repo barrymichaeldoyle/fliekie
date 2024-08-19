@@ -10,4 +10,9 @@ export type SearchMoviesResponse =
 export type SearchMoviesQueryParams =
   paths["/3/search/movie"]["get"]["parameters"]["query"] & { api_key: string };
 
-export type Movie = NonNullable<SearchMoviesResponse["results"]>[number];
+export type TMDBMovieSearchResult = NonNullable<
+  SearchMoviesResponse["results"]
+>[number];
+
+export type TMDBMovie =
+  paths["/3/movie/{movie_id}"]["get"]["responses"]["200"]["content"]["application/json"];

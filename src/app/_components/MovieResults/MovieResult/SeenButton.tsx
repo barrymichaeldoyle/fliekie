@@ -5,9 +5,9 @@ import { toast } from "sonner";
 
 import { SubmitButton } from "~/components/SubmitButton";
 import { addMovieToSeenList } from "~/server/api/addMovieToSeenList";
-import { type Movie } from "~/server/api/types";
+import { type TMDBMovie } from "~/server/api/types";
 
-export function SeenButton(props: { movie: Movie }) {
+export function SeenButton(props: { movie: TMDBMovie }) {
   const { isSignedIn } = useAuth();
   const [optimisticMovie, setOptimisticMovie] = useOptimistic<
     { seen: boolean },

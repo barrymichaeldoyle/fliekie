@@ -13,10 +13,11 @@ export async function searchMovies(
     query,
     api_key: process.env.TMDB_API_KEY!,
   };
+
   const url = new URL("https://api.themoviedb.org/3/search/movie");
-  Object.keys(searchParams).forEach((key) =>
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-member-access
-    url.searchParams.append(key, (searchParams as any)[key]),
+
+  Object.entries(searchParams).forEach(([key, value]) =>
+    url.searchParams.append(key, String(value)),
   );
 
   const response = await fetch(url.toString());
@@ -25,8 +26,7 @@ export async function searchMovies(
     return { type: "error", message: "Failed to fetch movies" };
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const data: SearchMoviesResponse = await response.json();
+  const data = (await response.json()) as SearchMoviesResponse;
 
   return { type: "success", data };
 }
