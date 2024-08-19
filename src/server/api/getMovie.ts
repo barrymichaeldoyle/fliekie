@@ -1,8 +1,11 @@
 import { auth } from "@clerk/nextjs/server";
-import type { EnrichedTMDBMovie, Status, TMDBMovie } from "./types";
+import { and, eq } from "drizzle-orm";
+
 import { db } from "../db";
 import { movies, seenList } from "../db/schema";
-import { and, eq } from "drizzle-orm";
+
+import type { EnrichedTMDBMovie, Status, TMDBMovie } from "./types";
+
 
 export async function getMovie(
   tmdb_id: number,

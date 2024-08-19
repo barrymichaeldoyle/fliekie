@@ -37,7 +37,6 @@ export async function addMovieToSeenList(
     .then((rows) => rows[0]);
 
   if (existingSeenListEntry) {
-    console.log("Movie already in seen list, silently succeed.");
     return { type: "success" };
   }
 

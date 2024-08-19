@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import { TMDBPrimaryLong } from "~/components/images/TMDBPrimaryLong";
 import { getMovie } from "~/server/api/getMovie";
+
 import { SeenButton } from "./_components/SeenButton";
 
 export default async function MoviePage(props: {
