@@ -3,7 +3,6 @@ import Image from "next/image";
 import { EnrichedMovie } from "~/server/api/types";
 
 import { SeenButton } from "./SeenButton";
-import { Button } from "~/components/ui/button";
 import Link from "next/link";
 
 export function MovieResult(props: { movie: EnrichedMovie }) {
@@ -12,7 +11,7 @@ export function MovieResult(props: { movie: EnrichedMovie }) {
   return (
     <div
       key={props.movie.id}
-      className="bg-card border-border text-card-foreground flex w-full items-start rounded-sm border shadow-md"
+      className="flex w-full items-start rounded-sm border border-border bg-card text-card-foreground shadow-md"
     >
       {props.movie.poster_path ? (
         <Image
@@ -23,7 +22,7 @@ export function MovieResult(props: { movie: EnrichedMovie }) {
           className="h-[225px] min-h-[225px] w-[150px] min-w-[150px] rounded-sm"
         />
       ) : (
-        <div className="bg-muted flex h-[225px] min-h-[225px] w-[150px] min-w-[150px] items-center justify-center rounded-sm">
+        <div className="flex h-[225px] min-h-[225px] w-[150px] min-w-[150px] items-center justify-center rounded-sm bg-muted">
           <span className="text-muted-foreground">No Image</span>
         </div>
       )}
