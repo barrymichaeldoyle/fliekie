@@ -1,11 +1,8 @@
-import { auth } from "@clerk/nextjs/server";
 import { Status } from "./types";
 
 export async function getMovie(
   tmdb_id: number,
 ): Promise<Status<{ data: any }>> {
-  const { userId: clerkId } = auth();
-
   const url = new URL(`https://api.themoviedb.org/3/movie/${tmdb_id}`);
 
   const searchParams = {
@@ -17,8 +14,6 @@ export async function getMovie(
   );
 
   const response = await fetch(url.toString());
-
-  console.log(response);
 
   if (response.status !== 200) {
     return { type: "error", message: "Failed to fetch movie" };
