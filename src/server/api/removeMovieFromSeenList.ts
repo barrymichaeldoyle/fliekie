@@ -1,17 +1,18 @@
 "use server";
 
+import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 import { db } from "../db";
-import { seenList } from "../db/schema";
+import { movies, seenList } from "../db/schema";
 
-import type { Status, TMDBMovieSearchResult } from "./types";
+import type { EnrichedTMDBMovie, Status } from "./types";
 import { ensureUserExists } from "./utils/ensureUserExists";
 import { getOrCreateMovie } from "./utils/getOrCreateMovie";
 
-export async function addMovieToSeenList(
-  movie: TMDBMovieSearchResult,
+export async function removeMovieFromSeenList(
+  movie: EnrichedTMDBMovie,
 ): Promise<Status> {
   const ensureUserExistsStatus = await ensureUserExists();
 
@@ -28,25 +29,22 @@ export async function addMovieToSeenList(
   const existingSeenListEntry = await db
     .select()
     .from(seenList)
+    .innerJoin(movies, eq(seenList.movieId, movies.id))
     .where(
       and(
         eq(seenList.clerkId, ensureUserExistsStatus.clerkId),
-        eq(seenList.movieId, getOrCreateMovieStatus.movieId),
+        eq(movies.id, getOrCreateMovieStatus.movieId),
       ),
     )
     .then((rows) => rows[0]);
 
-  if (existingSeenListEntry) {
-    console.log("Movie already in seen list, silently succeed.");
+  if (!existingSeenListEntry) {
     return { type: "success" };
   }
 
-  await db.insert(seenList).values({
-    clerkId: ensureUserExistsStatus.clerkId,
-    movieId: getOrCreateMovieStatus.movieId,
-    rating: null,
-    review: "",
-  });
+  await db
+    .delete(seenList)
+    .where(eq(seenList.id, existingSeenListEntry.seen_list.id));
 
   revalidatePath(`/movies/${movie.id}`);
 
