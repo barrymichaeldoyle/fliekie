@@ -1,11 +1,12 @@
 import Image from "next/image";
 
-import { EnrichedMovie } from "~/server/api/types";
+import { Movie } from "~/server/api/types";
 
 import { SeenButton } from "./SeenButton";
 import Link from "next/link";
+import { Button } from "~/components/ui/button";
 
-export function MovieResult(props: { movie: EnrichedMovie }) {
+export function MovieResult(props: { movie: Movie }) {
   const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   return (
@@ -37,8 +38,10 @@ export function MovieResult(props: { movie: EnrichedMovie }) {
           <div className="text-muted-foreground">
             Released {props.movie.release_date}
           </div>
-          <Link href={`/movies/${props.movie.id}`}>View Movie</Link>
-          <SeenButton movie={props.movie} />
+
+          <Link href={`/movies/${props.movie.id}`}>
+            <Button>View Movie</Button>
+          </Link>
         </div>
       </div>
     </div>
