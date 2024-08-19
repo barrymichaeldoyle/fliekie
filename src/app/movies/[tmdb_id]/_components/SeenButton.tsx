@@ -1,35 +1,37 @@
 "use client";
 import { useAuth } from "@clerk/nextjs";
-import { type FormEvent, useOptimistic, useTransition } from "react";
+import { type FormEvent, useTransition } from "react";
 import { toast } from "sonner";
 
 import { SubmitButton } from "~/components/SubmitButton";
 import { addMovieToSeenList } from "~/server/api/addMovieToSeenList";
-import { type TMDBMovie } from "~/server/api/types";
+import { removeMovieFromSeenList } from "~/server/api/removeMovieFromSeenList";
+import type { EnrichedTMDBMovie } from "~/server/api/types";
 
-export function SeenButton(props: { movie: TMDBMovie }) {
+export function SeenButton(props: { movie: EnrichedTMDBMovie }) {
   const { isSignedIn } = useAuth();
-  const [optimisticMovie, setOptimisticMovie] = useOptimistic<
-    { seen: boolean },
-    boolean
-  >({ seen: false }, (state, newSeenStatus) => ({
-    ...state,
-    seen: newSeenStatus,
-  }));
   const [pending, startTransition] = useTransition();
 
   async function onAddMovieToSeenListSubmit(e: FormEvent) {
     e.preventDefault();
 
     startTransition(async () => {
-      setOptimisticMovie(true);
       const status = await addMovieToSeenList(props.movie);
 
       if (status.type === "error") {
-        setOptimisticMovie(false);
         toast.error("Failed to add movie to seen list");
-      } else if (status.type === "success") {
-        setOptimisticMovie(true);
+      }
+    });
+  }
+
+  async function onRemoveMovieFromSeenListSubmit(e: FormEvent) {
+    e.preventDefault();
+
+    startTransition(async () => {
+      const status = await removeMovieFromSeenList(props.movie);
+
+      if (status.type === "error") {
+        toast.error("Failed to remove movie from seen list");
       }
     });
   }
@@ -38,8 +40,14 @@ export function SeenButton(props: { movie: TMDBMovie }) {
     return null;
   }
 
-  if (optimisticMovie.seen) {
-    return <span className="px-4">Seen</span>;
+  if (props.movie.seen) {
+    return (
+      <form onSubmit={onRemoveMovieFromSeenListSubmit}>
+        <SubmitButton isLoading={pending} loadingText="Adding">
+          Remove From Seen List
+        </SubmitButton>
+      </form>
+    );
   }
 
   return (

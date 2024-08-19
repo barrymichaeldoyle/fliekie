@@ -16,3 +16,5 @@ export type TMDBMovieSearchResult = NonNullable<
 
 export type TMDBMovie =
   paths["/3/movie/{movie_id}"]["get"]["responses"]["200"]["content"]["application/json"];
+
+export type EnrichedTMDBMovie = TMDBMovie & { seen: boolean };

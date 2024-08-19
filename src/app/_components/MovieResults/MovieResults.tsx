@@ -1,6 +1,6 @@
 import { searchMovies } from "~/server/api/searchMovies";
 
-import { MovieResult } from "./MovieResult/MovieResult";
+import { MovieResult } from "./MovieResult";
 
 export const dynamic = "force-dynamic";
 

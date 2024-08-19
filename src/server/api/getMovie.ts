@@ -1,8 +1,15 @@
-import { type Status, type TMDBMovie } from "./types";
+import { auth } from "@clerk/nextjs/server";
+import { and, eq } from "drizzle-orm";
+
+import { db } from "../db";
+import { movies, seenList } from "../db/schema";
+
+import type { EnrichedTMDBMovie, Status, TMDBMovie } from "./types";
+
 
 export async function getMovie(
   tmdb_id: number,
-): Promise<Status<{ data: TMDBMovie }>> {
+): Promise<Status<{ data: EnrichedTMDBMovie }>> {
   const url = new URL(`https://api.themoviedb.org/3/movie/${tmdb_id}`);
 
   const searchParams = {
@@ -19,7 +26,20 @@ export async function getMovie(
     return { type: "error", message: "Failed to fetch movie" };
   }
 
+  const { userId: clerkId } = auth();
+
   const data = (await response.json()) as TMDBMovie;
 
-  return { type: "success", data };
+  if (!clerkId) {
+    return { type: "success", data: { ...data, seen: false } };
+  }
+
+  const seenMovie = await db
+    .select({ movieId: seenList.movieId })
+    .from(seenList)
+    .innerJoin(movies, eq(seenList.movieId, movies.id))
+    .where(and(eq(seenList.clerkId, clerkId), eq(movies.tmdbId, tmdb_id)))
+    .then((rows) => rows.length > 0);
+
+  return { type: "success", data: { ...data, seen: seenMovie } };
 }

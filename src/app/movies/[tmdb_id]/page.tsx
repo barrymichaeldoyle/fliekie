@@ -3,6 +3,8 @@ import Image from "next/image";
 import { TMDBPrimaryLong } from "~/components/images/TMDBPrimaryLong";
 import { getMovie } from "~/server/api/getMovie";
 
+import { SeenButton } from "./_components/SeenButton";
+
 export default async function MoviePage(props: {
   params: { tmdb_id: string };
 }) {
@@ -43,17 +45,20 @@ export default async function MoviePage(props: {
               />
             )}
           </div>
-          <div className="flex flex-1 flex-col justify-center">
+          <div className="flex flex-1 flex-col justify-start gap-4">
+            <div className="flex justify-end">
+              <SeenButton movie={response.data} />
+            </div>
             <h1 className="text-4xl font-bold text-white">
               {response.data.title}
             </h1>
-            <p className="mt-2 text-lg text-gray-300">
+            <p className="text-lg text-gray-300">
               Release Date: {response.data.release_date}
             </p>
-            <p className="mt-2 text-lg text-gray-300">
+            <p className="text-lg text-gray-300">
               TMDB Rating: {response.data.vote_average}/10
             </p>
-            <p className="mt-4 text-lg text-gray-300">
+            <p className="mt-2 text-lg text-gray-300">
               {response.data.overview}
             </p>
           </div>
