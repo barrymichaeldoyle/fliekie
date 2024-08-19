@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { TMDBPrimaryLong } from "~/components/images/TMDBPrimaryLong";
 import { getMovie } from "~/server/api/getMovie";
 
 export default async function MoviePage(props: {
@@ -25,7 +26,8 @@ export default async function MoviePage(props: {
         backgroundImage: backdropPath ? `url('${backdropPath}')` : undefined,
       }}
     >
-      <div className="absolute inset-0 bg-background opacity-50"></div>
+      <div className="absolute inset-0 bg-background opacity-50" />
+      <TMDBPrimaryLong className="absolute bottom-4 right-4 w-32 opacity-80" />
 
       <div className="relative mx-auto max-w-4xl rounded-lg bg-black bg-opacity-70 p-4">
         <div className="flex flex-col gap-6 md:flex-row">
@@ -48,7 +50,7 @@ export default async function MoviePage(props: {
               Release Date: {response.data.release_date}
             </p>
             <p className="mt-2 text-lg text-gray-300">
-              Rating: {response.data.vote_average}/10
+              TMDB Rating: {response.data.vote_average}/10
             </p>
             <p className="mt-4 text-lg text-gray-300">
               {response.data.overview}

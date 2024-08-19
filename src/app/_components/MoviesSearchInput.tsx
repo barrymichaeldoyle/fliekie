@@ -5,6 +5,7 @@ import debounce from "lodash.debounce";
 import { Search } from "lucide-react";
 
 import { Input } from "~/components/ui/input";
+import { TMDBAltShort } from "~/components/images/TMDBAltShort";
 
 export function MoviesSearchInput() {
   const router = useRouter();
@@ -34,13 +35,14 @@ export function MoviesSearchInput() {
 
   return (
     <div className="relative w-full">
-      <Search className="text-muted-foreground absolute left-2 top-2.5 h-4 w-4" />
+      <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
       <Input
         defaultValue={searchParams.get("search") || ""}
         onChange={handleChange}
         placeholder="Search Movies"
-        className="pl-8"
+        className="pl-8 pr-24"
       />
+      <TMDBAltShort className="absolute right-2 top-3.5 w-20 opacity-80" />
     </div>
   );
 }
