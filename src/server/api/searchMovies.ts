@@ -26,7 +26,7 @@ export async function searchMovies(
     return { type: "error", message: "Failed to fetch movies" };
   }
 
-  const data: SearchMoviesResponse = await response.json();
+  const data = (await response.json()) as SearchMoviesResponse;
 
   return { type: "success", data };
 }

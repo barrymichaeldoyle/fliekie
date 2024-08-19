@@ -1,4 +1,4 @@
-import { TMDBMovie, type Status } from "./types";
+import { type Status, type TMDBMovie } from "./types";
 
 export async function getMovie(
   tmdb_id: number,
@@ -19,7 +19,7 @@ export async function getMovie(
     return { type: "error", message: "Failed to fetch movie" };
   }
 
-  const data: TMDBMovie = await response.json();
+  const data = (await response.json()) as TMDBMovie;
 
   return { type: "success", data };
 }
