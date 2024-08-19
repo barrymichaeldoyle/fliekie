@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  lint:
+  lint-and-format:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,4 +34,4 @@ jobs:
           git add .
           git commit -m "Auto-fix issues"
           git push
-        if: ${{ steps.lint.outcome == 'success' }}
+        if: ${{ steps.lint-and-format.outcome == 'success' }}
