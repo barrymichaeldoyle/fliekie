@@ -1,4 +1,5 @@
 import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { PropsWithChildren } from "react";
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider appearance={{ baseTheme: dark }}>
       <html
         lang="en"
         className={`${GeistSans.variable} bg-background text-foreground`}
