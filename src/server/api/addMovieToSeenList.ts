@@ -112,7 +112,7 @@ export async function addMovieToSeenList(
     review: "",
   });
 
-  revalidatePath("/");
+  revalidatePath(`/movies/${movie.id}`);
 
   return { type: "success" };
 }
