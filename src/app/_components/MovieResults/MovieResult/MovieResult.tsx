@@ -3,6 +3,8 @@ import Image from "next/image";
 import { EnrichedMovie } from "~/server/api/types";
 
 import { SeenButton } from "./SeenButton";
+import { Button } from "~/components/ui/button";
+import Link from "next/link";
 
 export function MovieResult(props: { movie: EnrichedMovie }) {
   const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
@@ -26,7 +28,7 @@ export function MovieResult(props: { movie: EnrichedMovie }) {
         </div>
       )}
 
-      <div className="flex h-full flex-col items-start justify-start p-4">
+      <div className="flex h-full w-full flex-col items-start justify-start p-4">
         <div className="flex flex-1 flex-col gap-2">
           <h3 className="text-xl font-semibold">{props.movie.title}</h3>
           <div>{props.movie.overview}</div>
@@ -36,6 +38,7 @@ export function MovieResult(props: { movie: EnrichedMovie }) {
           <div className="text-muted-foreground">
             Released {props.movie.release_date}
           </div>
+          <Link href={`/movies/${props.movie.id}`}>View Movie</Link>
           <SeenButton movie={props.movie} />
         </div>
       </div>

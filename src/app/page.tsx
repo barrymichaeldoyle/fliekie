@@ -3,12 +3,10 @@ import { MovieResults } from "./_components/MovieResults/MovieResults";
 
 export const dynamic = "force-dynamic";
 
-export default async function HomePage({
-  searchParams,
-}: {
+export default async function HomePage(props: {
   searchParams: { search?: string };
 }) {
-  const query = searchParams.search;
+  const query = props.searchParams.search;
 
   return (
     <main className="flex-1 p-4">
