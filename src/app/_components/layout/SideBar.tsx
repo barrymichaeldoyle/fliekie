@@ -17,11 +17,6 @@ const unauthenicatedNavItems: NavItemProps[] = [
     label: "Search",
     href: "/",
   },
-  {
-    icon: Info,
-    label: "Disclaimer",
-    href: "/disclaimer",
-  },
 ];
 
 const authenticatedNavItems: NavItemProps[] = [
@@ -40,6 +35,9 @@ const authenticatedNavItems: NavItemProps[] = [
     label: "Watch List",
     href: "/watchlist",
   },
+];
+
+const supportNavItems: NavItemProps[] = [
   {
     icon: Info,
     label: "Disclaimer",
@@ -50,30 +48,29 @@ const authenticatedNavItems: NavItemProps[] = [
 export function SideBar() {
   return (
     <aside className="w-56 border-r bg-card p-4">
-      <nav className="flex flex-col gap-6">
+      <nav className="flex h-full flex-col gap-6">
         <SignedIn>
-          {authenticatedNavItems.map((item) => (
-            <NavItem key={item.label} {...item} />
-          ))}
+          <NavItems items={authenticatedNavItems} />
         </SignedIn>
         <SignedOut>
-          {unauthenicatedNavItems.map((item) => (
-            <NavItem key={item.label} {...item} />
-          ))}
+          <NavItems items={unauthenicatedNavItems} />
         </SignedOut>
+        <div className="flex-1" />
+        <NavItems items={supportNavItems} />
       </nav>
     </aside>
   );
 }
 
-function NavItem(props: NavItemProps) {
-  return (
+function NavItems(props: { items: NavItemProps[] }) {
+  return props.items.map((item) => (
     <Link
-      href={props.href}
+      key={item.label}
+      href={item.href}
       className="text-md flex items-center gap-3 font-medium"
     >
-      <props.icon className="h-5 w-5" />
-      {props.label}
+      <item.icon className="h-5 w-5" />
+      {item.label}
     </Link>
-  );
+  ));
 }
