@@ -3,7 +3,8 @@ import { eq } from "drizzle-orm";
 import { db } from "~/server/db";
 import { movies } from "~/server/db/schema";
 
-import { type Status, type TMDBMovieSearchResult } from "../types";
+import { type TMDBMovieSearchResult } from "../searchMovies";
+import { type Status } from "../types";
 
 /**
  * A helper function to check if the movie is already in the database
@@ -17,7 +18,7 @@ export async function getOrCreateMovie(
   const existingMovie = await db
     .select()
     .from(movies)
-    .where(eq(movies.tmdbId, movie.id))
+    .where(eq(movies.tmdb_id, movie.id))
     .then((rows) => rows[0]);
 
   if (existingMovie) {
@@ -27,10 +28,11 @@ export async function getOrCreateMovie(
   const [insertedMovie] = await db
     .insert(movies)
     .values({
-      tmdbId: movie.id,
+      tmdb_id: movie.id,
       title: movie.title ?? "",
-      releaseDate: movie.release_date ? new Date(movie.release_date) : null,
-      posterUrl: movie.poster_path,
+      release_date: movie.release_date ? new Date(movie.release_date) : null,
+      poster_path: movie.poster_path,
+      overview: movie.overview,
     })
     .returning({ id: movies.id });
 

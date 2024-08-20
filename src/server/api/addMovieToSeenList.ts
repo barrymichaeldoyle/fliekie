@@ -6,7 +6,8 @@ import { revalidatePath } from "next/cache";
 import { db } from "../db";
 import { seenList } from "../db/schema";
 
-import type { Status, TMDBMovieSearchResult } from "./types";
+import { type TMDBMovieSearchResult } from "./searchMovies";
+import type { Status } from "./types";
 import { ensureUserExists } from "./utils/ensureUserExists";
 import { getOrCreateMovie } from "./utils/getOrCreateMovie";
 
@@ -30,8 +31,8 @@ export async function addMovieToSeenList(
     .from(seenList)
     .where(
       and(
-        eq(seenList.clerkId, ensureUserExistsStatus.clerkId),
-        eq(seenList.movieId, getOrCreateMovieStatus.movieId),
+        eq(seenList.clerk_id, ensureUserExistsStatus.clerkId),
+        eq(seenList.movie_id, getOrCreateMovieStatus.movieId),
       ),
     )
     .then((rows) => rows[0]);
@@ -41,8 +42,8 @@ export async function addMovieToSeenList(
   }
 
   await db.insert(seenList).values({
-    clerkId: ensureUserExistsStatus.clerkId,
-    movieId: getOrCreateMovieStatus.movieId,
+    clerk_id: ensureUserExistsStatus.clerkId,
+    movie_id: getOrCreateMovieStatus.movieId,
     rating: null,
     review: "",
   });

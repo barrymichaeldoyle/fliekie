@@ -1,11 +1,17 @@
 import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 
+import { type paths } from "~/tmdb/types";
+
 import { db } from "../db";
 import { movies, seenList } from "../db/schema";
 
-import type { EnrichedTMDBMovie, Status, TMDBMovie } from "./types";
+import type { Status } from "./types";
 
+export type TMDBMovie =
+  paths["/3/movie/{movie_id}"]["get"]["responses"]["200"]["content"]["application/json"];
+
+export type EnrichedTMDBMovie = TMDBMovie & { seen: boolean };
 
 export async function getMovie(
   tmdb_id: number,
@@ -35,10 +41,10 @@ export async function getMovie(
   }
 
   const seenMovie = await db
-    .select({ movieId: seenList.movieId })
+    .select({ movie_id: seenList.movie_id })
     .from(seenList)
-    .innerJoin(movies, eq(seenList.movieId, movies.id))
-    .where(and(eq(seenList.clerkId, clerkId), eq(movies.tmdbId, tmdb_id)))
+    .innerJoin(movies, eq(seenList.movie_id, movies.id))
+    .where(and(eq(seenList.clerk_id, clerkId), eq(movies.tmdb_id, tmdb_id)))
     .then((rows) => rows.length > 0);
 
   return { type: "success", data: { ...data, seen: seenMovie } };

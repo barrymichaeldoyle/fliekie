@@ -6,7 +6,8 @@ import { revalidatePath } from "next/cache";
 import { db } from "../db";
 import { movies, seenList } from "../db/schema";
 
-import type { EnrichedTMDBMovie, Status } from "./types";
+import { type EnrichedTMDBMovie } from "./getMovie";
+import type { Status } from "./types";
 import { ensureUserExists } from "./utils/ensureUserExists";
 import { getOrCreateMovie } from "./utils/getOrCreateMovie";
 
@@ -28,10 +29,10 @@ export async function removeMovieFromSeenList(
   const existingSeenListEntry = await db
     .select()
     .from(seenList)
-    .innerJoin(movies, eq(seenList.movieId, movies.id))
+    .innerJoin(movies, eq(seenList.movie_id, movies.id))
     .where(
       and(
-        eq(seenList.clerkId, ensureUserExistsStatus.clerkId),
+        eq(seenList.clerk_id, ensureUserExistsStatus.clerkId),
         eq(movies.id, getOrCreateMovieStatus.movieId),
       ),
     )

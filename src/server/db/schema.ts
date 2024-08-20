@@ -13,69 +13,70 @@ export const createTable = pgTableCreator((name) => `fliekie_${name}`);
 
 export const movies = createTable("movies", {
   id: uuid("id").primaryKey().defaultRandom(),
-  tmdbId: integer("tmdb_id").unique().notNull(),
+  tmdb_id: integer("tmdb_id").unique().notNull(),
   title: varchar("title", { length: 255 }).notNull(),
-  releaseDate: timestamp("release_date"),
-  posterUrl: varchar("poster_url", { length: 2048 }),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+  release_date: timestamp("release_date"),
+  poster_path: varchar("poster_path", { length: 2048 }),
+  overview: varchar("overview", { length: 2048 }),
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at").defaultNow().notNull(),
 });
 
 export const users = createTable("users", {
-  clerkId: varchar("clerk_id", { length: 255 }).primaryKey(),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at")
+  clerk_id: varchar("clerk_id", { length: 255 }).primaryKey(),
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at")
     .defaultNow()
     .$onUpdateFn(() => new Date()),
 });
 
 export const seenList = createTable("seen_list", {
   id: uuid("id").primaryKey().defaultRandom(),
-  clerkId: varchar("clerk_id", { length: 255 })
-    .references(() => users.clerkId)
+  clerk_id: varchar("clerk_id", { length: 255 })
+    .references(() => users.clerk_id)
     .notNull(),
-  movieId: uuid("movie_id")
+  movie_id: uuid("movie_id")
     .references(() => movies.id)
     .notNull(),
-  seenAt: timestamp("seen_at").notNull().defaultNow(),
+  seen_at: timestamp("seen_at").notNull().defaultNow(),
   rating: integer("rating"),
   review: text("review").default(""),
-  createdAt: timestamp("created_at").defaultNow(),
-  updatedAt: timestamp("updated_at")
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at")
     .defaultNow()
     .$onUpdateFn(() => new Date()),
 });
 
 export const watchlist = createTable("watchlist", {
   id: uuid("id").primaryKey().defaultRandom(),
-  clerkId: varchar("clerk_id", { length: 255 })
-    .references(() => users.clerkId)
+  clerk_id: varchar("clerk_id", { length: 255 })
+    .references(() => users.clerk_id)
     .notNull(),
-  movieId: uuid("movie_id")
+  movie_id: uuid("movie_id")
     .references(() => movies.id)
     .notNull(),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
+  created_at: timestamp("created_at").notNull().defaultNow(),
 });
 
 export const follows = createTable("follows", {
   id: uuid("id").primaryKey().defaultRandom(),
-  followerClerkId: varchar("follower_clerk_id", { length: 255 }).references(
-    () => users.clerkId,
+  follower_clerk_id: varchar("follower_clerk_id", { length: 255 }).references(
+    () => users.clerk_id,
   ),
-  followedClerkId: varchar("followed_clerk_id", { length: 255 }).references(
-    () => users.clerkId,
+  followed_clerk_id: varchar("followed_clerk_id", { length: 255 }).references(
+    () => users.clerk_id,
   ),
-  createdAt: timestamp("created_at").defaultNow(),
+  created_at: timestamp("created_at").defaultNow(),
 });
 
 export const seenListIndexes = index("seen_list_clerk_id_idx").on(
-  seenList.clerkId,
+  seenList.clerk_id,
 );
 export const watchlistIndexes = index("watchlist_clerk_id_idx").on(
-  watchlist.clerkId,
+  watchlist.clerk_id,
 );
 export const followsIndexes = index("follows_follower_idx").on(
-  follows.followerClerkId,
+  follows.follower_clerk_id,
 );
 
 export const insertMoviesSchema = createInsertSchema(movies);

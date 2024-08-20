@@ -1,10 +1,18 @@
 "use server";
 
-import type {
-  SearchMoviesQueryParams,
-  SearchMoviesResponse,
-  Status,
-} from "./types";
+import { type paths } from "~/tmdb/types";
+
+import type { Status } from "./types";
+
+export type SearchMoviesResponse =
+  paths["/3/search/movie"]["get"]["responses"]["200"]["content"]["application/json"];
+
+export type SearchMoviesQueryParams =
+  paths["/3/search/movie"]["get"]["parameters"]["query"] & { api_key: string };
+
+export type TMDBMovieSearchResult = NonNullable<
+  SearchMoviesResponse["results"]
+>[number];
 
 export async function searchMovies(
   query: string,

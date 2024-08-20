@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "~/components/ui/button";
-import { type TMDBMovieSearchResult } from "~/server/api/searchMovies";
+import { type SeenMovieItem } from "~/server/api/listSeenMovies";
 
-export function MovieResult(props: { movie: TMDBMovieSearchResult }) {
+export function MovieResult(props: { movie: SeenMovieItem }) {
   const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   return (
@@ -34,10 +34,13 @@ export function MovieResult(props: { movie: TMDBMovieSearchResult }) {
 
         <div className="flex w-full items-center justify-between">
           <div className="text-muted-foreground">
-            Released {props.movie.release_date}
+            Released{" "}
+            {props.movie.release_date
+              ? props.movie.release_date.toDateString()
+              : "Unknown"}
           </div>
 
-          <Link href={`/movies/${props.movie.id}`}>
+          <Link href={`/movies/${props.movie.tmdb_id}`}>
             <Button>View Movie</Button>
           </Link>
         </div>
