@@ -1,0 +1,571 @@
+{
+  "id": "5c2b317d-eb66-4a13-95ad-8eac90967726",
+  "prevId": "4650bdc9-20b9-4837-91f1-65210c536e6b",
+  "version": "6",
+  "dialect": "postgresql",
+  "tables": {
+    "public.fliekie_collections": {
+      "name": "fliekie_collections",
+      "schema": "",
+      "columns": {
+        "tmdb_collection_id": {
+          "name": "tmdb_collection_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "poster_path": {
+          "name": "poster_path",
+          "type": "varchar(2048)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "backdrop_path": {
+          "name": "backdrop_path",
+          "type": "varchar(2048)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.fliekie_follows": {
+      "name": "fliekie_follows",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "follower_clerk_id": {
+          "name": "follower_clerk_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "followed_clerk_id": {
+          "name": "followed_clerk_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "fliekie_follows_follower_clerk_id_fliekie_users_clerk_id_fk": {
+          "name": "fliekie_follows_follower_clerk_id_fliekie_users_clerk_id_fk",
+          "tableFrom": "fliekie_follows",
+          "tableTo": "fliekie_users",
+          "columnsFrom": [
+            "follower_clerk_id"
+          ],
+          "columnsTo": [
+            "clerk_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "fliekie_follows_followed_clerk_id_fliekie_users_clerk_id_fk": {
+          "name": "fliekie_follows_followed_clerk_id_fliekie_users_clerk_id_fk",
+          "tableFrom": "fliekie_follows",
+          "tableTo": "fliekie_users",
+          "columnsFrom": [
+            "followed_clerk_id"
+          ],
+          "columnsTo": [
+            "clerk_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.fliekie_genres": {
+      "name": "fliekie_genres",
+      "schema": "",
+      "columns": {
+        "tmdb_genre_id": {
+          "name": "tmdb_genre_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.fliekie_movie_collections": {
+      "name": "fliekie_movie_collections",
+      "schema": "",
+      "columns": {
+        "tmdb_movie_id": {
+          "name": "tmdb_movie_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tmdb_collection_id": {
+          "name": "tmdb_collection_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "fliekie_movie_collections_tmdb_movie_id_fliekie_movies_tmdb_movie_id_fk": {
+          "name": "fliekie_movie_collections_tmdb_movie_id_fliekie_movies_tmdb_movie_id_fk",
+          "tableFrom": "fliekie_movie_collections",
+          "tableTo": "fliekie_movies",
+          "columnsFrom": [
+            "tmdb_movie_id"
+          ],
+          "columnsTo": [
+            "tmdb_movie_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "fliekie_movie_collections_tmdb_collection_id_fliekie_collections_tmdb_collection_id_fk": {
+          "name": "fliekie_movie_collections_tmdb_collection_id_fliekie_collections_tmdb_collection_id_fk",
+          "tableFrom": "fliekie_movie_collections",
+          "tableTo": "fliekie_collections",
+          "columnsFrom": [
+            "tmdb_collection_id"
+          ],
+          "columnsTo": [
+            "tmdb_collection_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.fliekie_movie_genres": {
+      "name": "fliekie_movie_genres",
+      "schema": "",
+      "columns": {
+        "tmdb_movie_id": {
+          "name": "tmdb_movie_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tmdb_genre_id": {
+          "name": "tmdb_genre_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "fliekie_movie_genres_tmdb_movie_id_fliekie_movies_tmdb_movie_id_fk": {
+          "name": "fliekie_movie_genres_tmdb_movie_id_fliekie_movies_tmdb_movie_id_fk",
+          "tableFrom": "fliekie_movie_genres",
+          "tableTo": "fliekie_movies",
+          "columnsFrom": [
+            "tmdb_movie_id"
+          ],
+          "columnsTo": [
+            "tmdb_movie_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "fliekie_movie_genres_tmdb_genre_id_fliekie_genres_tmdb_genre_id_fk": {
+          "name": "fliekie_movie_genres_tmdb_genre_id_fliekie_genres_tmdb_genre_id_fk",
+          "tableFrom": "fliekie_movie_genres",
+          "tableTo": "fliekie_genres",
+          "columnsFrom": [
+            "tmdb_genre_id"
+          ],
+          "columnsTo": [
+            "tmdb_genre_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.fliekie_movies": {
+      "name": "fliekie_movies",
+      "schema": "",
+      "columns": {
+        "tmdb_movie_id": {
+          "name": "tmdb_movie_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "imdb_id": {
+          "name": "imdb_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "adult": {
+          "name": "adult",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "title": {
+          "name": "title",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "release_date": {
+          "name": "release_date",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "poster_path": {
+          "name": "poster_path",
+          "type": "varchar(2048)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "backdrop_path": {
+          "name": "backdrop_path",
+          "type": "varchar(2048)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "budget": {
+          "name": "budget",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "revenue": {
+          "name": "revenue",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tagline": {
+          "name": "tagline",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "runtime": {
+          "name": "runtime",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "original_language": {
+          "name": "original_language",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "overview": {
+          "name": "overview",
+          "type": "varchar(2048)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tmdb_collection_id": {
+          "name": "tmdb_collection_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "fliekie_movies_tmdb_collection_id_fliekie_collections_tmdb_collection_id_fk": {
+          "name": "fliekie_movies_tmdb_collection_id_fliekie_collections_tmdb_collection_id_fk",
+          "tableFrom": "fliekie_movies",
+          "tableTo": "fliekie_collections",
+          "columnsFrom": [
+            "tmdb_collection_id"
+          ],
+          "columnsTo": [
+            "tmdb_collection_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.fliekie_seen_list": {
+      "name": "fliekie_seen_list",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "clerk_id": {
+          "name": "clerk_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tmdb_movie_id": {
+          "name": "tmdb_movie_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "seen_at": {
+          "name": "seen_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "rating": {
+          "name": "rating",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "review": {
+          "name": "review",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "''"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "fliekie_seen_list_clerk_id_fliekie_users_clerk_id_fk": {
+          "name": "fliekie_seen_list_clerk_id_fliekie_users_clerk_id_fk",
+          "tableFrom": "fliekie_seen_list",
+          "tableTo": "fliekie_users",
+          "columnsFrom": [
+            "clerk_id"
+          ],
+          "columnsTo": [
+            "clerk_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "fliekie_seen_list_tmdb_movie_id_fliekie_movies_tmdb_movie_id_fk": {
+          "name": "fliekie_seen_list_tmdb_movie_id_fliekie_movies_tmdb_movie_id_fk",
+          "tableFrom": "fliekie_seen_list",
+          "tableTo": "fliekie_movies",
+          "columnsFrom": [
+            "tmdb_movie_id"
+          ],
+          "columnsTo": [
+            "tmdb_movie_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.fliekie_users": {
+      "name": "fliekie_users",
+      "schema": "",
+      "columns": {
+        "clerk_id": {
+          "name": "clerk_id",
+          "type": "varchar(255)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "public.fliekie_watchlist": {
+      "name": "fliekie_watchlist",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "clerk_id": {
+          "name": "clerk_id",
+          "type": "varchar(255)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tmdb_movie_id": {
+          "name": "tmdb_movie_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "fliekie_watchlist_clerk_id_fliekie_users_clerk_id_fk": {
+          "name": "fliekie_watchlist_clerk_id_fliekie_users_clerk_id_fk",
+          "tableFrom": "fliekie_watchlist",
+          "tableTo": "fliekie_users",
+          "columnsFrom": [
+            "clerk_id"
+          ],
+          "columnsTo": [
+            "clerk_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "fliekie_watchlist_tmdb_movie_id_fliekie_movies_tmdb_movie_id_fk": {
+          "name": "fliekie_watchlist_tmdb_movie_id_fliekie_movies_tmdb_movie_id_fk",
+          "tableFrom": "fliekie_watchlist",
+          "tableTo": "fliekie_movies",
+          "columnsFrom": [
+            "tmdb_movie_id"
+          ],
+          "columnsTo": [
+            "tmdb_movie_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
