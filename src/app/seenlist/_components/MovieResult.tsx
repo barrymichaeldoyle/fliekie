@@ -2,16 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "~/components/ui/button";
-import { type SeenMovieItem } from "~/server/api/listSeenMovies";
+import { type SeenMovie } from "~/server/api/listSeenMovies";
 
-export function MovieResult(props: { movie: SeenMovieItem }) {
+export function MovieResult(props: { movie: SeenMovie }) {
   const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   return (
-    <div
-      key={props.movie.id}
-      className="flex w-full items-start rounded-sm border border-border bg-card text-card-foreground shadow-md"
-    >
+    <div className="flex w-full items-start rounded-sm border border-border bg-card text-card-foreground shadow-md">
       {props.movie.poster_path ? (
         <Image
           src={`${posterBaseUrl}${props.movie.poster_path}`}
@@ -40,7 +37,7 @@ export function MovieResult(props: { movie: SeenMovieItem }) {
               : "Unknown"}
           </div>
 
-          <Link href={`/movies/${props.movie.tmdb_id}`}>
+          <Link href={`/movies/${props.movie.tmdb_movie_id}`}>
             <Button>View Movie</Button>
           </Link>
         </div>

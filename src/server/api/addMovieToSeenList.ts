@@ -6,14 +6,11 @@ import { revalidatePath } from "next/cache";
 import { db } from "../db";
 import { seenList } from "../db/schema";
 
-import { type TMDBMovieSearchResult } from "./searchMovies";
-import type { Status } from "./types";
+import type { Status, TMDBMovie } from "./types";
 import { ensureUserExists } from "./utils/ensureUserExists";
 import { getOrCreateMovie } from "./utils/getOrCreateMovie";
 
-export async function addMovieToSeenList(
-  movie: TMDBMovieSearchResult,
-): Promise<Status> {
+export async function addMovieToSeenList(movie: TMDBMovie): Promise<Status> {
   const ensureUserExistsStatus = await ensureUserExists();
 
   if (ensureUserExistsStatus.type === "error") {
@@ -32,7 +29,7 @@ export async function addMovieToSeenList(
     .where(
       and(
         eq(seenList.clerk_id, ensureUserExistsStatus.clerkId),
-        eq(seenList.movie_id, getOrCreateMovieStatus.movieId),
+        eq(seenList.tmdb_movie_id, getOrCreateMovieStatus.tmdb_movie_id),
       ),
     )
     .then((rows) => rows[0]);
@@ -43,7 +40,7 @@ export async function addMovieToSeenList(
 
   await db.insert(seenList).values({
     clerk_id: ensureUserExistsStatus.clerkId,
-    movie_id: getOrCreateMovieStatus.movieId,
+    tmdb_movie_id: getOrCreateMovieStatus.tmdb_movie_id,
     rating: null,
     review: "",
   });

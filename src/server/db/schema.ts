@@ -1,4 +1,6 @@
 import {
+  boolean,
+  foreignKey,
   index,
   integer,
   pgTableCreator,
@@ -11,16 +13,98 @@ import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export const createTable = pgTableCreator((name) => `fliekie_${name}`);
 
-export const movies = createTable("movies", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  tmdb_id: integer("tmdb_id").unique().notNull(),
-  title: varchar("title", { length: 255 }).notNull(),
-  release_date: timestamp("release_date"),
+export const movies = createTable(
+  "movies",
+  {
+    tmdb_movie_id: integer("tmdb_movie_id").primaryKey().notNull(),
+    imdb_id: varchar("imdb_id", { length: 255 }),
+    adult: boolean("adult"),
+    title: varchar("title", { length: 255 }),
+    release_date: timestamp("release_date"),
+    poster_path: varchar("poster_path", { length: 2048 }),
+    backdrop_path: varchar("backdrop_path", { length: 2048 }),
+    budget: integer("budget"),
+    revenue: integer("revenue"),
+    tagline: varchar("tagline", { length: 255 }),
+    runtime: integer("runtime"),
+    original_language: varchar("original_language", { length: 255 }),
+    overview: varchar("overview", { length: 2048 }),
+    status: varchar("status", { length: 255 }),
+    tmdb_collection_id: integer("tmdb_collection_id").references(
+      () => collections.tmdb_collection_id,
+    ),
+    created_at: timestamp("created_at").defaultNow(),
+    updated_at: timestamp("updated_at").defaultNow().notNull(),
+  },
+  (table) => ({
+    fk_tmdb_collection: foreignKey({
+      columns: [table.tmdb_collection_id],
+      foreignColumns: [collections.tmdb_collection_id],
+    }),
+  }),
+);
+
+export const collections = createTable("collections", {
+  tmdb_collection_id: integer("tmdb_collection_id").primaryKey().notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
   poster_path: varchar("poster_path", { length: 2048 }),
-  overview: varchar("overview", { length: 2048 }),
+  backdrop_path: varchar("backdrop_path", { length: 2048 }),
   created_at: timestamp("created_at").defaultNow(),
   updated_at: timestamp("updated_at").defaultNow().notNull(),
 });
+
+export const genres = createTable("genres", {
+  tmdb_genre_id: integer("tmdb_genre_id").primaryKey().notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  created_at: timestamp("created_at").defaultNow(),
+  updated_at: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const movieCollections = createTable(
+  "movie_collections",
+  {
+    tmdb_movie_id: integer("tmdb_movie_id")
+      .references(() => movies.tmdb_movie_id)
+      .notNull(),
+    tmdb_collection_id: integer("tmdb_collection_id")
+      .references(() => collections.tmdb_collection_id)
+      .notNull(),
+  },
+  (table) => ({
+    primaryKey: { columns: [table.tmdb_movie_id, table.tmdb_collection_id] },
+    fk_movie: foreignKey({
+      columns: [table.tmdb_movie_id],
+      foreignColumns: [movies.tmdb_movie_id],
+    }),
+    fk_collection: foreignKey({
+      columns: [table.tmdb_collection_id],
+      foreignColumns: [collections.tmdb_collection_id],
+    }),
+  }),
+);
+
+export const movieGenres = createTable(
+  "movie_genres",
+  {
+    tmdb_movie_id: integer("tmdb_movie_id")
+      .references(() => movies.tmdb_movie_id)
+      .notNull(),
+    tmdb_genre_id: integer("tmdb_genre_id")
+      .references(() => genres.tmdb_genre_id)
+      .notNull(),
+  },
+  (table) => ({
+    primaryKey: { columns: [table.tmdb_movie_id, table.tmdb_genre_id] },
+    fk_movie: foreignKey({
+      columns: [table.tmdb_movie_id],
+      foreignColumns: [movies.tmdb_movie_id],
+    }),
+    fk_genre: foreignKey({
+      columns: [table.tmdb_genre_id],
+      foreignColumns: [genres.tmdb_genre_id],
+    }),
+  }),
+);
 
 export const users = createTable("users", {
   clerk_id: varchar("clerk_id", { length: 255 }).primaryKey(),
@@ -35,8 +119,8 @@ export const seenList = createTable("seen_list", {
   clerk_id: varchar("clerk_id", { length: 255 })
     .references(() => users.clerk_id)
     .notNull(),
-  movie_id: uuid("movie_id")
-    .references(() => movies.id)
+  tmdb_movie_id: integer("tmdb_movie_id")
+    .references(() => movies.tmdb_movie_id)
     .notNull(),
   seen_at: timestamp("seen_at").notNull().defaultNow(),
   rating: integer("rating"),
@@ -52,8 +136,8 @@ export const watchlist = createTable("watchlist", {
   clerk_id: varchar("clerk_id", { length: 255 })
     .references(() => users.clerk_id)
     .notNull(),
-  movie_id: uuid("movie_id")
-    .references(() => movies.id)
+  tmdb_movie_id: integer("tmdb_movie_id")
+    .references(() => movies.tmdb_movie_id)
     .notNull(),
   created_at: timestamp("created_at").notNull().defaultNow(),
 });
@@ -69,6 +153,9 @@ export const follows = createTable("follows", {
   created_at: timestamp("created_at").defaultNow(),
 });
 
+export const movieGenresIndexes = index("movie_genres_tmdb_movie_id_idx").on(
+  movieGenres.tmdb_movie_id,
+);
 export const seenListIndexes = index("seen_list_clerk_id_idx").on(
   seenList.clerk_id,
 );

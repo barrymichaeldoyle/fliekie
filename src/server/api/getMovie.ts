@@ -14,9 +14,9 @@ export type TMDBMovie =
 export type EnrichedTMDBMovie = TMDBMovie & { seen: boolean };
 
 export async function getMovie(
-  tmdb_id: number,
+  tmdb_movie_id: number,
 ): Promise<Status<{ data: EnrichedTMDBMovie }>> {
-  const url = new URL(`https://api.themoviedb.org/3/movie/${tmdb_id}`);
+  const url = new URL(`https://api.themoviedb.org/3/movie/${tmdb_movie_id}`);
 
   const searchParams = {
     api_key: process.env.TMDB_API_KEY!,
@@ -41,10 +41,15 @@ export async function getMovie(
   }
 
   const seenMovie = await db
-    .select({ movie_id: seenList.movie_id })
+    .select({ tmdb_movie_id: seenList.tmdb_movie_id })
     .from(seenList)
-    .innerJoin(movies, eq(seenList.movie_id, movies.id))
-    .where(and(eq(seenList.clerk_id, clerkId), eq(movies.tmdb_id, tmdb_id)))
+    .innerJoin(movies, eq(seenList.tmdb_movie_id, movies.tmdb_movie_id))
+    .where(
+      and(
+        eq(seenList.clerk_id, clerkId),
+        eq(movies.tmdb_movie_id, tmdb_movie_id),
+      ),
+    )
     .then((rows) => rows.length > 0);
 
   return { type: "success", data: { ...data, seen: seenMovie } };

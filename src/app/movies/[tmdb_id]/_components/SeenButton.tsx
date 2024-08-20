@@ -7,6 +7,7 @@ import { SubmitButton } from "~/components/SubmitButton";
 import { addMovieToSeenList } from "~/server/api/addMovieToSeenList";
 import { type EnrichedTMDBMovie } from "~/server/api/getMovie";
 import { removeMovieFromSeenList } from "~/server/api/removeMovieFromSeenList";
+import { type TMDBMovie } from "~/server/api/types";
 
 export function SeenButton(props: { movie: EnrichedTMDBMovie }) {
   const { isSignedIn } = useAuth();
@@ -16,7 +17,7 @@ export function SeenButton(props: { movie: EnrichedTMDBMovie }) {
     e.preventDefault();
 
     startTransition(async () => {
-      const status = await addMovieToSeenList(props.movie);
+      const status = await addMovieToSeenList(props.movie as TMDBMovie);
 
       if (status.type === "error") {
         toast.error("Failed to add movie to seen list");
@@ -28,7 +29,7 @@ export function SeenButton(props: { movie: EnrichedTMDBMovie }) {
     e.preventDefault();
 
     startTransition(async () => {
-      const status = await removeMovieFromSeenList(props.movie);
+      const status = await removeMovieFromSeenList(props.movie as TMDBMovie);
 
       if (status.type === "error") {
         toast.error("Failed to remove movie from seen list");

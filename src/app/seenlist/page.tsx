@@ -18,7 +18,7 @@ export default async function SeenListPage() {
       <h1 className="text-2xl font-bold">Seen List</h1>
       <div className="flex w-full flex-col gap-2">
         {response.movies.map((movie) => (
-          <MovieResult key={movie.id} movie={movie} />
+          <MovieResult key={movie.tmdb_movie_id} movie={movie} />
         ))}
       </div>
     </main>
