@@ -23,11 +23,11 @@ export async function ensureUserExists(): Promise<Status<{ clerkId: string }>> {
   const existingUser = await db
     .select()
     .from(users)
-    .where(eq(users.clerkId, clerkId))
+    .where(eq(users.clerk_id, clerkId))
     .then((rows) => rows[0]);
 
   if (!existingUser) {
-    await db.insert(users).values({ clerkId });
+    await db.insert(users).values({ clerk_id: clerkId });
   }
 
   return { type: "success", clerkId };
