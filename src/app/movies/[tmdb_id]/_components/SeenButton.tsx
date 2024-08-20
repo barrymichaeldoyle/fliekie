@@ -5,8 +5,8 @@ import { toast } from "sonner";
 
 import { SubmitButton } from "~/components/SubmitButton";
 import { addMovieToSeenList } from "~/server/api/addMovieToSeenList";
+import { type EnrichedTMDBMovie } from "~/server/api/getMovie";
 import { removeMovieFromSeenList } from "~/server/api/removeMovieFromSeenList";
-import type { EnrichedTMDBMovie } from "~/server/api/types";
 
 export function SeenButton(props: { movie: EnrichedTMDBMovie }) {
   const { isSignedIn } = useAuth();
