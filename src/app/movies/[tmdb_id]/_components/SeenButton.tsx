@@ -1,5 +1,6 @@
 "use client";
 import { useAuth } from "@clerk/nextjs";
+import { Eye } from "lucide-react";
 import { type FormEvent, useTransition } from "react";
 import { toast } from "sonner";
 
@@ -44,8 +45,8 @@ export function SeenButton(props: { movie: EnrichedTMDBMovie }) {
   if (props.movie.seen) {
     return (
       <form onSubmit={onRemoveMovieFromSeenListSubmit}>
-        <SubmitButton isLoading={pending} loadingText="Adding">
-          Remove From Seen List
+        <SubmitButton isLoading={pending} loadingText="Removing">
+          <Eye className="mr-2 h-4 w-4" /> Remove From Seen List
         </SubmitButton>
       </form>
     );
@@ -54,7 +55,7 @@ export function SeenButton(props: { movie: EnrichedTMDBMovie }) {
   return (
     <form onSubmit={onAddMovieToSeenListSubmit}>
       <SubmitButton isLoading={pending} loadingText="Adding">
-        Add To Seen List
+        <Eye className="mr-2 h-4 w-4" /> Add To Seen List
       </SubmitButton>
     </form>
   );
