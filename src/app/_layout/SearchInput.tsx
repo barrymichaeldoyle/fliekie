@@ -23,8 +23,12 @@ export function SearchInput() {
   const debouncedChange = useMemo(
     () =>
       debounce((query: string) => {
-        const newQueryString = createQueryString("search", query);
-        router.replace(`?${newQueryString}`);
+        const newQueryString = createQueryString("q", query);
+        if (query.length > 0) {
+          router.replace(`/search?${newQueryString}`);
+        } else {
+          router.replace("/");
+        }
       }, 500),
     [router, createQueryString],
   );
@@ -40,7 +44,7 @@ export function SearchInput() {
         defaultValue={searchParams.get("search") ?? ""}
         onChange={handleChange}
         placeholder="Search Movies"
-        className="pl-8 pr-24"
+        className="rounded-full pl-8 pr-24"
       />
       <TMDBAltShort className="absolute right-2 top-3.5 w-20 opacity-80" />
     </div>
