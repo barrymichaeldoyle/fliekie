@@ -4,7 +4,6 @@ import {
   Home,
   Info,
   type LucideProps,
-  Smile,
   Star,
   UserCheck,
   UserPlus,
