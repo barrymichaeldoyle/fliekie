@@ -8,4 +8,6 @@ A side project that I'm building in public for the vibes.
 - [ ] Analytics (posthog)
 - [ ] Ratelimiting (upstash)
 
-- [ ] Move Search Bar to Top Nav
+- [ ] Implement "friends" feature
+- [ ] Implement user following
+- [ ] Implement groups
