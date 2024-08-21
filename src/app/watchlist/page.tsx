@@ -1,6 +1,8 @@
 import { MovieResult } from "~/components/MovieResult";
 import { getWatchlist } from "~/server/api/getWatchlist";
 
+export const dynamic = "force-dynamic";
+
 export default async function WatchlistPage() {
   const response = await getWatchlist();
 

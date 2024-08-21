@@ -1,6 +1,8 @@
 import { MovieResult } from "~/components/MovieResult";
 import { getSeenlist } from "~/server/api/getSeenlist";
 
+export const dynamic = "force-dynamic";
+
 export default async function SeenlistPage() {
   const response = await getSeenlist();
 
