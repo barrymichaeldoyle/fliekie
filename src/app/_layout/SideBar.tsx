@@ -1,5 +1,13 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { Eye, Home, Info, type LucideProps, Star } from "lucide-react";
+import {
+  Eye,
+  Home,
+  Info,
+  type LucideProps,
+  Star,
+  UserCheck,
+  UserPlus,
+} from "lucide-react";
 import Link from "next/link";
 import type { ForwardRefExoticComponent, RefAttributes } from "react";
 
@@ -34,6 +42,16 @@ const authenticatedNavItems: NavItemProps[] = [
     icon: Star,
     label: "Watchlist",
     href: "/watchlist",
+  },
+  {
+    icon: UserCheck,
+    label: "Following",
+    href: "/following",
+  },
+  {
+    icon: UserPlus,
+    label: "Followers",
+    href: "/followers",
   },
 ];
 
