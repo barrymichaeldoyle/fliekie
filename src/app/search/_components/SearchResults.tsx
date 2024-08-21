@@ -2,9 +2,34 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "~/components/ui/button";
-import { type TMDBMovieSearchResult } from "~/server/api/searchMovies";
+import {
+  type TMDBMovieSearchResult,
+  searchMovies,
+} from "~/server/api/searchMovies";
 
-export function SearchResult(props: { movie: TMDBMovieSearchResult }) {
+export const dynamic = "force-dynamic";
+
+export async function SearchResults(props: { query: string }) {
+  const response = await searchMovies(props.query);
+
+  if (response.type === "error") {
+    return <div>Failed to fetch movie results</div>;
+  }
+
+  if (!response.data.results || response.data.results.length === 0) {
+    return <div>No results found</div>;
+  }
+
+  return (
+    <div className="flex w-full flex-col gap-2">
+      {response.data.results.map((movie) => (
+        <SearchResult key={movie.id} movie={movie} />
+      ))}
+    </div>
+  );
+}
+
+function SearchResult(props: { movie: TMDBMovieSearchResult }) {
   const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   return (

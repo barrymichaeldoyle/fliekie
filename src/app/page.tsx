@@ -1,25 +1,8 @@
-import { Suspense } from "react";
-
-import { SearchInput } from "./_components/SearchInput";
-import { SearchResults } from "./_components/SearchResults/SearchResults";
-
-export const dynamic = "force-dynamic";
-
-export default async function HomePage(props: {
-  searchParams: { search?: string };
-}) {
-  const query = props.searchParams.search;
-
+export default async function HomePage() {
   return (
     <main className="flex-1 p-4">
-      <div className="flex flex-wrap gap-4">
-        <SearchInput />
-        {query && (
-          <Suspense fallback={<div>Loading...</div>}>
-            <SearchResults query={query} />
-          </Suspense>
-        )}
-      </div>
+      <h1 className="text-2xl font-bold">Welcome to Fliekie</h1>
+      <p>I have no idea wtf to put on this page...</p>
     </main>
   );
 }

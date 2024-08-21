@@ -1,7 +1,7 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { Eye, Info, type LucideProps, Search, Star } from "lucide-react";
+import { Eye, Home, Info, type LucideProps, Star } from "lucide-react";
 import Link from "next/link";
-import { type ForwardRefExoticComponent, type RefAttributes } from "react";
+import type { ForwardRefExoticComponent, RefAttributes } from "react";
 
 type NavItemProps = {
   icon: ForwardRefExoticComponent<
@@ -13,16 +13,16 @@ type NavItemProps = {
 
 const unauthenicatedNavItems: NavItemProps[] = [
   {
-    icon: Search,
-    label: "Search",
+    icon: Home,
+    label: "Home",
     href: "/",
   },
 ];
 
 const authenticatedNavItems: NavItemProps[] = [
   {
-    icon: Search,
-    label: "Search",
+    icon: Home,
+    label: "Home",
     href: "/",
   },
   {

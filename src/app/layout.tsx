@@ -8,8 +8,8 @@ import { Toaster } from "sonner";
 import "~/styles/globals.css";
 import { ThemeProvider } from "~/components/ThemeProvider";
 
-import { SideBar } from "./_components/layout/SideBar";
-import { TopNav } from "./_components/layout/TopNav";
+import { SideBar } from "./_layout/SideBar";
+import { TopNav } from "./_layout/TopNav";
 
 export const metadata: Metadata = {
   title: "Fliekie",
