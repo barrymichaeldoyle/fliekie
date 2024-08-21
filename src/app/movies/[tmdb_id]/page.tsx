@@ -3,7 +3,8 @@ import Image from "next/image";
 import { TMDBPrimaryLong } from "~/components/images/TMDBPrimaryLong";
 import { getMovie } from "~/server/api/getMovie";
 
-import { SeenButton } from "./_components/SeenButton";
+import { SeenlistButton } from "./_components/SeenlistButton";
+import { WatchlistButton } from "./_components/WatchlistButton";
 
 export default async function MoviePage(props: {
   params: { tmdb_id: string };
@@ -43,8 +44,9 @@ export default async function MoviePage(props: {
                 )}
               </div>
               <div className="flex flex-1 flex-col justify-start gap-4">
-                <div className="flex justify-end">
-                  <SeenButton movie={response.data} />
+                <div className="flex justify-end gap-2">
+                  <WatchlistButton movie={response.data} />
+                  <SeenlistButton movie={response.data} />
                 </div>
                 <h1 className="text-4xl font-bold text-white">
                   {response.data.title}

@@ -5,35 +5,35 @@ import { type FormEvent, useTransition } from "react";
 import { toast } from "sonner";
 
 import { SubmitButton } from "~/components/SubmitButton";
-import { addMovieToSeenList } from "~/server/api/addMovieToSeenList";
+import { addMovieToSeenlist } from "~/server/api/addMovieToSeenlist";
 import { type EnrichedTMDBMovie } from "~/server/api/getMovie";
-import { removeMovieFromSeenList } from "~/server/api/removeMovieFromSeenList";
+import { removeMovieFromSeenlist } from "~/server/api/removeMovieFromSeenlist";
 import { type TMDBMovie } from "~/server/api/types";
 
-export function SeenButton(props: { movie: EnrichedTMDBMovie }) {
+export function SeenlistButton(props: { movie: EnrichedTMDBMovie }) {
   const { isSignedIn } = useAuth();
   const [pending, startTransition] = useTransition();
 
-  async function onAddMovieToSeenListSubmit(e: FormEvent) {
+  async function onAddMovieToSeenlistSubmit(e: FormEvent) {
     e.preventDefault();
 
     startTransition(async () => {
-      const status = await addMovieToSeenList(props.movie as TMDBMovie);
+      const status = await addMovieToSeenlist(props.movie as TMDBMovie);
 
       if (status.type === "error") {
-        toast.error("Failed to add movie to seen list");
+        toast.error("Failed to add movie to seenlist");
       }
     });
   }
 
-  async function onRemoveMovieFromSeenListSubmit(e: FormEvent) {
+  async function onRemoveMovieFromSeenlistSubmit(e: FormEvent) {
     e.preventDefault();
 
     startTransition(async () => {
-      const status = await removeMovieFromSeenList(props.movie as TMDBMovie);
+      const status = await removeMovieFromSeenlist(props.movie as TMDBMovie);
 
       if (status.type === "error") {
-        toast.error("Failed to remove movie from seen list");
+        toast.error("Failed to remove movie from seenlist");
       }
     });
   }
@@ -42,9 +42,9 @@ export function SeenButton(props: { movie: EnrichedTMDBMovie }) {
     return null;
   }
 
-  if (props.movie.seen) {
+  if (props.movie.inSeenlist) {
     return (
-      <form onSubmit={onRemoveMovieFromSeenListSubmit}>
+      <form onSubmit={onRemoveMovieFromSeenlistSubmit}>
         <SubmitButton isLoading={pending} loadingText="Removing">
           <Eye className="mr-2 h-4 w-4" /> Remove From Seen List
         </SubmitButton>
@@ -53,7 +53,7 @@ export function SeenButton(props: { movie: EnrichedTMDBMovie }) {
   }
 
   return (
-    <form onSubmit={onAddMovieToSeenListSubmit}>
+    <form onSubmit={onAddMovieToSeenlistSubmit}>
       <SubmitButton isLoading={pending} loadingText="Adding">
         <Eye className="mr-2 h-4 w-4" /> Add To Seen List
       </SubmitButton>

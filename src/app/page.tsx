@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 
-import { MovieResults } from "./_components/MovieResults/MovieResults";
-import { MoviesSearchInput } from "./_components/MoviesSearchInput";
+import { SearchInput } from "./_components/SearchInput";
+import { SearchResults } from "./_components/SearchResults/SearchResults";
 
 export const dynamic = "force-dynamic";
 
@@ -13,10 +13,10 @@ export default async function HomePage(props: {
   return (
     <main className="flex-1 p-4">
       <div className="flex flex-wrap gap-4">
-        <MoviesSearchInput />
+        <SearchInput />
         {query && (
           <Suspense fallback={<div>Loading...</div>}>
-            <MovieResults query={query} />
+            <SearchResults query={query} />
           </Suspense>
         )}
       </div>

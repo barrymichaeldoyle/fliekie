@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { type TMDBMovieSearchResult } from "~/server/api/searchMovies";
 
-export function MovieResult(props: { movie: TMDBMovieSearchResult }) {
+export function SearchResult(props: { movie: TMDBMovieSearchResult }) {
   const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
 
   return (

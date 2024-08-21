@@ -1,10 +1,10 @@
 import { searchMovies } from "~/server/api/searchMovies";
 
-import { MovieResult } from "./MovieResult";
+import { SearchResult } from "./SearchResult";
 
 export const dynamic = "force-dynamic";
 
-export async function MovieResults(props: { query: string }) {
+export async function SearchResults(props: { query: string }) {
   const response = await searchMovies(props.query);
 
   if (response.type === "error") {
@@ -18,7 +18,7 @@ export async function MovieResults(props: { query: string }) {
   return (
     <div className="flex w-full flex-col gap-2">
       {response.data.results.map((movie) => (
-        <MovieResult key={movie.id} movie={movie} />
+        <SearchResult key={movie.id} movie={movie} />
       ))}
     </div>
   );

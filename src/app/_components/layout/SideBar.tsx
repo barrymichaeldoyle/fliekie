@@ -27,12 +27,12 @@ const authenticatedNavItems: NavItemProps[] = [
   },
   {
     icon: Eye,
-    label: "Seen List",
+    label: "Seenlist",
     href: "/seenlist",
   },
   {
     icon: Star,
-    label: "Watch List",
+    label: "Watchlist",
     href: "/watchlist",
   },
 ];
