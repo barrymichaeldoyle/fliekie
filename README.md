@@ -8,6 +8,4 @@ A side project that I'm building in public for the vibes.
 - [ ] Analytics (posthog)
 - [ ] Ratelimiting (upstash)
 
-- [ ] Add Movie To Seen List
-- [ ] Remove Movie From Seen List
-- [ ] Implement Seen List Page
+- [ ] Move Search Bar to Top Nav
