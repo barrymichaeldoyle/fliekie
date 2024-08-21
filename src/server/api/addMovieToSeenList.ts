@@ -4,13 +4,13 @@ import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 import { db } from "../db";
-import { seenList } from "../db/schema";
+import { seenlist } from "../db/schema";
 
 import type { Status, TMDBMovie } from "./types";
 import { ensureUserExists } from "./utils/ensureUserExists";
 import { getOrCreateMovie } from "./utils/getOrCreateMovie";
 
-export async function addMovieToSeenList(movie: TMDBMovie): Promise<Status> {
+export async function addMovieToSeenlist(movie: TMDBMovie): Promise<Status> {
   const ensureUserExistsStatus = await ensureUserExists();
 
   if (ensureUserExistsStatus.type === "error") {
@@ -23,22 +23,22 @@ export async function addMovieToSeenList(movie: TMDBMovie): Promise<Status> {
     return getOrCreateMovieStatus;
   }
 
-  const existingSeenListEntry = await db
+  const existingSeenlistEntry = await db
     .select()
-    .from(seenList)
+    .from(seenlist)
     .where(
       and(
-        eq(seenList.clerk_id, ensureUserExistsStatus.clerkId),
-        eq(seenList.tmdb_movie_id, getOrCreateMovieStatus.tmdb_movie_id),
+        eq(seenlist.clerk_id, ensureUserExistsStatus.clerkId),
+        eq(seenlist.tmdb_movie_id, getOrCreateMovieStatus.tmdb_movie_id),
       ),
     )
     .then((rows) => rows[0]);
 
-  if (existingSeenListEntry) {
+  if (existingSeenlistEntry) {
     return { type: "success" };
   }
 
-  await db.insert(seenList).values({
+  await db.insert(seenlist).values({
     clerk_id: ensureUserExistsStatus.clerkId,
     tmdb_movie_id: getOrCreateMovieStatus.tmdb_movie_id,
     rating: null,

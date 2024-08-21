@@ -4,15 +4,13 @@ import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 import { db } from "../db";
-import { movies, seenlist } from "../db/schema";
+import { watchlist } from "../db/schema";
 
 import type { Status, TMDBMovie } from "./types";
 import { ensureUserExists } from "./utils/ensureUserExists";
 import { getOrCreateMovie } from "./utils/getOrCreateMovie";
 
-export async function removeMovieFromSeenlist(
-  movie: TMDBMovie,
-): Promise<Status> {
+export async function addMovieToWatchlist(movie: TMDBMovie): Promise<Status> {
   const ensureUserExistsStatus = await ensureUserExists();
 
   if (ensureUserExistsStatus.type === "error") {
@@ -25,25 +23,25 @@ export async function removeMovieFromSeenlist(
     return getOrCreateMovieStatus;
   }
 
-  const existingSeenlistEntry = await db
+  const existingWatchlistEntry = await db
     .select()
-    .from(seenlist)
-    .innerJoin(movies, eq(seenlist.tmdb_movie_id, movies.tmdb_movie_id))
+    .from(watchlist)
     .where(
       and(
-        eq(seenlist.clerk_id, ensureUserExistsStatus.clerkId),
-        eq(movies.tmdb_movie_id, getOrCreateMovieStatus.tmdb_movie_id),
+        eq(watchlist.clerk_id, ensureUserExistsStatus.clerkId),
+        eq(watchlist.tmdb_movie_id, getOrCreateMovieStatus.tmdb_movie_id),
       ),
     )
     .then((rows) => rows[0]);
 
-  if (!existingSeenlistEntry) {
+  if (existingWatchlistEntry) {
     return { type: "success" };
   }
 
-  await db
-    .delete(seenlist)
-    .where(eq(seenlist.id, existingSeenlistEntry.seenlist.id));
+  await db.insert(watchlist).values({
+    clerk_id: ensureUserExistsStatus.clerkId,
+    tmdb_movie_id: getOrCreateMovieStatus.tmdb_movie_id,
+  });
 
   revalidatePath(`/movies/${movie.id}`);
 

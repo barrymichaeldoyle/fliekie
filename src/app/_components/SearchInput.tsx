@@ -7,7 +7,7 @@ import { type ChangeEvent, useCallback, useMemo } from "react";
 import { TMDBAltShort } from "~/components/images/TMDBAltShort";
 import { Input } from "~/components/ui/input";
 
-export function MoviesSearchInput() {
+export function SearchInput() {
   const router = useRouter();
   const searchParams = useSearchParams();
 

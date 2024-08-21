@@ -5,7 +5,7 @@ export function TopNav() {
     <nav className="flex h-14 w-full items-center justify-between border-b bg-card px-6 text-xl font-semibold">
       <div>Fliekie</div>
 
-      <div>
+      <div className="flex items-center">
         <SignedOut>
           <SignInButton />
         </SignedOut>
