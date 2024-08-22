@@ -101,6 +101,10 @@ export default async function PrivacyPolicyPage() {
           <li>Click delete account.</li>
           <li>Follow on screen instructions.</li>
         </ol>
+        <p className="mb-6">
+          If you encounter any issues, please wait for me to make an actual
+          contact form for this.
+        </p>
       </section>
     </main>
   );
