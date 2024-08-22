@@ -12,7 +12,7 @@ import { SideBar } from "./_layout/SideBar";
 import { TopNav } from "./_layout/TopNav";
 
 export const metadata: Metadata = {
-  title: "Fliekie",
+  title: "Fliekie - Movie Night",
   description: "Rate movies with your friends and plan your next movie night!",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
