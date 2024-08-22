@@ -149,12 +149,12 @@ export const watchlist = createTable("watchlist", {
 
 export const follows = createTable("follows", {
   id: uuid("id").primaryKey().defaultRandom(),
-  follower_clerk_id: varchar("follower_clerk_id", { length: 255 }).references(
-    () => users.clerk_id,
-  ),
-  followed_clerk_id: varchar("followed_clerk_id", { length: 255 }).references(
-    () => users.clerk_id,
-  ),
+  follower_clerk_id: varchar("follower_clerk_id", { length: 255 })
+    .notNull()
+    .references(() => users.clerk_id),
+  followed_clerk_id: varchar("followed_clerk_id", { length: 255 })
+    .notNull()
+    .references(() => users.clerk_id),
   created_at: timestamp("created_at").defaultNow(),
 });
 
