@@ -22,19 +22,21 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
     <ClerkProvider appearance={{ baseTheme: dark }}>
       <html
         lang="en"
-        className={`${GeistSans.variable} bg-background text-foreground`}
+        className={`${GeistSans.variable}`}
         suppressHydrationWarning
       >
-        <body className="flex flex-col">
+        <body>
           <ThemeProvider
             attribute="class"
             forcedTheme="dark"
             disableTransitionOnChange
           >
-            <TopNav />
-            <div className="flex flex-1">
-              <SideBar />
-              {children}
+            <div className="flex h-full flex-col">
+              <TopNav />
+              <div className="flex min-h-0 flex-1">
+                <SideBar />
+                <div className="flex-1 overflow-auto">{children}</div>
+              </div>
             </div>
             <Toaster closeButton />
           </ThemeProvider>
