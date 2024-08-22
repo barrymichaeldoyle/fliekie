@@ -3,6 +3,7 @@ import {
   foreignKey,
   index,
   integer,
+  pgEnum,
   pgTableCreator,
   text,
   timestamp,
@@ -10,6 +11,9 @@ import {
   varchar,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
+
+export const environmentEnum = pgEnum("environment_enum", ["dev", "prod"]);
+export type Environment = "dev" | "prod";
 
 export const createTable = pgTableCreator((name) => `fliekie_${name}`);
 
@@ -108,6 +112,7 @@ export const movieGenres = createTable(
 
 export const users = createTable("users", {
   clerk_id: varchar("clerk_id", { length: 255 }).primaryKey(),
+  environment: environmentEnum("environment").notNull().default("prod"),
   created_at: timestamp("created_at").defaultNow(),
   updated_at: timestamp("updated_at")
     .defaultNow()
