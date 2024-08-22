@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@clerk/nextjs/server";
-import { eq } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 
 import { db } from "~/server/db";
 import { users } from "~/server/db/schema";
@@ -20,14 +20,16 @@ export async function ensureUserExists(): Promise<Status<{ clerkId: string }>> {
     return { type: "error", message: "User not authenticated" };
   }
 
+  const environment = process.env.NODE_ENV === "production" ? "prod" : "dev";
+
   const existingUser = await db
     .select()
     .from(users)
-    .where(eq(users.clerk_id, clerkId))
+    .where(and(eq(users.clerk_id, clerkId), eq(users.environment, environment)))
     .then((rows) => rows[0]);
 
   if (!existingUser) {
-    await db.insert(users).values({ clerk_id: clerkId });
+    await db.insert(users).values({ clerk_id: clerkId, environment });
   }
 
   return { type: "success", clerkId };
