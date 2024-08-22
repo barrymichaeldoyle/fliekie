@@ -85,6 +85,23 @@ export default async function PrivacyPolicyPage() {
           can wait around until I create an actual contact form for this.
         </p>
       </section>
+
+      <section>
+        <h1 id="data-deletion-instructions" className="mb-4 text-2xl font-bold">
+          Fliekie Data Deletion Instructions
+        </h1>
+        <p className="mb-6">
+          If you wish to delete your account and all associated data, please
+          follow the steps below:
+        </p>
+        <ol className="mb-6 ml-6 list-disc">
+          <li>Log in to your account.</li>
+          <li>Go to manage account.</li>
+          <li>Go to security tab.</li>
+          <li>Click delete account.</li>
+          <li>Follow on screen instructions.</li>
+        </ol>
+      </section>
     </main>
   );
 }
