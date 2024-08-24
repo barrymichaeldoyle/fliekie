@@ -2,6 +2,7 @@ import { type User } from "@clerk/nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
 
+import { Button } from "~/components/ui/button";
 import { getSuggestedUsers } from "~/server/api/getSuggestedUsers";
 
 export async function Suggested() {
@@ -22,20 +23,22 @@ export async function Suggested() {
 
 function UserCard(props: { user: User }) {
   return (
-    <div className="flex flex-col items-center gap-2 rounded-lg border p-4 shadow-md">
+    <div className="flex items-center gap-4 rounded-lg border p-2 shadow-md">
       <Image
         src={props.user.imageUrl ?? "/default-avatar.png"}
         alt={props.user.username ?? "User Avatar"}
-        width={80}
-        height={80}
+        width={60}
+        height={60}
         className="rounded-full"
       />
-      <Link href={`/u/${props.user.username}`}>
-        <p className="text-lg font-semibold">{props.user.username}</p>
-      </Link>
-      <button className="mt-2 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600">
-        Follow
-      </button>
+      <div className="flex flex-col gap-2">
+        <Link href={`/u/${props.user.username}`}>
+          <p className="text-md font-semibold">{props.user.username}</p>
+        </Link>
+        <Button size="sm" variant="secondary">
+          Follow
+        </Button>
+      </div>
     </div>
   );
 }
