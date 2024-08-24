@@ -4,7 +4,6 @@ import { TMDBPrimaryLong } from "~/components/images/TMDBPrimaryLong";
 import { Button } from "~/components/ui/button";
 import { getMovie } from "~/server/api/getMovie";
 
-import { SeenlistButton } from "./_components/SeenlistButton";
 import { WatchlistButton } from "./_components/WatchlistButton";
 
 export default async function MoviePage(props: {
