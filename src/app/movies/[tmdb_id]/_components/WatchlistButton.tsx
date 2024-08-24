@@ -1,5 +1,5 @@
 "use client";
-import { useAuth } from "@clerk/nextjs";
+import { SignInButton, useAuth } from "@clerk/nextjs";
 import { Minus, Plus } from "lucide-react";
 import { type FormEvent, useTransition } from "react";
 import { toast } from "sonner";
@@ -27,7 +27,7 @@ export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
       const status = await addMovieToWatchlist(props.movie as TMDBMovie);
 
       if (status.type === "error") {
-        toast.error("Failed to add movie to seenlist");
+        toast.error("Failed to add movie to watchlist");
       }
     });
   }
@@ -39,13 +39,9 @@ export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
       const status = await removeMovieFromWatchlist(props.movie as TMDBMovie);
 
       if (status.type === "error") {
-        toast.error("Failed to remove movie from seenlist");
+        toast.error("Failed to remove movie from watchlist");
       }
     });
-  }
-
-  if (!isSignedIn) {
-    return null;
   }
 
   const { inWatchlist } = props.movie;
@@ -54,19 +50,29 @@ export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
   return (
     <TooltipProvider delayDuration={0}>
       <Tooltip>
-        <form
-          onSubmit={
-            inWatchlist
-              ? onRemoveMovieFromWatchlistSubmit
-              : onAddMovieToWatchlistSubmit
-          }
-        >
-          <TooltipTrigger asChild>
-            <SubmitButton variant="secondary" size="icon" isLoading={pending}>
-              <Icon className="h-7 w-7" />
-            </SubmitButton>
-          </TooltipTrigger>
-        </form>
+        {isSignedIn ? (
+          <form
+            onSubmit={
+              inWatchlist
+                ? onRemoveMovieFromWatchlistSubmit
+                : onAddMovieToWatchlistSubmit
+            }
+          >
+            <TooltipTrigger asChild>
+              <SubmitButton variant="secondary" size="icon" isLoading={pending}>
+                <Icon className="h-7 w-7" />
+              </SubmitButton>
+            </TooltipTrigger>
+          </form>
+        ) : (
+          <SignInButton mode="modal">
+            <TooltipTrigger asChild>
+              <button className="hover:bg-secondary-dark flex items-center justify-center rounded-lg bg-secondary p-2 text-white focus:outline-none">
+                <Plus className="h-7 w-7" />
+              </button>
+            </TooltipTrigger>
+          </SignInButton>
+        )}
         <TooltipContent side="left">
           <p>{inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}</p>
         </TooltipContent>

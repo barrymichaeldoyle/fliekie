@@ -9,9 +9,9 @@ export default async function WatchlistPage() {
   return (
     <main className="flex flex-1 flex-col gap-4 p-4">
       {response.type === "error" ? (
-        <p>Failed to fetch seen movies</p>
+        <p>Failed to fetch watchlist</p>
       ) : response.movies.length === 0 ? (
-        <p>No movies in your seenlist</p>
+        <p>No movies in your watchlist</p>
       ) : (
         <>
           <h1 className="text-2xl font-bold">Watchlist</h1>

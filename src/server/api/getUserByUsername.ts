@@ -1,3 +1,5 @@
+"use server";
+
 import { type User, createClerkClient } from "@clerk/nextjs/server";
 
 import { type Status } from "./types";
