@@ -23,22 +23,27 @@ export async function Suggested() {
 
 function UserCard(props: { user: User }) {
   return (
-    <div className="flex items-center gap-4 rounded-lg border p-2 shadow-md">
-      <Image
-        src={props.user.imageUrl ?? "/default-avatar.png"}
-        alt={props.user.username ?? "User Avatar"}
-        width={60}
-        height={60}
-        className="rounded-full"
-      />
-      <div className="flex flex-col gap-2">
-        <Link href={`/u/${props.user.username}`}>
-          <p className="text-md font-semibold">{props.user.username}</p>
-        </Link>
-        <Button size="sm" variant="secondary">
-          Follow
-        </Button>
-      </div>
+    <div className="flex flex-col gap-2 rounded-lg border p-2 shadow-md">
+      <Link href={`/u/${props.user.username}`}>
+        <div className="flex items-start gap-4">
+          <Image
+            src={props.user.imageUrl ?? "/default-avatar.png"}
+            alt={props.user.username ?? "User Avatar"}
+            width={50}
+            height={50}
+            className="rounded-full"
+          />
+          <div className="flex flex-col gap-0.5">
+            <p className="text-md font-semibold">{props.user.username}</p>
+            <p className="text-sm text-muted-foreground">
+              {props.user.fullName}
+            </p>
+          </div>
+        </div>
+      </Link>
+      <Button className="w-full" size="sm" variant="secondary">
+        Follow
+      </Button>
     </div>
   );
 }
