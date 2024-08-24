@@ -21,3 +21,5 @@ export type TMDBMovie =
   };
 
 export type Movie = InferSelectModel<typeof movies>;
+
+export type Rating = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;

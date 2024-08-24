@@ -119,7 +119,7 @@ export const users = createTable("users", {
     .$onUpdateFn(() => new Date()),
 });
 
-export const seenlist = createTable("seenlist", {
+export const ratings = createTable("ratings", {
   id: uuid("id").primaryKey().defaultRandom(),
   clerk_id: varchar("clerk_id", { length: 255 })
     .references(() => users.clerk_id)
@@ -127,7 +127,6 @@ export const seenlist = createTable("seenlist", {
   tmdb_movie_id: integer("tmdb_movie_id")
     .references(() => movies.tmdb_movie_id)
     .notNull(),
-  seen_at: timestamp("seen_at").notNull().defaultNow(),
   rating: integer("rating"),
   review: text("review").default(""),
   created_at: timestamp("created_at").defaultNow(),
@@ -161,8 +160,8 @@ export const follows = createTable("follows", {
 export const movieGenresIndexes = index("movie_genres_tmdb_movie_id_idx").on(
   movieGenres.tmdb_movie_id,
 );
-export const seenlistIndexes = index("seenlist_clerk_id_idx").on(
-  seenlist.clerk_id,
+export const ratingsIndexes = index("ratings_clerk_id_idx").on(
+  ratings.clerk_id,
 );
 export const watchlistIndexes = index("watchlist_clerk_id_idx").on(
   watchlist.clerk_id,
@@ -177,8 +176,8 @@ export const selectMoviesSchema = createSelectSchema(movies);
 export const insertUserSchema = createInsertSchema(users);
 export const selectUserSchema = createSelectSchema(users);
 
-export const insertSeenlistSchema = createInsertSchema(seenlist);
-export const selectSeenlistSchema = createSelectSchema(seenlist);
+export const insertRatingsSchema = createInsertSchema(ratings);
+export const selectRatingsSchema = createSelectSchema(ratings);
 
 export const insertWatchlistSchema = createInsertSchema(watchlist);
 export const selectWatchlistSchema = createSelectSchema(watchlist);

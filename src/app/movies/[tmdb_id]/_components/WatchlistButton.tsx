@@ -1,6 +1,6 @@
 "use client";
 import { useAuth } from "@clerk/nextjs";
-import { Star } from "lucide-react";
+import { MinusCircle, PlusCircle } from "lucide-react";
 import { type FormEvent, useTransition } from "react";
 import { toast } from "sonner";
 
@@ -45,8 +45,8 @@ export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
   if (props.movie.inWatchlist) {
     return (
       <form onSubmit={onRemoveMovieFromWatchlistSubmit}>
-        <SubmitButton isLoading={pending} loadingText="Removing">
-          <Star className="mr-2 h-4 w-4" /> Remove From Watch List
+        <SubmitButton variant="ghost" size="icon" isLoading={pending}>
+          <MinusCircle className="h-6 w-6" />
         </SubmitButton>
       </form>
     );
@@ -54,8 +54,8 @@ export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
 
   return (
     <form onSubmit={onAddMovieToWatchlistSubmit}>
-      <SubmitButton isLoading={pending} loadingText="Adding">
-        <Star className="mr-2 h-4 w-4" /> Add To Watch List
+      <SubmitButton variant="ghost" size="icon" isLoading={pending}>
+        <PlusCircle className="h-6 w-6" />
       </SubmitButton>
     </form>
   );

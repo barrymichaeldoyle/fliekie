@@ -5,9 +5,9 @@ import { type FormEvent, useTransition } from "react";
 import { toast } from "sonner";
 
 import { SubmitButton } from "~/components/SubmitButton";
-import { addMovieToSeenlist } from "~/server/api/addMovieToSeenlist";
 import { type EnrichedTMDBMovie } from "~/server/api/getMovie";
-import { removeMovieFromSeenlist } from "~/server/api/removeMovieFromSeenlist";
+import { rateMovie } from "~/server/api/rateMovie";
+import { removeMovieRating } from "~/server/api/removeMovieRating";
 import { type TMDBMovie } from "~/server/api/types";
 
 export function SeenlistButton(props: { movie: EnrichedTMDBMovie }) {
@@ -18,7 +18,11 @@ export function SeenlistButton(props: { movie: EnrichedTMDBMovie }) {
     e.preventDefault();
 
     startTransition(async () => {
-      const status = await addMovieToSeenlist(props.movie as TMDBMovie);
+      const status = await rateMovie({
+        movie: props.movie as TMDBMovie,
+        rating: 5,
+        review: "",
+      });
 
       if (status.type === "error") {
         toast.error("Failed to add movie to seenlist");
@@ -30,7 +34,7 @@ export function SeenlistButton(props: { movie: EnrichedTMDBMovie }) {
     e.preventDefault();
 
     startTransition(async () => {
-      const status = await removeMovieFromSeenlist(props.movie as TMDBMovie);
+      const status = await removeMovieRating(props.movie as TMDBMovie);
 
       if (status.type === "error") {
         toast.error("Failed to remove movie from seenlist");
@@ -42,7 +46,7 @@ export function SeenlistButton(props: { movie: EnrichedTMDBMovie }) {
     return null;
   }
 
-  if (props.movie.inSeenlist) {
+  if (props.movie.isRated) {
     return (
       <form onSubmit={onRemoveMovieFromSeenlistSubmit}>
         <SubmitButton isLoading={pending} loadingText="Removing">

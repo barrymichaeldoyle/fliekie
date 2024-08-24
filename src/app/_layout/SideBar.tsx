@@ -1,9 +1,9 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import {
-  Eye,
   Home,
   Info,
   type LucideProps,
+  Plus,
   Star,
   UserCheck,
   UserPlus,
@@ -34,14 +34,14 @@ const authenticatedNavItems: NavItemProps[] = [
     href: "/",
   },
   {
-    icon: Eye,
-    label: "Seenlist",
-    href: "/seenlist",
+    icon: Plus,
+    label: "Watchlist",
+    href: "/watchlist",
   },
   {
     icon: Star,
-    label: "Watchlist",
-    href: "/watchlist",
+    label: "My Ratings",
+    href: "/ratings",
   },
   {
     icon: UserCheck,

@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import { TMDBPrimaryLong } from "~/components/images/TMDBPrimaryLong";
+import { Button } from "~/components/ui/button";
 import { getMovie } from "~/server/api/getMovie";
 
 import { SeenlistButton } from "./_components/SeenlistButton";
@@ -46,7 +47,6 @@ export default async function MoviePage(props: {
               <div className="flex flex-1 flex-col justify-start gap-4">
                 <div className="flex justify-end gap-2">
                   <WatchlistButton movie={response.data} />
-                  <SeenlistButton movie={response.data} />
                 </div>
                 <h1 className="text-4xl font-bold text-white">
                   {response.data.title}
@@ -62,6 +62,13 @@ export default async function MoviePage(props: {
                 </p>
               </div>
             </div>
+            <section className="flex flex-col gap-4 p-4">
+              <h2 className="text-xl font-semibold text-white">Your Rating</h2>
+              <div className="flex items-center gap-2">
+                Cool rating component coming soon!
+              </div>
+              <Button>Write a Review</Button>
+            </section>
           </div>
         </>
       )}

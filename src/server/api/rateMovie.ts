@@ -4,20 +4,24 @@ import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 
 import { db } from "../db";
-import { seenlist } from "../db/schema";
+import { ratings } from "../db/schema";
 
-import type { Status, TMDBMovie } from "./types";
+import type { Rating, Status, TMDBMovie } from "./types";
 import { ensureUserExists } from "./utils/ensureUserExists";
 import { getOrCreateMovie } from "./utils/getOrCreateMovie";
 
-export async function addMovieToSeenlist(movie: TMDBMovie): Promise<Status> {
+export async function rateMovie(args: {
+  movie: TMDBMovie;
+  rating: Rating;
+  review: string;
+}): Promise<Status> {
   const ensureUserExistsStatus = await ensureUserExists();
 
   if (ensureUserExistsStatus.type === "error") {
     return ensureUserExistsStatus;
   }
 
-  const getOrCreateMovieStatus = await getOrCreateMovie(movie);
+  const getOrCreateMovieStatus = await getOrCreateMovie(args.movie);
 
   if (getOrCreateMovieStatus.type === "error") {
     return getOrCreateMovieStatus;
@@ -25,11 +29,11 @@ export async function addMovieToSeenlist(movie: TMDBMovie): Promise<Status> {
 
   const existingSeenlistEntry = await db
     .select()
-    .from(seenlist)
+    .from(ratings)
     .where(
       and(
-        eq(seenlist.clerk_id, ensureUserExistsStatus.clerkId),
-        eq(seenlist.tmdb_movie_id, getOrCreateMovieStatus.tmdb_movie_id),
+        eq(ratings.clerk_id, ensureUserExistsStatus.clerkId),
+        eq(ratings.tmdb_movie_id, getOrCreateMovieStatus.tmdb_movie_id),
       ),
     )
     .then((rows) => rows[0]);
@@ -38,14 +42,14 @@ export async function addMovieToSeenlist(movie: TMDBMovie): Promise<Status> {
     return { type: "success" };
   }
 
-  await db.insert(seenlist).values({
+  await db.insert(ratings).values({
     clerk_id: ensureUserExistsStatus.clerkId,
     tmdb_movie_id: getOrCreateMovieStatus.tmdb_movie_id,
-    rating: null,
-    review: "",
+    rating: Number(args.rating),
+    review: args.review,
   });
 
-  revalidatePath(`/movies/${movie.id}`);
+  revalidatePath(`/movies/${args.movie.id}`);
 
   return { type: "success" };
 }
