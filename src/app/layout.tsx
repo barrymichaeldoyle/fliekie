@@ -1,11 +1,11 @@
 import { ClerkProvider } from "@clerk/nextjs";
-import { dark } from "@clerk/themes";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
 import { type PropsWithChildren } from "react";
 import { Toaster } from "sonner";
 
 import "~/styles/globals.css";
+import { AuthProvider } from "~/components/AuthProvider";
 import { ThemeProvider } from "~/components/ThemeProvider";
 
 import { SideBar } from "./_layout/SideBar";
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
-    <ClerkProvider appearance={{ baseTheme: dark }}>
+    <AuthProvider>
       <html
         lang="en"
         className={`${GeistSans.variable}`}
@@ -42,6 +42,6 @@ export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
           </ThemeProvider>
         </body>
       </html>
-    </ClerkProvider>
+    </AuthProvider>
   );
 }
