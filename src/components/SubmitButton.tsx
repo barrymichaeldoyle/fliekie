@@ -1,13 +1,22 @@
 "use client";
 
+import { type Ref, forwardRef } from "react";
 import { useFormStatus } from "react-dom";
 
 import { Button, type ButtonProps } from "./ui/button";
 
-export function SubmitButton(props: ButtonProps) {
-  const { pending } = useFormStatus();
+export const SubmitButton = forwardRef(
+  (props: ButtonProps, ref: Ref<HTMLButtonElement>) => {
+    const { pending } = useFormStatus();
 
-  return (
-    <Button isLoading={pending || props.isLoading} type="submit" {...props} />
-  );
-}
+    return (
+      <Button
+        ref={ref}
+        isLoading={pending || props.isLoading}
+        type="submit"
+        {...props}
+      />
+    );
+  },
+);
+SubmitButton.displayName = "SubmitButton";

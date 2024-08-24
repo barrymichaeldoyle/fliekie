@@ -30,10 +30,10 @@ export default async function MoviePage(props: {
           <div className="absolute inset-0 bg-background opacity-50" />
           <TMDBPrimaryLong className="absolute bottom-4 right-4 w-32 opacity-80" />
 
-          <div className="relative mx-auto max-w-4xl rounded-lg bg-black bg-opacity-70 p-4">
-            <div className="flex flex-col gap-6 md:flex-row">
-              <div className="flex-shrink-0">
-                {response.data.poster_path && (
+          <div className="relative mx-auto max-w-4xl rounded-lg border border-border bg-black bg-opacity-70">
+            <div className="flex flex-col gap-2 md:flex-row">
+              <div className="relative flex-shrink-0">
+                {response.data.poster_path ? (
                   <Image
                     src={`https://image.tmdb.org/t/p/w500${response.data.poster_path}`}
                     alt={response.data.title ?? "Movie Poster"}
@@ -41,12 +41,16 @@ export default async function MoviePage(props: {
                     height={450}
                     className="rounded-lg"
                   />
+                ) : (
+                  <div className="flex h-[450px] w-[300px] items-center justify-center rounded-lg bg-muted">
+                    <span className="text-muted-foreground">No Image</span>
+                  </div>
                 )}
-              </div>
-              <div className="flex flex-1 flex-col justify-start gap-4">
-                <div className="flex justify-end gap-2">
+                <div className="absolute bottom-2 right-2">
                   <WatchlistButton movie={response.data} />
                 </div>
+              </div>
+              <div className="flex flex-1 flex-col justify-start gap-4 p-4">
                 <h1 className="text-4xl font-bold text-white">
                   {response.data.title}
                 </h1>

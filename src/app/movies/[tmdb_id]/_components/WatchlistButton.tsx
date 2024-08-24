@@ -1,10 +1,16 @@
 "use client";
 import { useAuth } from "@clerk/nextjs";
-import { MinusCircle, PlusCircle } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 import { type FormEvent, useTransition } from "react";
 import { toast } from "sonner";
 
 import { SubmitButton } from "~/components/SubmitButton";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "~/components/ui/tooltip";
 import { addMovieToWatchlist } from "~/server/api/addMovieToWatchlist";
 import { type EnrichedTMDBMovie } from "~/server/api/getMovie";
 import { removeMovieFromWatchlist } from "~/server/api/removeMovieFromWatchlist";
@@ -42,21 +48,29 @@ export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
     return null;
   }
 
-  if (props.movie.inWatchlist) {
-    return (
-      <form onSubmit={onRemoveMovieFromWatchlistSubmit}>
-        <SubmitButton variant="ghost" size="icon" isLoading={pending}>
-          <MinusCircle className="h-6 w-6" />
-        </SubmitButton>
-      </form>
-    );
-  }
+  const { inWatchlist } = props.movie;
+  const Icon = inWatchlist ? Minus : Plus;
 
   return (
-    <form onSubmit={onAddMovieToWatchlistSubmit}>
-      <SubmitButton variant="ghost" size="icon" isLoading={pending}>
-        <PlusCircle className="h-6 w-6" />
-      </SubmitButton>
-    </form>
+    <TooltipProvider delayDuration={0}>
+      <Tooltip>
+        <form
+          onSubmit={
+            inWatchlist
+              ? onRemoveMovieFromWatchlistSubmit
+              : onAddMovieToWatchlistSubmit
+          }
+        >
+          <TooltipTrigger asChild>
+            <SubmitButton variant="secondary" size="icon" isLoading={pending}>
+              <Icon className="h-7 w-7" />
+            </SubmitButton>
+          </TooltipTrigger>
+        </form>
+        <TooltipContent side="left">
+          <p>{inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   );
 }
