@@ -22,14 +22,14 @@ export async function SearchResults(props: { query: string }) {
   return (
     <>
       <h2 className="text-3xl font-bold">
-        Search results for &quot;{props.query}&quot;
+        Search results for &ldquo;{props.query}&rdquo;
       </h2>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
         {response.data.results.map((movie) => (
           <SearchResult key={movie.id} movie={movie} />
         ))}
       </div>
-      <div className="py-4 text-center text-lg font-semibold text-muted-foreground">
+      <div className="py-2 text-center text-lg font-semibold text-muted-foreground">
         🎉 That&apos;s all the results we have!
       </div>
     </>
@@ -49,8 +49,8 @@ function SearchResult(props: { movie: TMDBMovieSearchResult }) {
 
   return (
     <Link
-      href={`/movies/${props.movie.id}`}
       className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-md transition-all duration-200 ease-in-out hover:scale-105 hover:bg-muted hover:shadow-lg"
+      href={`/movies/${props.movie.id}`}
     >
       <div className="flex h-full">
         {props.movie.poster_path ? (

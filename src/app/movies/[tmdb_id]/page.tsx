@@ -18,7 +18,7 @@ export default async function MoviePage(props: {
 
   return (
     <main
-      className="relative flex-1 bg-cover bg-center bg-no-repeat p-4"
+      className="relative h-full flex-1 bg-cover bg-center bg-no-repeat p-4"
       style={{
         backgroundImage: backdropPath ? `url('${backdropPath}')` : undefined,
       }}
