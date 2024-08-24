@@ -13,7 +13,10 @@ const config = {
     ignoreDuringBuilds: true,
   },
   images: {
-    remotePatterns: [{ hostname: "image.tmdb.org" }],
+    remotePatterns: [
+      { hostname: "img.clerk.com" },
+      { hostname: "image.tmdb.org" },
+    ],
   },
 };
 

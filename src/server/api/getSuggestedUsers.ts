@@ -1,6 +1,6 @@
 "use server";
 
-import { auth, clerkClient } from "@clerk/nextjs/server";
+import { type User, auth, clerkClient } from "@clerk/nextjs/server";
 import { eq, notInArray } from "drizzle-orm";
 
 import { db } from "~/server/db";
@@ -8,9 +8,7 @@ import { follows, users } from "~/server/db/schema";
 
 import { type Status } from "./types";
 
-export async function getSuggestedUsers(): Promise<
-  Status<{ users: typeof suggestedUsers.data }>
-> {
+export async function getSuggestedUsers(): Promise<Status<{ users: User[] }>> {
   const { userId: clerkId } = auth();
 
   if (!clerkId) {
