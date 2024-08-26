@@ -51,21 +51,21 @@ function isIpAllowed(ip: string, allowedIps: string[]): boolean {
   });
 }
 
-export default clerkMiddleware((auth, req) => {
+export default clerkMiddleware(async (auth, req) => {
   if (isProtectedRoute(req)) {
     auth().protect();
   }
 
-  // if (isClerkWebhookRoute(req)) {
-  //   const allowedIps = await fetchAllowedIps();
-  //   const ip = req.headers.get("x-forwarded-for") ?? req.ip;
+  if (isClerkWebhookRoute(req)) {
+    const allowedIps = await fetchAllowedIps();
+    const ip = req.headers.get("x-forwarded-for") ?? req.ip;
 
-  //   if (!ip || !isIpAllowed(ip, allowedIps)) {
-  //     return new NextResponse("Unauthorized", { status: 401 });
-  //   }
-  // }
+    if (!ip || !isIpAllowed(ip, allowedIps)) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+  }
 
-  // return NextResponse.next();
+  return NextResponse.next();
 });
 
 export const config = {
