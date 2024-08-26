@@ -1,4 +1,5 @@
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { Suspense } from "react";
 
 import { SearchInput } from "./SearchInput";
 
@@ -8,7 +9,9 @@ export function TopNav() {
       <div className="text-2xl">🍿 Fliekie</div>
 
       <div className="flex items-center gap-4 text-lg">
-        <SearchInput />
+        <Suspense fallback={null}>
+          <SearchInput />
+        </Suspense>
         <SignedOut>
           <div className="w-20">
             <SignInButton mode="modal" />
