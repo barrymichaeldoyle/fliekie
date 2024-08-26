@@ -16,12 +16,9 @@ export default async function FollowingPage() {
         <p>But you are sad and alone and have nobody to follow.</p>
       </section>
 
-      <section className="flex flex-col gap-4">
-        <h2 className="text-xl font-bold">Suggested People</h2>
-        <Suspense fallback={<p>Loading...</p>}>
-          <Suggested />
-        </Suspense>
-      </section>
+      <Suspense fallback={<p>Loading...</p>}>
+        <Suggested />
+      </Suspense>
     </main>
   );
 }
