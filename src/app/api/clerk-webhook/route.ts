@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
 import { db } from "~/server/db";
-import { users } from "~/server/db/schema";
+import { type Environment, users } from "~/server/db/schema";
 
 const CLERK_WEBHOOK_SIGNING_SECRET =
   process.env.CLERK_WEBHOOK_SIGNING_SECRET ?? "";
@@ -16,7 +16,8 @@ export async function POST(request: Request) {
 
   const event = wh.verify(rawBody, headers) as WebhookEvent;
 
-  const environment = process.env.NODE_ENV === "production" ? "prod" : "dev";
+  const environment: Environment =
+    process.env.NODE_ENV === "production" ? "prod" : "dev";
 
   if (event.type === "user.created") {
     const clerkId = event.data.id;
