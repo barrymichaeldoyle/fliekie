@@ -8,6 +8,7 @@ export const env = createEnv({
    */
   server: {
     CLERK_SECRET_KEY: z.string(),
+    CLERK_WEBHOOK_SIGNING_SECRET: z.string(),
     POSTGRES_URL: z.string().url(),
     POSTGRES_PRISMA_URL: z.string().url(),
     POSTGRES_URL_NO_SSL: z.string().url(),
@@ -37,6 +38,7 @@ export const env = createEnv({
    */
   runtimeEnv: {
     CLERK_SECRET_KEY: process.env.CLERK_SECRET_KEY,
+    CLERK_WEBHOOK_SIGNING_SECRET: process.env.CLERK_WEBHOOK_SIGNING_SECRET,
     POSTGRES_URL: process.env.POSTGRES_URL,
     POSTGRES_PRISMA_URL: process.env.POSTGRES_PRISMA_URL,
     POSTGRES_URL_NO_SSL: process.env.POSTGRES_URL_NO_SSL,

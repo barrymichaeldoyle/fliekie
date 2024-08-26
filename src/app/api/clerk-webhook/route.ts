@@ -1,12 +1,20 @@
 import { type WebhookEvent } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
+import { Webhook } from "svix";
 
 import { db } from "~/server/db";
 import { users } from "~/server/db/schema";
 
+const CLERK_WEBHOOK_SIGNING_SECRET =
+  process.env.CLERK_WEBHOOK_SIGNING_SECRET ?? "";
+
 export async function POST(request: Request) {
-  const event = (await request.json()) as WebhookEvent;
+  const wh = new Webhook(CLERK_WEBHOOK_SIGNING_SECRET);
+  const headers = Object.fromEntries(request.headers.entries());
+  const rawBody = await request.text();
+
+  const event = wh.verify(rawBody, headers) as WebhookEvent;
 
   const environment = process.env.NODE_ENV === "production" ? "prod" : "dev";
 
