@@ -122,7 +122,7 @@ export const users = createTable("users", {
 export const ratings = createTable("ratings", {
   id: uuid("id").primaryKey().defaultRandom(),
   clerk_id: varchar("clerk_id", { length: 255 })
-    .references(() => users.clerk_id)
+    .references(() => users.clerk_id, { onDelete: "cascade" })
     .notNull(),
   tmdb_movie_id: integer("tmdb_movie_id")
     .references(() => movies.tmdb_movie_id)
@@ -138,7 +138,7 @@ export const ratings = createTable("ratings", {
 export const watchlist = createTable("watchlist", {
   id: uuid("id").primaryKey().defaultRandom(),
   clerk_id: varchar("clerk_id", { length: 255 })
-    .references(() => users.clerk_id)
+    .references(() => users.clerk_id, { onDelete: "cascade" })
     .notNull(),
   tmdb_movie_id: integer("tmdb_movie_id")
     .references(() => movies.tmdb_movie_id)
@@ -149,11 +149,11 @@ export const watchlist = createTable("watchlist", {
 export const follows = createTable("follows", {
   id: uuid("id").primaryKey().defaultRandom(),
   follower_clerk_id: varchar("follower_clerk_id", { length: 255 })
-    .notNull()
-    .references(() => users.clerk_id),
+    .references(() => users.clerk_id, { onDelete: "cascade" })
+    .notNull(),
   followed_clerk_id: varchar("followed_clerk_id", { length: 255 })
-    .notNull()
-    .references(() => users.clerk_id),
+    .references(() => users.clerk_id, { onDelete: "cascade" })
+    .notNull(),
   created_at: timestamp("created_at").defaultNow(),
 });
 
