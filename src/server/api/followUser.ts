@@ -2,6 +2,7 @@
 
 import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
+import { revalidatePath } from "next/cache";
 
 import { db } from "~/server/db";
 import { follows, users } from "~/server/db/schema";
@@ -57,6 +58,8 @@ export async function followUser(followedClerkId: string): Promise<Status> {
     followed_clerk_id: followedClerkId,
     created_at: new Date(),
   });
+
+  revalidatePath("/following", "page");
 
   return { type: "success" };
 }

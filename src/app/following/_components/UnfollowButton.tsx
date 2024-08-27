@@ -6,13 +6,13 @@ import { toast } from "sonner";
 
 import { SubmitButton } from "~/components/SubmitButton";
 import { Button, type ButtonProps } from "~/components/ui/button";
-import { followUser } from "~/server/api/followUser";
+import { unfollowUser } from "~/server/api/unfollowUser";
 
-export function FollowButton({
+export function UnfollowButton({
   clerkId,
   ...buttonProps
 }: ButtonProps & { clerkId: string; isFollowing?: boolean }) {
-  const [isFollowing, setFollowing] = useState(false);
+  const [hasUnfollowed, setUnfollowed] = useState(false);
   const { isSignedIn } = useAuth();
   const [pending, startTransition] = useTransition();
 
@@ -20,12 +20,12 @@ export function FollowButton({
     e.preventDefault();
 
     startTransition(async () => {
-      const status = await followUser(clerkId);
+      const status = await unfollowUser(clerkId);
 
       if (status.type === "error") {
-        toast.error(`Failed to follow user`);
+        toast.error("Failed to unfollow user");
       } else {
-        setFollowing(true);
+        setUnfollowed(true);
       }
     });
   }
@@ -35,11 +35,11 @@ export function FollowButton({
       {isSignedIn ? (
         <SubmitButton
           {...buttonProps}
-          loadingText="Following"
+          loadingText="Unfollowing"
           isLoading={pending}
-          disabled={isFollowing}
+          disabled={hasUnfollowed}
         >
-          {isFollowing ? "Following" : "Follow"}
+          {hasUnfollowed ? "Unfollowed" : "Unfollow"}
         </SubmitButton>
       ) : (
         <SignInButton>
