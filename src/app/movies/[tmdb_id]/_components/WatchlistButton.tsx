@@ -5,6 +5,7 @@ import { type FormEvent, useTransition } from "react";
 import { toast } from "sonner";
 
 import { SubmitButton } from "~/components/SubmitButton";
+import { Button } from "~/components/ui/button";
 import {
   Tooltip,
   TooltipContent,
@@ -67,9 +68,9 @@ export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
         ) : (
           <SignInButton mode="modal">
             <TooltipTrigger asChild>
-              <button className="hover:bg-secondary-dark flex items-center justify-center rounded-lg bg-secondary p-2 text-white focus:outline-none">
+              <Button variant="secondary" size="icon">
                 <Plus className="h-7 w-7" />
-              </button>
+              </Button>
             </TooltipTrigger>
           </SignInButton>
         )}

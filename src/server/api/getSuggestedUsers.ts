@@ -35,7 +35,7 @@ export async function getSuggestedUsers(): Promise<Status<{ users: User[] }>> {
       .limit(100)
   ).map((user) => user.clerkId);
 
-  const suggestedUsers = await clerkClient.users.getUserList({
+  const suggestedUsers = await clerkClient().users.getUserList({
     userId: suggestedUserIds,
   });
 

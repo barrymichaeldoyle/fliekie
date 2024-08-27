@@ -68,7 +68,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {isLoading && (
           <Loader2
-            className={`h-4 w-4 animate-spin${size === "icon" ? "" : "mr-2"}`}
+            className={`h-4 w-4 animate-spin ${size === "icon" ? "" : "mr-2"}`}
           />
         )}
         {isLoading ? (loadingText ? `${loadingText}...` : "") : children}
