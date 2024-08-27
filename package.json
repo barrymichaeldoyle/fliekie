@@ -9,7 +9,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:push": "drizzle-kit push",
     "db:studio": "drizzle-kit studio",
-    "dev": "turbo dev",
+    "dev": "next dev --turbo",
     "lint": "pnpm eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "start": "next start",
     "generate:tmdb-types": "bash ./scripts/generate-tmdb-types.sh",
