@@ -18,6 +18,7 @@ export const env = createEnv({
     POSTGRES_PASSWORD: z.string(),
     POSTGRES_DATABASE: z.string(),
     TMDB_API_KEY: z.string(),
+    TURBO_REMOTE_CACHE_SIGNATURE_KEY: z.string(),
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
@@ -48,6 +49,8 @@ export const env = createEnv({
     POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
     POSTGRES_DATABASE: process.env.POSTGRES_DATABASE,
     TMDB_API_KEY: process.env.TMDB_API_KEY,
+    TURBO_REMOTE_CACHE_SIGNATURE_KEY:
+      process.env.TURBO_REMOTE_CACHE_SIGNATURE_KEY,
     NODE_ENV: process.env.NODE_ENV,
 
     NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY:
