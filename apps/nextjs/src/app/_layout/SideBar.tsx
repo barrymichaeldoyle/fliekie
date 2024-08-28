@@ -58,8 +58,8 @@ const authenticatedNavItems: NavItemProps[] = [
 const supportNavItems: NavItemProps[] = [
   {
     icon: Info,
-    label: "Legal Stuff",
-    href: "/legal",
+    label: "Privacy Policy",
+    href: "/legal#privacy-policy",
   },
 ];
 
