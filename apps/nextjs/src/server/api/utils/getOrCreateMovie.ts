@@ -1,9 +1,8 @@
 import { eq } from "drizzle-orm";
 
+import type { Status, TMDBMovie } from "../types";
 import { db } from "~/server/db";
 import { collections, genres, movieGenres, movies } from "~/server/db/schema";
-
-import type {Status, TMDBMovie} from "../types";
 
 /**
  * A helper function to check if the movie is already in the database

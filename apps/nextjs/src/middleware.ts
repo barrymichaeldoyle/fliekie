@@ -1,6 +1,6 @@
+import { NextResponse } from "next/server";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import Cidr from "ip-cidr";
-import { NextResponse } from "next/server";
 
 const isProtectedRoute = createRouteMatcher([
   "/followers(.*)",

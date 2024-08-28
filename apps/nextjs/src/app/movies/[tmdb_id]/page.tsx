@@ -27,10 +27,10 @@ export default async function MoviePage(props: {
         <p>Failed to fetch movie</p>
       ) : (
         <>
-          <div className="bg-background absolute inset-0 opacity-50" />
+          <div className="absolute inset-0 bg-background opacity-50" />
           <TMDBPrimaryLong className="absolute bottom-4 right-4 w-32 opacity-80" />
 
-          <div className="border-border relative mx-auto max-w-4xl rounded-lg border bg-black bg-opacity-70">
+          <div className="relative mx-auto max-w-4xl rounded-lg border border-border bg-black bg-opacity-70">
             <div className="flex flex-col gap-2 md:flex-row">
               <div className="relative flex-shrink-0">
                 {response.data.poster_path ? (
@@ -42,7 +42,7 @@ export default async function MoviePage(props: {
                     className="rounded-lg"
                   />
                 ) : (
-                  <div className="bg-muted flex h-[450px] w-[300px] items-center justify-center rounded-lg">
+                  <div className="flex h-[450px] w-[300px] items-center justify-center rounded-lg bg-muted">
                     <span className="text-muted-foreground">No Image</span>
                   </div>
                 )}

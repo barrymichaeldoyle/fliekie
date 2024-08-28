@@ -1,13 +1,13 @@
 "use client";
 
-import { SignInButton, useAuth } from "@clerk/nextjs";
+import type { FormEvent } from "react";
 import { useState, useTransition } from "react";
-import type {FormEvent} from "react";
+import { SignInButton, useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
 
-import { SubmitButton } from "~/components/SubmitButton";
-import { Button  } from "~/components/ui/button";
 import type { ButtonProps } from "~/components/ui/button";
+import { SubmitButton } from "~/components/SubmitButton";
+import { Button } from "~/components/ui/button";
 import { followUser } from "~/server/api/followUser";
 
 export function FollowButton({

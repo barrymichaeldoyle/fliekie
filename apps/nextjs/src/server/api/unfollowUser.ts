@@ -1,13 +1,12 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
-import { revalidatePath } from "next/cache";
-
-import { db } from "~/server/db";
-import { follows } from "~/server/db/schema";
 
 import type { Status } from "./types";
+import { db } from "~/server/db";
+import { follows } from "~/server/db/schema";
 
 /**
  * Server action to unfollow a user.

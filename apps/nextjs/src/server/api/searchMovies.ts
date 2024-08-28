@@ -1,9 +1,8 @@
 "use server";
 
-import { env } from '~/env';
-import type { paths } from "~/tmdb/types";
-
 import type { Status } from "./types";
+import type { paths } from "~/tmdb/types";
+import { env } from "~/env";
 
 export type SearchMoviesResponse =
   paths["/3/search/movie"]["get"]["responses"]["200"]["content"]["application/json"];
