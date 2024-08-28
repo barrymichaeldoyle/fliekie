@@ -1,12 +1,12 @@
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
-import Link from "next/link";
 import { Suspense } from "react";
+import Link from "next/link";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 import { SearchInput } from "./SearchInput";
 
 export function TopNav() {
   return (
-    <nav className="bg-card flex min-h-14 w-full items-center justify-between border-b px-6 font-semibold">
+    <nav className="flex min-h-14 w-full items-center justify-between border-b bg-card px-6 font-semibold">
       <Link href="/">
         <div className="text-2xl">🍿 Fliekie</div>
       </Link>

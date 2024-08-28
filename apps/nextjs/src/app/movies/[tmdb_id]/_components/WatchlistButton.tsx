@@ -1,9 +1,13 @@
 "use client";
+
+import type { FormEvent } from "react";
+import { useTransition } from "react";
 import { SignInButton, useAuth } from "@clerk/nextjs";
 import { Minus, Plus } from "lucide-react";
-import { type FormEvent, useTransition } from "react";
 import { toast } from "sonner";
 
+import type { EnrichedTMDBMovie } from "~/server/api/getMovie";
+import type { TMDBMovie } from "~/server/api/types";
 import { SubmitButton } from "~/components/SubmitButton";
 import { Button } from "~/components/ui/button";
 import {
@@ -13,15 +17,13 @@ import {
   TooltipTrigger,
 } from "~/components/ui/tooltip";
 import { addMovieToWatchlist } from "~/server/api/addMovieToWatchlist";
-import { type EnrichedTMDBMovie } from "~/server/api/getMovie";
 import { removeMovieFromWatchlist } from "~/server/api/removeMovieFromWatchlist";
-import { type TMDBMovie } from "~/server/api/types";
 
 export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
   const { isSignedIn } = useAuth();
   const [pending, startTransition] = useTransition();
 
-  async function onAddMovieToWatchlistSubmit(e: FormEvent) {
+  function onAddMovieToWatchlistSubmit(e: FormEvent) {
     e.preventDefault();
 
     startTransition(async () => {
@@ -33,7 +35,7 @@ export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
     });
   }
 
-  async function onRemoveMovieFromWatchlistSubmit(e: FormEvent) {
+  function onRemoveMovieFromWatchlistSubmit(e: FormEvent) {
     e.preventDefault();
 
     startTransition(async () => {

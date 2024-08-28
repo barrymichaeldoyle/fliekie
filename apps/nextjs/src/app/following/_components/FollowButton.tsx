@@ -1,11 +1,13 @@
 "use client";
 
+import type { FormEvent } from "react";
+import { useState, useTransition } from "react";
 import { SignInButton, useAuth } from "@clerk/nextjs";
-import { type FormEvent, useState, useTransition } from "react";
 import { toast } from "sonner";
 
+import type { ButtonProps } from "~/components/ui/button";
 import { SubmitButton } from "~/components/SubmitButton";
-import { Button, type ButtonProps } from "~/components/ui/button";
+import { Button } from "~/components/ui/button";
 import { followUser } from "~/server/api/followUser";
 
 export function FollowButton({
@@ -16,7 +18,7 @@ export function FollowButton({
   const { isSignedIn } = useAuth();
   const [pending, startTransition] = useTransition();
 
-  async function onFollowSubmit(e: FormEvent) {
+  function onFollowSubmit(e: FormEvent) {
     e.preventDefault();
 
     startTransition(async () => {

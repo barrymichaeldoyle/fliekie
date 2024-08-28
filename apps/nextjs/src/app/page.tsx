@@ -1,4 +1,4 @@
-export default async function HomePage() {
+export default function HomePage() {
   return (
     <main className="flex-1 p-4">
       <h1 className="text-2xl font-bold">Welcome to Fliekie</h1>

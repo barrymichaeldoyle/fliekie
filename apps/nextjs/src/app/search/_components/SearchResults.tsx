@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import {
-  type TMDBMovieSearchResult,
-  searchMovies,
-} from "~/server/api/searchMovies";
+import type { TMDBMovieSearchResult } from "~/server/api/searchMovies";
+import { searchMovies } from "~/server/api/searchMovies";
 
 export const dynamic = "force-dynamic";
 
@@ -29,7 +27,7 @@ export async function SearchResults(props: { query: string }) {
           <SearchResult key={movie.id} movie={movie} />
         ))}
       </div>
-      <div className="text-muted-foreground py-2 text-center text-lg font-semibold">
+      <div className="py-2 text-center text-lg font-semibold text-muted-foreground">
         🎉 That&apos;s all the results we have!
       </div>
     </>
@@ -49,7 +47,7 @@ function SearchResult(props: { movie: TMDBMovieSearchResult }) {
 
   return (
     <Link
-      className="border-border bg-card text-card-foreground hover:bg-muted flex h-full flex-col overflow-hidden rounded-lg border shadow-md transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg"
+      className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-md transition-all duration-200 ease-in-out hover:scale-105 hover:bg-muted hover:shadow-lg"
       href={`/movies/${props.movie.id}`}
     >
       <div className="flex h-full">
@@ -62,7 +60,7 @@ function SearchResult(props: { movie: TMDBMovieSearchResult }) {
             className="h-auto w-[150px] object-cover"
           />
         ) : (
-          <div className="bg-muted flex h-[225px] w-[150px] items-center justify-center">
+          <div className="flex h-[225px] w-[150px] items-center justify-center bg-muted">
             <span className="text-muted-foreground">No Image</span>
           </div>
         )}
@@ -70,11 +68,11 @@ function SearchResult(props: { movie: TMDBMovieSearchResult }) {
         <div className="flex flex-1 flex-col justify-between p-4">
           <div>
             <h3 className="text-xl font-semibold">{props.movie.title}</h3>
-            <p className="text-muted-foreground line-clamp-3 text-sm">
+            <p className="line-clamp-3 text-sm text-muted-foreground">
               {props.movie.overview}
             </p>
           </div>
-          <div className="text-muted-foreground mt-2 text-sm">
+          <div className="mt-2 text-sm text-muted-foreground">
             Released: {formattedDate}
           </div>
         </div>

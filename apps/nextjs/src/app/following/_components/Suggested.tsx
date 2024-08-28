@@ -1,4 +1,4 @@
-import { type User } from "@clerk/nextjs/server";
+import type { User } from "@clerk/nextjs/server";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -35,7 +35,7 @@ function UserCard(props: { user: User }) {
       <Link href={`/u/${props.user.username}`}>
         <div className="flex items-start gap-4">
           <Image
-            src={props.user.imageUrl ?? "/default-avatar.png"}
+            src={props.user.imageUrl || "/default-avatar.png"}
             alt={props.user.username ?? "User Avatar"}
             width={50}
             height={50}
@@ -43,7 +43,7 @@ function UserCard(props: { user: User }) {
           />
           <div className="flex flex-col gap-0.5">
             <p className="text-md font-semibold">{props.user.username}</p>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-sm text-muted-foreground">
               {props.user.fullName}
             </p>
           </div>

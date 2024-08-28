@@ -4,9 +4,7 @@ import { SearchResults } from "./_components/SearchResults";
 
 export const dynamic = "force-dynamic";
 
-export default async function HomePage(props: {
-  searchParams: { q?: string };
-}) {
+export default function SearchPage(props: { searchParams: { q?: string } }) {
   const query = props.searchParams.q ?? "";
 
   return (

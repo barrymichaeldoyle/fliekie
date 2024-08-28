@@ -1,12 +1,12 @@
 "use server";
 
-import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { and, eq } from "drizzle-orm";
+
+import type { Rating, Status, TMDBMovie } from "./types";
 
 import { db } from "../db";
 import { ratings } from "../db/schema";
-
-import type { Rating, Status, TMDBMovie } from "./types";
 import { ensureUserExists } from "./utils/ensureUserExists";
 import { getOrCreateMovie } from "./utils/getOrCreateMovie";
 

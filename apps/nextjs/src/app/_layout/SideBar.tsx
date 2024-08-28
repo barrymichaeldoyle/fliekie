@@ -1,23 +1,16 @@
-import { SignedIn, SignedOut } from "@clerk/nextjs";
-import {
-  Home,
-  Info,
-  type LucideProps,
-  Plus,
-  Star,
-  UserCheck,
-  UserPlus,
-} from "lucide-react";
-import Link from "next/link";
+import type { LucideProps } from "lucide-react";
 import type { ForwardRefExoticComponent, RefAttributes } from "react";
+import Link from "next/link";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { Home, Info, Plus, Star, UserCheck, UserPlus } from "lucide-react";
 
-type NavItemProps = {
+interface NavItemProps {
   icon: ForwardRefExoticComponent<
     Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
   >;
   label: string;
   href: string;
-};
+}
 
 const unauthenicatedNavItems: NavItemProps[] = [
   {
@@ -65,7 +58,7 @@ const supportNavItems: NavItemProps[] = [
 
 export function SideBar() {
   return (
-    <aside className="bg-card w-56 border-r p-4">
+    <aside className="w-56 border-r bg-card p-4">
       <nav className="flex h-full flex-col gap-6">
         <SignedIn>
           <NavItems items={authenticatedNavItems} />

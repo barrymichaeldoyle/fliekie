@@ -3,12 +3,12 @@
 import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 
-import { type paths } from "~/tmdb/types";
+import type { Status } from "./types";
+import type { paths } from "~/tmdb/types";
+import { env } from "~/env";
 
 import { db } from "../db";
 import { movies, ratings, watchlist } from "../db/schema";
-
-import type { Status } from "./types";
 
 export type TMDBMovie =
   paths["/3/movie/{movie_id}"]["get"]["responses"]["200"]["content"]["application/json"];
@@ -24,7 +24,7 @@ export async function getMovie(
   const url = new URL(`https://api.themoviedb.org/3/movie/${tmdb_movie_id}`);
 
   const searchParams = {
-    api_key: process.env.TMDB_API_KEY!,
+    api_key: env.TMDB_API_KEY,
   };
 
   Object.entries(searchParams).forEach(([key, value]) =>

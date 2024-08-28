@@ -89,12 +89,8 @@
           "name": "fliekie_follows_follower_clerk_id_fliekie_users_clerk_id_fk",
           "tableFrom": "fliekie_follows",
           "tableTo": "fliekie_users",
-          "columnsFrom": [
-            "follower_clerk_id"
-          ],
-          "columnsTo": [
-            "clerk_id"
-          ],
+          "columnsFrom": ["follower_clerk_id"],
+          "columnsTo": ["clerk_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -102,12 +98,8 @@
           "name": "fliekie_follows_followed_clerk_id_fliekie_users_clerk_id_fk",
           "tableFrom": "fliekie_follows",
           "tableTo": "fliekie_users",
-          "columnsFrom": [
-            "followed_clerk_id"
-          ],
-          "columnsTo": [
-            "clerk_id"
-          ],
+          "columnsFrom": ["followed_clerk_id"],
+          "columnsTo": ["clerk_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -174,12 +166,8 @@
           "name": "fliekie_movie_collections_tmdb_movie_id_fliekie_movies_tmdb_movie_id_fk",
           "tableFrom": "fliekie_movie_collections",
           "tableTo": "fliekie_movies",
-          "columnsFrom": [
-            "tmdb_movie_id"
-          ],
-          "columnsTo": [
-            "tmdb_movie_id"
-          ],
+          "columnsFrom": ["tmdb_movie_id"],
+          "columnsTo": ["tmdb_movie_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -187,12 +175,8 @@
           "name": "fliekie_movie_collections_tmdb_collection_id_fliekie_collections_tmdb_collection_id_fk",
           "tableFrom": "fliekie_movie_collections",
           "tableTo": "fliekie_collections",
-          "columnsFrom": [
-            "tmdb_collection_id"
-          ],
-          "columnsTo": [
-            "tmdb_collection_id"
-          ],
+          "columnsFrom": ["tmdb_collection_id"],
+          "columnsTo": ["tmdb_collection_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -223,12 +207,8 @@
           "name": "fliekie_movie_genres_tmdb_movie_id_fliekie_movies_tmdb_movie_id_fk",
           "tableFrom": "fliekie_movie_genres",
           "tableTo": "fliekie_movies",
-          "columnsFrom": [
-            "tmdb_movie_id"
-          ],
-          "columnsTo": [
-            "tmdb_movie_id"
-          ],
+          "columnsFrom": ["tmdb_movie_id"],
+          "columnsTo": ["tmdb_movie_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -236,12 +216,8 @@
           "name": "fliekie_movie_genres_tmdb_genre_id_fliekie_genres_tmdb_genre_id_fk",
           "tableFrom": "fliekie_movie_genres",
           "tableTo": "fliekie_genres",
-          "columnsFrom": [
-            "tmdb_genre_id"
-          ],
-          "columnsTo": [
-            "tmdb_genre_id"
-          ],
+          "columnsFrom": ["tmdb_genre_id"],
+          "columnsTo": ["tmdb_genre_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -364,12 +340,8 @@
           "name": "fliekie_movies_tmdb_collection_id_fliekie_collections_tmdb_collection_id_fk",
           "tableFrom": "fliekie_movies",
           "tableTo": "fliekie_collections",
-          "columnsFrom": [
-            "tmdb_collection_id"
-          ],
-          "columnsTo": [
-            "tmdb_collection_id"
-          ],
+          "columnsFrom": ["tmdb_collection_id"],
+          "columnsTo": ["tmdb_collection_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -441,12 +413,8 @@
           "name": "fliekie_seen_list_clerk_id_fliekie_users_clerk_id_fk",
           "tableFrom": "fliekie_seen_list",
           "tableTo": "fliekie_users",
-          "columnsFrom": [
-            "clerk_id"
-          ],
-          "columnsTo": [
-            "clerk_id"
-          ],
+          "columnsFrom": ["clerk_id"],
+          "columnsTo": ["clerk_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -454,12 +422,8 @@
           "name": "fliekie_seen_list_tmdb_movie_id_fliekie_movies_tmdb_movie_id_fk",
           "tableFrom": "fliekie_seen_list",
           "tableTo": "fliekie_movies",
-          "columnsFrom": [
-            "tmdb_movie_id"
-          ],
-          "columnsTo": [
-            "tmdb_movie_id"
-          ],
+          "columnsFrom": ["tmdb_movie_id"],
+          "columnsTo": ["tmdb_movie_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }
@@ -534,12 +498,8 @@
           "name": "fliekie_watchlist_clerk_id_fliekie_users_clerk_id_fk",
           "tableFrom": "fliekie_watchlist",
           "tableTo": "fliekie_users",
-          "columnsFrom": [
-            "clerk_id"
-          ],
-          "columnsTo": [
-            "clerk_id"
-          ],
+          "columnsFrom": ["clerk_id"],
+          "columnsTo": ["clerk_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         },
@@ -547,12 +507,8 @@
           "name": "fliekie_watchlist_tmdb_movie_id_fliekie_movies_tmdb_movie_id_fk",
           "tableFrom": "fliekie_watchlist",
           "tableTo": "fliekie_movies",
-          "columnsFrom": [
-            "tmdb_movie_id"
-          ],
-          "columnsTo": [
-            "tmdb_movie_id"
-          ],
+          "columnsFrom": ["tmdb_movie_id"],
+          "columnsTo": ["tmdb_movie_id"],
           "onDelete": "no action",
           "onUpdate": "no action"
         }

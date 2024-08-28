@@ -1,20 +1,22 @@
 "use client";
+
+import type { FormEvent } from "react";
+import { useTransition } from "react";
 import { useAuth } from "@clerk/nextjs";
 import { Eye } from "lucide-react";
-import { type FormEvent, useTransition } from "react";
 import { toast } from "sonner";
 
+import type { EnrichedTMDBMovie } from "~/server/api/getMovie";
+import type { TMDBMovie } from "~/server/api/types";
 import { SubmitButton } from "~/components/SubmitButton";
-import { type EnrichedTMDBMovie } from "~/server/api/getMovie";
 import { rateMovie } from "~/server/api/rateMovie";
 import { removeMovieRating } from "~/server/api/removeMovieRating";
-import { type TMDBMovie } from "~/server/api/types";
 
 export function SeenlistButton(props: { movie: EnrichedTMDBMovie }) {
   const { isSignedIn } = useAuth();
   const [pending, startTransition] = useTransition();
 
-  async function onAddMovieToSeenlistSubmit(e: FormEvent) {
+  function onAddMovieToSeenlistSubmit(e: FormEvent) {
     e.preventDefault();
 
     startTransition(async () => {
@@ -30,7 +32,7 @@ export function SeenlistButton(props: { movie: EnrichedTMDBMovie }) {
     });
   }
 
-  async function onRemoveMovieFromSeenlistSubmit(e: FormEvent) {
+  function onRemoveMovieFromSeenlistSubmit(e: FormEvent) {
     e.preventDefault();
 
     startTransition(async () => {

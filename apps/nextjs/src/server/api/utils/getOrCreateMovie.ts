@@ -1,9 +1,8 @@
 import { eq } from "drizzle-orm";
 
+import type { Status, TMDBMovie } from "../types";
 import { db } from "~/server/db";
 import { collections, genres, movieGenres, movies } from "~/server/db/schema";
-
-import { type Status, type TMDBMovie } from "../types";
 
 /**
  * A helper function to check if the movie is already in the database
@@ -51,15 +50,15 @@ export async function getOrCreateMovie(
     .values({
       tmdb_movie_id: movie.id,
       imdb_id: movie.imdb_id ?? null,
-      adult: movie.adult ?? null,
+      adult: movie.adult || null,
       title: movie.title ?? "",
       release_date: movie.release_date ? new Date(movie.release_date) : null,
       poster_path: movie.poster_path ?? null,
       backdrop_path: movie.backdrop_path ?? null,
-      budget: movie.budget ?? null,
-      revenue: movie.revenue ?? null,
+      budget: movie.budget || null,
+      revenue: movie.revenue || null,
       tagline: movie.tagline ?? null,
-      runtime: movie.runtime ?? null,
+      runtime: movie.runtime || null,
       original_language: movie.original_language ?? null,
       overview: movie.overview ?? "",
       status: movie.status ?? "",

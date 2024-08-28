@@ -1,12 +1,13 @@
 "use server";
 
+import type { InferSelectModel } from "drizzle-orm";
 import { auth } from "@clerk/nextjs/server";
-import { type InferSelectModel, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
+
+import type { Status } from "./types";
 
 import { db } from "../db";
 import { movies, ratings } from "../db/schema";
-
-import type { Status } from "./types";
 
 export type RatedMovie = InferSelectModel<typeof movies>;
 

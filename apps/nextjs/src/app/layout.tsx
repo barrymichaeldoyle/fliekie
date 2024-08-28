@@ -1,9 +1,10 @@
+import type { Metadata } from "next";
+import type { PropsWithChildren } from "react";
 import { GeistSans } from "geist/font/sans";
-import { type Metadata } from "next";
-import { type PropsWithChildren } from "react";
 import { Toaster } from "sonner";
 
 import "~/styles/globals.css";
+
 import { AuthProvider } from "~/components/AuthProvider";
 import { ThemeProvider } from "~/components/ThemeProvider";
 
@@ -15,8 +16,6 @@ export const metadata: Metadata = {
   description: "Rate movies with your friends and plan your next movie night!",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
-
-console.log("Test");
 
 export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (

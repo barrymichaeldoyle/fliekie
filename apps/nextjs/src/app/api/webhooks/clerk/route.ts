@@ -1,16 +1,15 @@
-import { type WebhookEvent } from "@clerk/nextjs/server";
-import { and, eq } from "drizzle-orm";
+import type { WebhookEvent } from "@clerk/nextjs/server";
 import { headers } from "next/headers";
+import { and, eq } from "drizzle-orm";
 import { Webhook } from "svix";
 
+import type { Environment } from "~/server/db/schema";
+import { env } from "~/env";
 import { db } from "~/server/db";
-import { type Environment, users } from "~/server/db/schema";
+import { users } from "~/server/db/schema";
 
 export async function POST(request: Request) {
-  const CLERK_WEBHOOK_SIGNING_SECRET =
-    process.env.CLERK_WEBHOOK_SIGNING_SECRET ?? "";
-
-  if (!CLERK_WEBHOOK_SIGNING_SECRET) {
+  if (!env.CLERK_WEBHOOK_SIGNING_SECRET) {
     throw new Error(
       "Please add CLERK_WEBHOOK_SIGNING_SECRET from Clerk Dashboard to .env",
     );
@@ -29,7 +28,7 @@ export async function POST(request: Request) {
   const payload = (await request.json()) as Record<string, unknown>;
   const body = JSON.stringify(payload);
 
-  const wh = new Webhook(CLERK_WEBHOOK_SIGNING_SECRET);
+  const wh = new Webhook(env.CLERK_WEBHOOK_SIGNING_SECRET);
 
   let event: WebhookEvent;
 
@@ -47,7 +46,7 @@ export async function POST(request: Request) {
   }
 
   const environment: Environment =
-    process.env.NODE_ENV === "production" ? "prod" : "dev";
+    env.NODE_ENV === "production" ? "prod" : "dev";
 
   if (event.type === "user.created") {
     const clerkId = event.data.id;

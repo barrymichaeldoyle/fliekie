@@ -1,4 +1,4 @@
-export default async function PrivacyPolicyPage() {
+export default function PrivacyPolicyPage() {
   return (
     <main className="flex flex-1 flex-col gap-10 p-4">
       <section>
