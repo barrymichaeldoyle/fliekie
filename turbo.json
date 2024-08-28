@@ -1,28 +1,31 @@
 {
   "globalEnv": [
-    "CLERK_SECRET_KEY",
-    "CLERK_WEBHOOK_SIGNING_SECRET",
-    "POSTGRES_URL",
-    "POSTGRES_PRISMA_URL",
-    "POSTGRES_URL_NO_SSL",
-    "POSTGRES_URL_NON_POOLING",
-    "POSTGRES_USER",
-    "POSTGRES_HOST",
-    "POSTGRES_PASSWORD",
-    "POSTGRES_DATABASE",
-    "TMDB_API_KEY",
     "TURBO_REMOTE_CACHE_SIGNATURE_KEY",
     "TURBO_TOKEN",
-    "TURBO_TEAM",
-    "NODE_ENV",
-    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
-    "SKIP_ENV_VALIDATION"
+    "TURBO_TEAM"
   ],
+  "globalDependencies": ["**/.env"],
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**"]
+      "outputs": [".next/**", "!.next/cache/**"],
+      "env": [
+        "CLERK_SECRET_KEY",
+        "CLERK_WEBHOOK_SIGNING_SECRET",
+        "POSTGRES_URL",
+        "POSTGRES_PRISMA_URL",
+        "POSTGRES_URL_NO_SSL",
+        "POSTGRES_URL_NON_POOLING",
+        "POSTGRES_USER",
+        "POSTGRES_HOST",
+        "POSTGRES_PASSWORD",
+        "POSTGRES_DATABASE",
+        "TMDB_API_KEY",
+        "NODE_ENV",
+        "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+        "SKIP_ENV_VALIDATION"
+      ]
     },
     "lint": {
       "dependsOn": ["^lint"]
@@ -32,7 +35,36 @@
     },
     "dev": {
       "persistent": true,
-      "cache": false
+      "cache": false,
+      "env": [
+        "CLERK_SECRET_KEY",
+        "CLERK_WEBHOOK_SIGNING_SECRET",
+        "POSTGRES_URL",
+        "POSTGRES_PRISMA_URL",
+        "POSTGRES_URL_NO_SSL",
+        "POSTGRES_URL_NON_POOLING",
+        "POSTGRES_USER",
+        "POSTGRES_HOST",
+        "POSTGRES_PASSWORD",
+        "POSTGRES_DATABASE",
+        "TMDB_API_KEY",
+        "NODE_ENV",
+        "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
+        "SKIP_ENV_VALIDATION"
+      ]
+    },
+    "db:studio": {
+      "dependsOn": ["^db:studio"],
+      "env": [
+        "POSTGRES_URL",
+        "POSTGRES_PRISMA_URL",
+        "POSTGRES_URL_NO_SSL",
+        "POSTGRES_URL_NON_POOLING",
+        "POSTGRES_USER",
+        "POSTGRES_HOST",
+        "POSTGRES_PASSWORD",
+        "POSTGRES_DATABASE"
+      ]
     }
   },
   "remoteCache": {

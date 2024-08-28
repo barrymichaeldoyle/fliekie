@@ -17,7 +17,7 @@ export function MovieResult(props: { movie: Movie }) {
   return (
     <Link
       href={`/movies/${props.movie.tmdb_movie_id}`}
-      className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card text-card-foreground shadow-md transition-transform duration-200 ease-in-out hover:scale-105 hover:bg-muted hover:shadow-lg"
+      className="border-border bg-card text-card-foreground hover:bg-muted flex h-full flex-col overflow-hidden rounded-lg border shadow-md transition-transform duration-200 ease-in-out hover:scale-105 hover:shadow-lg"
     >
       <div className="flex h-full">
         {props.movie.poster_path ? (
@@ -29,7 +29,7 @@ export function MovieResult(props: { movie: Movie }) {
             className="h-auto w-[150px] object-cover"
           />
         ) : (
-          <div className="flex h-[225px] w-[150px] items-center justify-center bg-muted">
+          <div className="bg-muted flex h-[225px] w-[150px] items-center justify-center">
             <span className="text-muted-foreground">No Image</span>
           </div>
         )}
@@ -37,11 +37,11 @@ export function MovieResult(props: { movie: Movie }) {
         <div className="flex flex-1 flex-col justify-between p-4">
           <div>
             <h3 className="text-xl font-semibold">{props.movie.title}</h3>
-            <p className="line-clamp-3 text-sm text-muted-foreground">
+            <p className="text-muted-foreground line-clamp-3 text-sm">
               {props.movie.overview}
             </p>
           </div>
-          <div className="mt-2 text-sm text-muted-foreground">
+          <div className="text-muted-foreground mt-2 text-sm">
             Released: {formattedDate}
           </div>
         </div>
