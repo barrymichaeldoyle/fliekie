@@ -35,7 +35,7 @@ jobs:
         run: pnpm install
 
       - name: Lint code
-        run: pnpm lint
+        run: turbo lint
 
       - name: Type check
-        run: pnpm check-types
+        run: turbo check-types
