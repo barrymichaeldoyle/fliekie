@@ -47,7 +47,7 @@ function UserCard(props: { user: User }) {
           />
           <div className="flex flex-col gap-0.5">
             <p className="text-md font-semibold">{props.user.username}</p>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-muted-foreground text-sm">
               {props.user.fullName}
             </p>
           </div>

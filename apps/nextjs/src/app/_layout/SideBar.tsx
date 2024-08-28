@@ -65,7 +65,7 @@ const supportNavItems: NavItemProps[] = [
 
 export function SideBar() {
   return (
-    <aside className="w-56 border-r bg-card p-4">
+    <aside className="bg-card w-56 border-r p-4">
       <nav className="flex h-full flex-col gap-6">
         <SignedIn>
           <NavItems items={authenticatedNavItems} />
