@@ -1,10 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import {
-  type TMDBMovieSearchResult,
-  searchMovies,
-} from "~/server/api/searchMovies";
+import { searchMovies } from "~/server/api/searchMovies";
+import type { TMDBMovieSearchResult } from "~/server/api/searchMovies";
 
 export const dynamic = "force-dynamic";
 

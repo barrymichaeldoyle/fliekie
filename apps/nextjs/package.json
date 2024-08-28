@@ -64,7 +64,6 @@
     "eslint-plugin-drizzle": "^0.2.3",
     "jiti": "^1.21.6",
     "openapi-typescript": "^7.3.0",
-    "postcss": "^8.4.39",
     "prettier": "catalog:",
     "tailwindcss": "catalog:",
     "typescript": "catalog:"

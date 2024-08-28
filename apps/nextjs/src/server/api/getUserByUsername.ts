@@ -1,11 +1,14 @@
 "use server";
 
-import { type User, createClerkClient } from "@clerk/nextjs/server";
+import {  createClerkClient } from "@clerk/nextjs/server";
+import type { User } from "@clerk/nextjs/server";
 
-import { type Status } from "./types";
+import { env } from '~/env';
+
+import type { Status } from "./types";
 
 const clerkClient = createClerkClient({
-  secretKey: process.env.CLERK_SECRET_KEY,
+  secretKey: env.CLERK_SECRET_KEY,
 });
 
 export async function getUserByUsername(

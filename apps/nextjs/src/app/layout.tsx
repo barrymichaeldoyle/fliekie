@@ -1,6 +1,6 @@
 import { GeistSans } from "geist/font/sans";
-import { type Metadata } from "next";
-import { type PropsWithChildren } from "react";
+import type { Metadata } from "next";
+import type { PropsWithChildren } from "react";
 import { Toaster } from "sonner";
 
 import "~/styles/globals.css";

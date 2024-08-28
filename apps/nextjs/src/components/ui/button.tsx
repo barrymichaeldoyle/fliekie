@@ -1,5 +1,6 @@
 import { Slot } from "@radix-ui/react-slot";
-import { type VariantProps, cva } from "class-variance-authority";
+import { cva } from "class-variance-authority";
+import type { VariantProps } from "class-variance-authority";
 import { Loader2 } from "lucide-react";
 import * as React from "react";
 
@@ -57,7 +58,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref,
   ) => {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+     
     const Comp = asChild ? Slot : "button";
     return (
       <Comp

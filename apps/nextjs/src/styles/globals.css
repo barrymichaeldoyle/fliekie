@@ -63,7 +63,7 @@
   }
 
   html {
-    @apply bg-background text-foreground h-full;
+    @apply h-full bg-background text-foreground;
   }
 
   body {

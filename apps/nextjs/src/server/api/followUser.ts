@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 import { db } from "~/server/db";
 import { follows, users } from "~/server/db/schema";
 
-import { type Status } from "./types";
+import type { Status } from "./types";
 
 /**
  * Server action to follow a user.

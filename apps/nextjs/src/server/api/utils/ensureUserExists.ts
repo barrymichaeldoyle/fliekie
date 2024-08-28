@@ -3,10 +3,11 @@
 import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 
+import { env } from "~/env";
 import { db } from "~/server/db";
 import { users } from "~/server/db/schema";
 
-import { type Status } from "../types";
+import type { Status } from "../types";
 
 /**
  * A helper function to ensure that the user exists in the database
@@ -20,7 +21,7 @@ export async function ensureUserExists(): Promise<Status<{ clerkId: string }>> {
     return { type: "error", message: "User not authenticated" };
   }
 
-  const environment = process.env.NODE_ENV === "production" ? "prod" : "dev";
+  const environment = env.NODE_ENV === "production" ? "prod" : "dev";
 
   const existingUser = await db
     .select()

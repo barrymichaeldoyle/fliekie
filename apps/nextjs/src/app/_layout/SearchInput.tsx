@@ -1,8 +1,10 @@
 "use client";
+
+import type { ChangeEvent } from "react";
+import { useCallback, useMemo } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import debounce from "lodash.debounce";
 import { Search } from "lucide-react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { type ChangeEvent, useCallback, useMemo } from "react";
 
 import { TMDBAltShort } from "~/components/images/TMDBAltShort";
 import { Input } from "~/components/ui/input";
@@ -39,7 +41,7 @@ export function SearchInput() {
 
   return (
     <div className="relative w-full">
-      <Search className="text-muted-foreground absolute left-2 top-2.5 h-4 w-4" />
+      <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
       <Input
         defaultValue={searchParams.get("search") ?? ""}
         onChange={handleChange}

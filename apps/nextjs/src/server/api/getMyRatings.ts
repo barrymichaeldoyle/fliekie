@@ -1,7 +1,8 @@
 "use server";
 
 import { auth } from "@clerk/nextjs/server";
-import { type InferSelectModel, eq } from "drizzle-orm";
+import { eq } from "drizzle-orm";
+import type { InferSelectModel } from "drizzle-orm";
 
 import { db } from "../db";
 import { movies, ratings } from "../db/schema";

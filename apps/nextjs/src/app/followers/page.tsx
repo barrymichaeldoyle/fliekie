@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-export default async function FollowersPage() {
+export default function FollowersPage() {
   return (
     <main className="flex-1 p-4">
       <section className="flex flex-col gap-2">

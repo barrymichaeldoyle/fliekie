@@ -1,9 +1,11 @@
 "use client";
 
-import { type Ref, forwardRef } from "react";
+import { forwardRef } from "react";
+import type { Ref } from "react";
 import { useFormStatus } from "react-dom";
 
-import { Button, type ButtonProps } from "./ui/button";
+import { Button  } from "./ui/button";
+import type { ButtonProps } from "./ui/button";
 
 export const SubmitButton = forwardRef(
   (props: ButtonProps, ref: Ref<HTMLButtonElement>) => {
