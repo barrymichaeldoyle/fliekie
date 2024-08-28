@@ -16,8 +16,6 @@ export const metadata: Metadata = {
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
-console.log("Test");
-
 export default function RootLayout({ children }: Readonly<PropsWithChildren>) {
   return (
     <AuthProvider>

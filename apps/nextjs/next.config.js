@@ -1,17 +1,23 @@
-/**
- * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially useful
- * for Docker builds.
- */
-await import("./src/env.js");
+import { fileURLToPath } from "url";
+import createJiti from "jiti";
+
+createJiti(fileURLToPath(import.meta.url))("./src/env");
 
 /** @type {import("next").NextConfig} */
 const config = {
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  reactStrictMode: true,
+
+  transpilePackages: [
+    // uncomment these as we break into more packages
+    // "@fliekie/api",
+    // "@fliekie/auth",
+    // "@fliekie/db",
+    // "@fliekie/ui",
+    // "@fliekie/validators",
+  ],
+
+  typescript: {  ignoreBuildErrors: true },
+  eslint: { ignoreDuringBuilds: true },
   images: {
     remotePatterns: [
       { hostname: "img.clerk.com" },
