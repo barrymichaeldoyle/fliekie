@@ -124,9 +124,6 @@ devDependencies:
   eslint-plugin-drizzle:
     specifier: ^0.2.3
     version: 0.2.3(eslint@8.57.0)
-  husky:
-    specifier: ^9.1.5
-    version: 9.1.5
   openapi-typescript:
     specifier: ^7.3.0
     version: 7.3.0(typescript@5.5.4)
@@ -3255,12 +3252,6 @@ packages:
       debug: 4.3.6(supports-color@9.4.0)
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /husky@9.1.5:
-    resolution: {integrity: sha512-rowAVRUBfI0b4+niA4SJMhfQwc107VLkBUgEYYAOQAbqDCnra1nYh83hF/MDmhYs9t9n1E3DuKOrs2LYNC+0Ag==}
-    engines: {node: '>=18'}
-    hasBin: true
     dev: true
 
   /ignore@5.3.2:
