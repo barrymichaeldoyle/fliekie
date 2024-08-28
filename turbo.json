@@ -18,6 +18,7 @@
     "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY",
     "SKIP_ENV_VALIDATION"
   ],
+  "globalDependencies": ["**/.env"],
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
     "build": {
