@@ -4,6 +4,7 @@
     "TURBO_TOKEN",
     "TURBO_TEAM"
   ],
+  "ui": "tui",
   "globalDependencies": ["**/.env"],
   "$schema": "https://turbo.build/schema.json",
   "tasks": {
@@ -30,8 +31,8 @@
     "lint": {
       "dependsOn": ["^lint"]
     },
-    "check-types": {
-      "dependsOn": ["^check-types"]
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
     },
     "dev": {
       "persistent": true,

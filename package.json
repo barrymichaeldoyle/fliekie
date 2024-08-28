@@ -2,15 +2,17 @@
   "name": "fliekie",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "pnpm@6.14.1",
+  "packageManager": "pnpm@9.7.1",
   "scripts": {
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "check-types": "turbo check-types"
+    "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
-    "prettier": "^3.3.2",
-    "prettier-plugin-tailwindcss": "^0.6.5",
-    "turbo": "^2.1.0"
-  }
+    "@fliekie/prettier-config": "workspace:*",
+    "prettier": "catalog:",
+    "turbo": "^2.1.0",
+    "typescript": "catalog:"
+  },
+  "prettier": "@fliekie/prettier-config"
 }
