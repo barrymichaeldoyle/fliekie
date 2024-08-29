@@ -11,6 +11,12 @@
     "plugins": [{ "name": "next" }],
     "module": "esnext"
   },
-  "include": [".", ".next/types/**/*.ts"],
+  "include": [
+    ".",
+    ".next/types/**/*.ts",
+    "../../packages/db/src/index.ts",
+    "../../packages/db/src/schema.ts",
+    "../../packages/db/drizzle.config.ts"
+  ],
   "exclude": ["node_modules"]
 }

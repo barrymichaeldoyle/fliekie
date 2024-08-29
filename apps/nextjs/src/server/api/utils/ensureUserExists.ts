@@ -3,10 +3,11 @@
 import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 
+import { db } from "@fliekie/db";
+import { users } from "@fliekie/db/schema";
+
 import type { Status } from "../types";
 import { env } from "~/env";
-import { db } from "~/server/db";
-import { users } from "~/server/db/schema";
 
 /**
  * A helper function to ensure that the user exists in the database
