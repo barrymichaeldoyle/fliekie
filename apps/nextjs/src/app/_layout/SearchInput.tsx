@@ -6,8 +6,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import debounce from "lodash.debounce";
 import { Search } from "lucide-react";
 
+import { Input } from "@fliekie/ui/input";
+
 import { TMDBAltShort } from "~/components/images/TMDBAltShort";
-import { Input } from "~/components/ui/input";
 
 export function SearchInput() {
   const router = useRouter();

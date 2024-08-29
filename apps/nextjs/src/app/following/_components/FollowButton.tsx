@@ -5,9 +5,10 @@ import { useState, useTransition } from "react";
 import { SignInButton, useAuth } from "@clerk/nextjs";
 import { toast } from "sonner";
 
-import type { ButtonProps } from "~/components/ui/button";
+import type { ButtonProps } from "@fliekie/ui/button";
+import { Button } from "@fliekie/ui/button";
+
 import { SubmitButton } from "~/components/SubmitButton";
-import { Button } from "~/components/ui/button";
 import { followUser } from "~/server/api/followUser";
 
 export function FollowButton({

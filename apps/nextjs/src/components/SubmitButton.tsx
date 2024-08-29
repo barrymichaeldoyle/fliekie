@@ -4,9 +4,8 @@ import type { Ref } from "react";
 import { forwardRef } from "react";
 import { useFormStatus } from "react-dom";
 
-import type { ButtonProps } from "./ui/button";
-
-import { Button } from "./ui/button";
+import type { ButtonProps } from "@fliekie/ui/button";
+import { Button } from "@fliekie/ui/button";
 
 export const SubmitButton = forwardRef(
   (props: ButtonProps, ref: Ref<HTMLButtonElement>) => {
