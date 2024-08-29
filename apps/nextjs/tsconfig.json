@@ -16,7 +16,11 @@
     ".next/types/**/*.ts",
     "../../packages/db/src/index.ts",
     "../../packages/db/src/schema.ts",
-    "../../packages/db/drizzle.config.ts"
+    "../../packages/db/drizzle.config.ts",
+    "src/components/ui/button.tsx",
+    "src/components/ui/input.tsx",
+    "src/components/ui/sonner.tsx",
+    "src/components/ui/tooltip.tsx"
   ],
   "exclude": ["node_modules"]
 }

@@ -6,16 +6,17 @@ import { SignInButton, useAuth } from "@clerk/nextjs";
 import { Minus, Plus } from "lucide-react";
 import { toast } from "sonner";
 
-import type { EnrichedTMDBMovie } from "~/server/api/getMovie";
-import type { TMDBMovie } from "~/server/api/types";
-import { SubmitButton } from "~/components/SubmitButton";
-import { Button } from "~/components/ui/button";
+import { Button } from "@fliekie/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "~/components/ui/tooltip";
+} from "@fliekie/ui/tooltip";
+
+import type { EnrichedTMDBMovie } from "~/server/api/getMovie";
+import type { TMDBMovie } from "~/server/api/types";
+import { SubmitButton } from "~/components/SubmitButton";
 import { addMovieToWatchlist } from "~/server/api/addMovieToWatchlist";
 import { removeMovieFromWatchlist } from "~/server/api/removeMovieFromWatchlist";
 

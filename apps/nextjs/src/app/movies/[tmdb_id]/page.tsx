@@ -1,7 +1,8 @@
 import Image from "next/image";
 
+import { Button } from "@fliekie/ui/button";
+
 import { TMDBPrimaryLong } from "~/components/images/TMDBPrimaryLong";
-import { Button } from "~/components/ui/button";
 import { getMovie } from "~/server/api/getMovie";
 
 import { WatchlistButton } from "./_components/WatchlistButton";
