@@ -3,16 +3,12 @@
 import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 
+import { db } from "@fliekie/db";
+import { movies, ratings, watchlist } from "@fliekie/db/schema";
+
 import type { Status } from "./types";
 import type { paths } from "~/tmdb/types";
 import { env } from "~/env";
-
-import { db } from "../../../../../packages/db/src";
-import {
-  movies,
-  ratings,
-  watchlist,
-} from "../../../../../packages/db/src/schema";
 
 export type TMDBMovie =
   paths["/3/movie/{movie_id}"]["get"]["responses"]["200"]["content"]["application/json"];

@@ -3,10 +3,10 @@
 import { auth } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 
-import type { Movie, Status } from "./types";
+import { db } from "@fliekie/db";
+import { movies, watchlist } from "@fliekie/db/schema";
 
-import { db } from "../../../../../packages/db/src";
-import { movies, watchlist } from "../../../../../packages/db/src/schema";
+import type { Movie, Status } from "./types";
 
 /**
  * List all movies from the current user's watch list.

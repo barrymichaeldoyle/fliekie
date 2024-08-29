@@ -4,9 +4,10 @@ import { revalidatePath } from "next/cache";
 import { auth } from "@clerk/nextjs/server";
 import { and, eq } from "drizzle-orm";
 
+import { db } from "@fliekie/db";
+import { follows, users } from "@fliekie/db/schema";
+
 import type { Status } from "./types";
-import { db } from "~/server/db";
-import { follows, users } from "~/server/db/schema";
 
 /**
  * Server action to follow a user.

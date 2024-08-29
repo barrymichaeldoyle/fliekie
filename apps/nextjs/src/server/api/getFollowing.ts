@@ -4,9 +4,10 @@ import type { User } from "@clerk/nextjs/server";
 import { auth, clerkClient } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 
+import { db } from "@fliekie/db";
+import { follows } from "@fliekie/db/schema";
+
 import type { Status } from "./types";
-import { db } from "~/server/db";
-import { follows } from "~/server/db/schema";
 
 /**
  * Server function to get users the authenticated user is following.

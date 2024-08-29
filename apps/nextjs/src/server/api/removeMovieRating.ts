@@ -3,10 +3,11 @@
 import { revalidatePath } from "next/cache";
 import { and, eq } from "drizzle-orm";
 
+import { db } from "@fliekie/db";
+import { movies, ratings } from "@fliekie/db/schema";
+
 import type { Status, TMDBMovie } from "./types";
 
-import { db } from "../../../../../packages/db/src";
-import { movies, ratings } from "../../../../../packages/db/src/schema";
 import { ensureUserExists } from "./utils/ensureUserExists";
 import { getOrCreateMovie } from "./utils/getOrCreateMovie";
 
