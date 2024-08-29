@@ -1,8 +1,9 @@
 import { eq } from "drizzle-orm";
 
+import { db } from "@fliekie/db/client";
+import { collections, genres, movieGenres, movies } from "@fliekie/db/schema";
+
 import type { Status, TMDBMovie } from "../types";
-import { db } from "~/server/db";
-import { collections, genres, movieGenres, movies } from "~/server/db/schema";
 
 /**
  * A helper function to check if the movie is already in the database

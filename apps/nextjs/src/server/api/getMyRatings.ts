@@ -4,10 +4,10 @@ import type { InferSelectModel } from "drizzle-orm";
 import { auth } from "@clerk/nextjs/server";
 import { eq } from "drizzle-orm";
 
-import type { Status } from "./types";
+import { db } from "@fliekie/db/client";
+import { movies, ratings } from "@fliekie/db/schema";
 
-import { db } from "../db";
-import { movies, ratings } from "../db/schema";
+import type { Status } from "./types";
 
 export type RatedMovie = InferSelectModel<typeof movies>;
 

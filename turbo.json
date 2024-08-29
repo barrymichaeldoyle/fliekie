@@ -39,9 +39,6 @@
     "studio": {
       "cache": false,
       "persistent": true
-    },
-    "db:studio": {
-      "dependsOn": ["^db:studio"]
     }
   },
   "remoteCache": {

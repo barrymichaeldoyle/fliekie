@@ -1,0 +1,5 @@
+{
+  "extends": "@fliekie/tsconfig/internal-package.json",
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

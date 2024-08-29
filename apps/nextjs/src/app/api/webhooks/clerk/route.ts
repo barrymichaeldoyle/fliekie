@@ -3,10 +3,11 @@ import { headers } from "next/headers";
 import { and, eq } from "drizzle-orm";
 import { Webhook } from "svix";
 
-import type { Environment } from "~/server/db/schema";
+import type { Environment } from "@fliekie/db/schema";
+import { db } from "@fliekie/db/client";
+import { users } from "@fliekie/db/schema";
+
 import { env } from "~/env";
-import { db } from "~/server/db";
-import { users } from "~/server/db/schema";
 
 export async function POST(request: Request) {
   if (!env.CLERK_WEBHOOK_SIGNING_SECRET) {
