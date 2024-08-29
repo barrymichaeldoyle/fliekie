@@ -5,8 +5,8 @@ import { eq } from "drizzle-orm";
 
 import type { Movie, Status } from "./types";
 
-import { db } from "../db";
-import { movies, watchlist } from "../db/schema";
+import { db } from "../../../../../packages/db/src";
+import { movies, watchlist } from "../../../../../packages/db/src/schema";
 
 /**
  * List all movies from the current user's watch list.

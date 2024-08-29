@@ -1,6 +1,6 @@
 import type { InferSelectModel } from "drizzle-orm";
 
-import type { movies } from "../db/schema";
+import type { movies } from "../../../../../packages/db/src/schema";
 import type { paths } from "~/tmdb/types";
 
 export type Status<T = object> = ErrorStatus | SuccessStatus<T>;

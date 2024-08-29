@@ -6,8 +6,8 @@ import { eq } from "drizzle-orm";
 
 import type { Status } from "./types";
 
-import { db } from "../db";
-import { movies, ratings } from "../db/schema";
+import { db } from "../../../../../packages/db/src";
+import { movies, ratings } from "../../../../../packages/db/src/schema";
 
 export type RatedMovie = InferSelectModel<typeof movies>;
 

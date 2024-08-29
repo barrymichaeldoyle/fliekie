@@ -5,8 +5,8 @@ import { and, eq } from "drizzle-orm";
 
 import type { Rating, Status, TMDBMovie } from "./types";
 
-import { db } from "../db";
-import { ratings } from "../db/schema";
+import { db } from "../../../../../packages/db/src";
+import { ratings } from "../../../../../packages/db/src/schema";
 import { ensureUserExists } from "./utils/ensureUserExists";
 import { getOrCreateMovie } from "./utils/getOrCreateMovie";
 
