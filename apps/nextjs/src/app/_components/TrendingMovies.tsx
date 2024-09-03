@@ -1,10 +1,10 @@
 import { SearchResult } from "~/components/SearchResult";
-import { searchMovies } from "~/server/api/searchMovies";
+import { fetchTrendingMovies } from "~/server/api/fetchTrendingMovies";
 
 export const dynamic = "force-dynamic";
 
-export async function SearchResults(props: { query: string }) {
-  const response = await searchMovies(props.query);
+export async function TrendingMovies() {
+  const response = await fetchTrendingMovies();
 
   if (response.type === "error") {
     return <div>Failed to fetch movie results</div>;
