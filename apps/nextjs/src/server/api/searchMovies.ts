@@ -26,10 +26,12 @@ export type ModifiedSearchMoviesResponse = Omit<
 
 export async function searchMovies(
   query: string,
+  page = 1,
 ): Promise<Status<{ data: ModifiedSearchMoviesResponse }>> {
   const searchParams: SearchMoviesQueryParams = {
     query,
     api_key: env.TMDB_API_KEY,
+    page,
   };
 
   const url = new URL("https://api.themoviedb.org/3/search/movie");

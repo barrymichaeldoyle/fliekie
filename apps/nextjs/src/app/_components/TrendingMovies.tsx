@@ -67,8 +67,8 @@ export function TrendingMovies(props: {
   return (
     <div className="flex flex-col gap-4">
       <SearchResultGrid>
-        {movies.map((movie) => (
-          <SearchResult key={movie.id} movie={movie} />
+        {movies.map((movie, index) => (
+          <SearchResult key={movie.id} movie={movie} index={index} />
         ))}
       </SearchResultGrid>
       {hasMore && (
@@ -77,9 +77,9 @@ export function TrendingMovies(props: {
           className="flex h-10 items-center justify-center"
         >
           {loading ? (
-            <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-primary"></div>
+            <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-primary" />
           ) : (
-            <div className="h-6 w-6"></div>
+            <div className="h-6 w-6" />
           )}
         </div>
       )}

@@ -30,7 +30,7 @@ export async function getTrendingMovies(
 ): Promise<Status<{ data: ModifiedTrendingMoviesResponse }>> {
   const searchParams: TrendingMoviesQueryParams = {
     api_key: env.TMDB_API_KEY,
-    page: page,
+    page,
   };
 
   const url = new URL(

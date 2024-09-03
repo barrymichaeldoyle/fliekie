@@ -4,8 +4,11 @@ import Link from "next/link";
 
 import type { TMDBMovieSearchResult } from "~/server/api/searchMovies";
 
-export function SearchResult(props: { movie: TMDBMovieSearchResult }) {
-  const posterBaseUrl = "https://image.tmdb.org/t/p/w500";
+export function SearchResult(props: {
+  movie: TMDBMovieSearchResult;
+  index: number;
+}) {
+  const posterBaseUrl = "https://image.tmdb.org/t/p/w185";
 
   return (
     <Link
@@ -17,22 +20,23 @@ export function SearchResult(props: { movie: TMDBMovieSearchResult }) {
           <Image
             src={`${posterBaseUrl}${props.movie.poster_path}`}
             alt={`${props.movie.title} poster`}
-            width={150}
-            height={225}
-            className="h-auto w-[150px] object-cover"
+            width={185}
+            height={277.5}
+            className="h-[auto] w-[185px]"
+            priority={props.index < 3}
           />
         ) : (
-          <div className="flex h-[225px] w-[150px] items-center justify-center bg-muted">
+          <div className="flex h-[277.5px] w-[185px] items-center justify-center bg-muted">
             <span className="text-muted-foreground">No Image</span>
           </div>
         )}
 
-        <div className="flex flex-1 flex-col p-2">
-          <div className="flex flex-col gap-1">
+        <div className="flex flex-1 flex-col p-1">
+          <div className="flex flex-col gap-2">
             <h3 className="line-clamp-2 text-xl font-semibold">
               {props.movie.title}
             </h3>
-            <p className="line-clamp-4 text-sm text-muted-foreground">
+            <p className="line-clamp-5 text-sm text-muted-foreground">
               {props.movie.overview}
             </p>
           </div>
@@ -56,7 +60,7 @@ export function SearchResult(props: { movie: TMDBMovieSearchResult }) {
 
 export function SearchResultGrid(props: PropsWithChildren) {
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">
       {props.children}
     </div>
   );
