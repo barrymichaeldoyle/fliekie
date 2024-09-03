@@ -1,24 +1,90 @@
+"use client";
+
+import { useCallback, useEffect, useRef, useState } from "react";
+
+import type { TMDBMovieTrendingResult } from "~/server/api/fetchTrendingMovies";
+import { EndOfResults } from "~/components/EndOfResults";
 import { SearchResult } from "~/components/SearchResult";
 import { fetchTrendingMovies } from "~/server/api/fetchTrendingMovies";
 
-export const dynamic = "force-dynamic";
+export function TrendingMovies(props: {
+  initialMovies: TMDBMovieTrendingResult[];
+}) {
+  const observerTarget = useRef<HTMLDivElement>(null);
 
-export async function TrendingMovies() {
-  const response = await fetchTrendingMovies();
+  const [movies, setMovies] = useState<TMDBMovieTrendingResult[]>(
+    props.initialMovies,
+  );
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  if (response.type === "error") {
-    return <div>Failed to fetch movie results</div>;
-  }
+  const loadMoreMovies = useCallback(async () => {
+    if (loading || !hasMore) {
+      return undefined;
+    }
+    setLoading(true);
+    setError(null);
+    const nextPage = page + 1;
+    const response = await fetchTrendingMovies("day", nextPage);
 
-  if (!response.data.results || response.data.results.length === 0) {
-    return <div>No results found</div>;
-  }
+    if (response.type === "success") {
+      const results = response.data.results ?? [];
+      setMovies((prevMovies) => [...prevMovies, ...results]);
+      setPage(nextPage);
+      setHasMore(results.length > 0);
+    } else {
+      setError("Failed to load more movies. Please try again.");
+      setHasMore(false);
+    }
+    setLoading(false);
+  }, [loading, hasMore, page]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          void loadMoreMovies();
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    const currentObserverTarget = observerTarget.current;
+
+    if (currentObserverTarget) {
+      observer.observe(currentObserverTarget);
+    }
+
+    return () => {
+      if (currentObserverTarget) {
+        observer.unobserve(currentObserverTarget);
+      }
+    };
+  }, [loadMoreMovies]);
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
-      {response.data.results.map((movie) => (
-        <SearchResult key={movie.id} movie={movie} />
-      ))}
+    <div className="flex flex-col gap-4">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+        {movies.map((movie) => (
+          <SearchResult key={movie.id} movie={movie} />
+        ))}
+      </div>
+      {hasMore && (
+        <div
+          ref={observerTarget}
+          className="flex h-10 items-center justify-center"
+        >
+          {loading ? (
+            <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-primary"></div>
+          ) : (
+            <div className="h-6 w-6"></div>
+          )}
+        </div>
+      )}
+      {error && <div className="text-red-500">{error}</div>}
+      {!hasMore && <EndOfResults />}
     </div>
   );
 }

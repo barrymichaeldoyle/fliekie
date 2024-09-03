@@ -36,5 +36,16 @@ export async function searchMovies(
 
   const data = (await response.json()) as SearchMoviesResponse;
 
+  data.results = data.results?.map((movie) => ({
+    ...movie,
+    release_date: movie.release_date
+      ? new Intl.DateTimeFormat("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        }).format(new Date(movie.release_date))
+      : undefined,
+  }));
+
   return { type: "success", data };
 }
