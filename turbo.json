@@ -40,8 +40,9 @@
       "cache": false,
       "persistent": true
     },
-    "db:studio": {
-      "dependsOn": ["^db:studio"]
+    "ui-add": {
+      "cache": false,
+      "interactive": true
     }
   },
   "remoteCache": {
