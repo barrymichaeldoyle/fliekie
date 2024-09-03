@@ -4,6 +4,8 @@ import type { Status } from "./types";
 import type { paths } from "~/tmdb/types";
 import { env } from "~/env";
 
+import { fetchGenres, Genre } from "./fetchGenres";
+
 export type SearchMoviesResponse =
   paths["/3/search/movie"]["get"]["responses"]["200"]["content"]["application/json"];
 
@@ -32,13 +34,29 @@ export async function searchMovies(
     url.searchParams.append(key, String(value)),
   );
 
-  const response = await fetch(url.toString());
+  const [response, genres] = await Promise.all([
+    fetch(url.toString(), {
+      next: {
+        // 6 hours in seconds
+        revalidate: 21600,
+      },
+    }),
+    fetchGenres(),
+  ]);
+
+  if (response.status !== 200) {
+    return { type: "error", message: "Failed to fetch trending movies" };
+  }
 
   if (response.status !== 200) {
     return { type: "error", message: "Failed to fetch movies" };
   }
 
   const data = (await response.json()) as ModifiedSearchMoviesResponse;
+
+  const genreMap = new Map(
+    genres.map((genre: Genre) => [genre.id, genre.name]),
+  );
 
   data.results = data.results.map(
     (movie) =>
@@ -51,6 +69,8 @@ export async function searchMovies(
               day: "numeric",
             }).format(new Date(movie.release_date))
           : undefined,
+        genre_names:
+          movie.genre_ids?.map((id) => genreMap.get(id)).filter(Boolean) ?? [],
       }) as TMDBMovieSearchResult,
   );
 
