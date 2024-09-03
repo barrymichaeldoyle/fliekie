@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { TMDBMovieSearchResult } from "~/server/api/searchMovies";
+import type { TMDBMovieSearchResult } from "~/server/api/searchMovies";
 
 export function SearchResult(props: { movie: TMDBMovieSearchResult }) {
   const posterBaseUrl = "https://image.tmdb.org/t/p/w500";

@@ -7,11 +7,11 @@ import { env } from "~/env";
 export type TrendingMoviesResponse =
   paths["/3/trending/movie/{time_window}"]["get"]["responses"]["200"]["content"]["application/json"];
 
-export type TrendingMoviesQueryParams = {
+export interface TrendingMoviesQueryParams {
   api_key: string;
   language?: string;
   page?: number;
-};
+}
 
 export type TMDBMovieTrendingResult = NonNullable<
   TrendingMoviesResponse["results"]
