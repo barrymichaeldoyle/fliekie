@@ -14,7 +14,7 @@ export default function SearchPage(props: { searchParams: { q?: string } }) {
           Search results for &ldquo;{query}&rdquo;
         </h2>
 
-        <div className="flex justify-center">
+        <div className="flex flex-col items-center gap-2">
           <Suspense fallback={<div>Loading...</div>}>
             <SearchResults query={query} />
           </Suspense>
