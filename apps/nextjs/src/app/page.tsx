@@ -22,8 +22,6 @@ export default async function HomePage() {
     );
   }
 
-  const initialMovies = initialMoviesResponse.data.results ?? [];
-
   return (
     <main className="flex flex-1 flex-col gap-4 p-4">
       <section className="flex flex-col gap-2">
@@ -33,7 +31,7 @@ export default async function HomePage() {
 
       <section className="flex flex-col gap-4">
         <h2 className="text-xl font-bold">Trending Movies</h2>
-        <TrendingMovies initialMovies={initialMovies} />
+        <TrendingMovies initialMovies={initialMoviesResponse.data.results} />
       </section>
     </main>
   );

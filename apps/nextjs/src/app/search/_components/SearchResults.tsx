@@ -10,7 +10,7 @@ export async function SearchResults(props: { query: string }) {
     return <div>Failed to fetch movie results</div>;
   }
 
-  if (!response.data.results || response.data.results.length === 0) {
+  if (response.data.results.length === 0) {
     return <div>No results found</div>;
   }
 

@@ -1,10 +1,11 @@
 "use server";
 
+import type { Genre } from "./getGenres";
 import type { Status } from "./types";
 import type { paths } from "~/tmdb/types";
 import { env } from "~/env";
 
-import { Genre, getGenres } from "./getGenres";
+import { getGenres } from "./getGenres";
 
 export type SearchMoviesResponse =
   paths["/3/search/movie"]["get"]["responses"]["200"]["content"]["application/json"];
@@ -48,11 +49,7 @@ export async function searchMovies(
   ]);
 
   if (response.status !== 200) {
-    return { type: "error", message: "Failed to fetch trending movies" };
-  }
-
-  if (response.status !== 200) {
-    return { type: "error", message: "Failed to fetch movies" };
+    return { type: "error", message: "Failed to search movies" };
   }
 
   const data = (await response.json()) as ModifiedSearchMoviesResponse;
