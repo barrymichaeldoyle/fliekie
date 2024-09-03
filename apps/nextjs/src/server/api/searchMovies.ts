@@ -4,7 +4,7 @@ import type { Status } from "./types";
 import type { paths } from "~/tmdb/types";
 import { env } from "~/env";
 
-import { fetchGenres, Genre } from "./fetchGenres";
+import { Genre, getGenres } from "./getGenres";
 
 export type SearchMoviesResponse =
   paths["/3/search/movie"]["get"]["responses"]["200"]["content"]["application/json"];
@@ -16,7 +16,10 @@ export type TMDBMovieSearchResult = NonNullable<
   SearchMoviesResponse["results"]
 >[number] & { genre_names: string[] };
 
-export type ModifiedSearchMoviesResponse = SearchMoviesResponse & {
+export type ModifiedSearchMoviesResponse = Omit<
+  SearchMoviesResponse,
+  "results"
+> & {
   results: TMDBMovieSearchResult[];
 };
 
@@ -41,7 +44,7 @@ export async function searchMovies(
         revalidate: 21600,
       },
     }),
-    fetchGenres(),
+    getGenres(),
   ]);
 
   if (response.status !== 200) {

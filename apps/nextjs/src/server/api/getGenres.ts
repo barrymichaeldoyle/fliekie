@@ -9,7 +9,7 @@ export interface GenreResponse {
   genres: Genre[];
 }
 
-export async function fetchGenres(): Promise<Genre[]> {
+export async function getGenres(): Promise<Genre[]> {
   const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${env.TMDB_API_KEY}&language=en-US`;
 
   const response = await fetch(url, {

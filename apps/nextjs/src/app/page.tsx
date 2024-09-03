@@ -1,11 +1,11 @@
-import { fetchTrendingMovies } from "~/server/api/fetchTrendingMovies";
+import { getTrendingMovies } from "~/server/api/getTrendingMovies";
 
 import { TrendingMovies } from "./_components/TrendingMovies";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const initialMoviesResponse = await fetchTrendingMovies();
+  const initialMoviesResponse = await getTrendingMovies();
 
   if (initialMoviesResponse.type === "error") {
     return (

@@ -2,10 +2,10 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-import type { TMDBMovieTrendingResult } from "~/server/api/fetchTrendingMovies";
+import type { TMDBMovieTrendingResult } from "~/server/api/getTrendingMovies";
 import { EndOfResults } from "~/components/EndOfResults";
 import { SearchResult, SearchResultGrid } from "~/components/SearchResult";
-import { fetchTrendingMovies } from "~/server/api/fetchTrendingMovies";
+import { getTrendingMovies } from "~/server/api/getTrendingMovies";
 
 export function TrendingMovies(props: {
   initialMovies: TMDBMovieTrendingResult[];
@@ -27,7 +27,7 @@ export function TrendingMovies(props: {
     setLoading(true);
     setError(null);
     const nextPage = page + 1;
-    const response = await fetchTrendingMovies("day", nextPage);
+    const response = await getTrendingMovies("day", nextPage);
 
     if (response.type === "success") {
       const results = response.data.results;

@@ -1,11 +1,11 @@
 "use server";
 
+import type { Genre } from "./getGenres";
 import type { Status } from "./types";
 import type { paths } from "~/tmdb/types";
 import { env } from "~/env";
 
-import type { Genre } from "./fetchGenres";
-import { fetchGenres } from "./fetchGenres";
+import { getGenres } from "./getGenres";
 
 export type TrendingMoviesResponse =
   paths["/3/trending/movie/{time_window}"]["get"]["responses"]["200"]["content"]["application/json"];
@@ -24,7 +24,7 @@ export type ModifiedTrendingMoviesResponse = TrendingMoviesResponse & {
   results: TMDBMovieTrendingResult[];
 };
 
-export async function fetchTrendingMovies(
+export async function getTrendingMovies(
   timeWindow: "day" | "week" = "day",
   page = 1,
 ): Promise<Status<{ data: ModifiedTrendingMoviesResponse }>> {
@@ -48,7 +48,7 @@ export async function fetchTrendingMovies(
         revalidate: 21600,
       },
     }),
-    fetchGenres(),
+    getGenres(),
   ]);
 
   if (response.status !== 200) {
