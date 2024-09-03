@@ -4,7 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 import type { TMDBMovieTrendingResult } from "~/server/api/fetchTrendingMovies";
 import { EndOfResults } from "~/components/EndOfResults";
-import { SearchResult } from "~/components/SearchResult";
+import { SearchResult, SearchResultGrid } from "~/components/SearchResult";
 import { fetchTrendingMovies } from "~/server/api/fetchTrendingMovies";
 
 export function TrendingMovies(props: {
@@ -30,7 +30,7 @@ export function TrendingMovies(props: {
     const response = await fetchTrendingMovies("day", nextPage);
 
     if (response.type === "success") {
-      const results = response.data.results ?? [];
+      const results = response.data.results;
       setMovies((prevMovies) => [...prevMovies, ...results]);
       setPage(nextPage);
       setHasMore(results.length > 0);
@@ -66,11 +66,11 @@ export function TrendingMovies(props: {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
+      <SearchResultGrid>
         {movies.map((movie) => (
           <SearchResult key={movie.id} movie={movie} />
         ))}
-      </div>
+      </SearchResultGrid>
       {hasMore && (
         <div
           ref={observerTarget}

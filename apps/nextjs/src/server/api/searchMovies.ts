@@ -12,11 +12,15 @@ export type SearchMoviesQueryParams =
 
 export type TMDBMovieSearchResult = NonNullable<
   SearchMoviesResponse["results"]
->[number];
+>[number] & { genre_names: string[] };
+
+export type ModifiedSearchMoviesResponse = SearchMoviesResponse & {
+  results: TMDBMovieSearchResult[];
+};
 
 export async function searchMovies(
   query: string,
-): Promise<Status<{ data: SearchMoviesResponse }>> {
+): Promise<Status<{ data: ModifiedSearchMoviesResponse }>> {
   const searchParams: SearchMoviesQueryParams = {
     query,
     api_key: env.TMDB_API_KEY,
@@ -34,18 +38,21 @@ export async function searchMovies(
     return { type: "error", message: "Failed to fetch movies" };
   }
 
-  const data = (await response.json()) as SearchMoviesResponse;
+  const data = (await response.json()) as ModifiedSearchMoviesResponse;
 
-  data.results = data.results?.map((movie) => ({
-    ...movie,
-    release_date: movie.release_date
-      ? new Intl.DateTimeFormat("en-US", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        }).format(new Date(movie.release_date))
-      : undefined,
-  }));
+  data.results = data.results.map(
+    (movie) =>
+      ({
+        ...movie,
+        release_date: movie.release_date
+          ? new Intl.DateTimeFormat("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            }).format(new Date(movie.release_date))
+          : undefined,
+      }) as TMDBMovieSearchResult,
+  );
 
   return { type: "success", data };
 }
