@@ -15,6 +15,9 @@ export function TrendingMovies(props: {
   const [movies, setMovies] = useState<TMDBMovieTrendingResult[]>(
     props.initialMovies,
   );
+  const [movieIds, setMovieIds] = useState(
+    new Set<number>(props.initialMovies.map((movie) => movie.id)),
+  );
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -30,8 +33,14 @@ export function TrendingMovies(props: {
     const response = await getTrendingMovies("day", nextPage);
 
     if (response.type === "success") {
-      const results = response.data.results;
-      setMovies((prevMovies) => [...prevMovies, ...results]);
+      const results: TMDBMovieTrendingResult[] = response.data.results;
+      const newMovies = results.filter((movie) => !movieIds.has(movie.id));
+      setMovies((prevMovies) => [...prevMovies, ...newMovies]);
+      setMovieIds((prevIds) => {
+        const newIds = new Set(prevIds);
+        newMovies.forEach((movie) => newIds.add(movie.id));
+        return newIds;
+      });
       setPage(nextPage);
       setHasMore(results.length > 0);
     } else {

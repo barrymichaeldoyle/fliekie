@@ -16,20 +16,20 @@ export function SearchResult(props: {
       href={`/movies/${props.movie.id}`}
     >
       <article className="flex h-full gap-1">
-        {props.movie.poster_path ? (
-          <Image
-            src={`${posterBaseUrl}${props.movie.poster_path}`}
-            alt={`${props.movie.title} poster`}
-            width={185}
-            height={277.5}
-            className="h-[auto] w-[185px]"
-            priority={props.index < 3}
-          />
-        ) : (
-          <div className="flex h-[277.5px] w-[185px] items-center justify-center bg-muted">
+        <div className="flex h-[259px] w-[185px] items-center justify-center border-r bg-muted">
+          {props.movie.poster_path ? (
+            <Image
+              src={`${posterBaseUrl}${props.movie.poster_path}`}
+              alt={`${props.movie.title} poster`}
+              width={185}
+              height={259}
+              className="h-auto w-[185px]"
+              priority={props.index < 3}
+            />
+          ) : (
             <span className="text-muted-foreground">No Image</span>
-          </div>
-        )}
+          )}
+        </div>
 
         <div className="flex flex-1 flex-col p-1">
           <div className="flex flex-col gap-2">

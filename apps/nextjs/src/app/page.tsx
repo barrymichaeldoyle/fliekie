@@ -14,17 +14,14 @@ export default async function HomePage() {
         <p>A place to review movies and plan your next movie night event!</p>
       </section>
 
-      {initialMoviesResponse.type === "error" ? (
-        <section className="flex flex-col gap-4">
-          <h2 className="text-xl font-bold">Trending Movies</h2>
+      <section className="flex flex-col gap-4">
+        <h2 className="text-xl font-bold">Trending Movies</h2>
+        {initialMoviesResponse.type === "error" ? (
           <p>Error loading movies. Please try again later.</p>
-        </section>
-      ) : (
-        <section className="flex flex-col gap-4">
-          <h2 className="text-xl font-bold">Trending Movies</h2>
+        ) : (
           <TrendingMovies initialMovies={initialMoviesResponse.data.results} />
-        </section>
-      )}
+        )}
+      </section>
     </main>
   );
 }
