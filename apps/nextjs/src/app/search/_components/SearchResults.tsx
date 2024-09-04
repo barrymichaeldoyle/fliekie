@@ -22,7 +22,7 @@ export function SearchResults(props: {
 
   const {
     items: movies,
-    isLoading,
+    loading,
     hasMore,
     error,
     observerTarget,
@@ -46,7 +46,7 @@ export function SearchResults(props: {
       </SearchResultGrid>
       <InfiniteScrollStatus
         hasMore={hasMore}
-        isLoading={isLoading}
+        loading={loading}
         error={error}
         observerRef={observerTarget}
       />
