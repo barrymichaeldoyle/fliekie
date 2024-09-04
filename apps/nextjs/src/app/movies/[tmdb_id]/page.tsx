@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { Badge } from "@fliekie/ui/badge";
 import { Button } from "@fliekie/ui/button";
 
 import { TMDBPrimaryLong } from "~/components/images/TMDBPrimaryLong";
@@ -51,15 +52,26 @@ export default async function MoviePage(props: {
                   <WatchlistButton movie={response.data} />
                 </div>
               </div>
-              <div className="flex flex-1 flex-col justify-start gap-4 p-4">
+              <div className="flex flex-1 flex-col justify-start gap-2 p-4">
                 <h1 className="text-4xl font-bold text-white">
                   {response.data.title}
                 </h1>
+                <div className="flex flex-wrap gap-2">
+                  {response.data.genres?.map((genre) => (
+                    <Badge key={genre.id}>{genre.name}</Badge>
+                  ))}
+                </div>
                 <p className="text-lg text-gray-300">
-                  Release Date: {response.data.release_date}
+                  <span className="font-bold">Released:</span>{" "}
+                  {response.data.release_date}
+                </p>
+                <p>
+                  <span className="font-bold">Runtime:</span>{" "}
+                  {response.data.runtime}
                 </p>
                 <p className="text-lg text-gray-300">
-                  TMDB Rating: {response.data.vote_average}/10
+                  <span className="font-bold">TMDB Rating:</span>{" "}
+                  {response.data.vote_average}/10
                 </p>
                 <p className="mt-2 text-lg text-gray-300">
                   {response.data.overview}

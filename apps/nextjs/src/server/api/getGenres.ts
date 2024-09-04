@@ -1,5 +1,7 @@
 import { env } from "~/env";
 
+import { RevalidateTime } from "./constants/RevalidateTime";
+
 export interface Genre {
   id: number;
   name: string;
@@ -13,10 +15,7 @@ export async function getGenres(): Promise<Genre[]> {
   const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${env.TMDB_API_KEY}&language=en-US`;
 
   const response = await fetch(url, {
-    next: {
-      // 24 hours in seconds
-      revalidate: 86_400,
-    },
+    next: { revalidate: RevalidateTime._24Hours },
   });
 
   if (!response.ok) {

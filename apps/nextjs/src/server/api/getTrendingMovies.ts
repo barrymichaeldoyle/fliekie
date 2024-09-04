@@ -5,7 +5,9 @@ import type { Status } from "./types";
 import type { paths } from "~/tmdb/types";
 import { env } from "~/env";
 
+import { RevalidateTime } from "./constants/RevalidateTime";
 import { getGenres } from "./getGenres";
+import { formatDate } from "./utils/formatDate";
 
 export type TrendingMoviesResponse =
   paths["/3/trending/movie/{time_window}"]["get"]["responses"]["200"]["content"]["application/json"];
@@ -42,12 +44,7 @@ export async function getTrendingMovies(
   );
 
   const [response, genres] = await Promise.all([
-    fetch(url.toString(), {
-      next: {
-        // 6 hours in seconds
-        revalidate: 21600,
-      },
-    }),
+    fetch(url.toString(), { next: { revalidate: RevalidateTime._6Hours } }),
     getGenres(),
   ]);
 
@@ -65,13 +62,7 @@ export async function getTrendingMovies(
     (movie) =>
       ({
         ...movie,
-        release_date: movie.release_date
-          ? new Intl.DateTimeFormat("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            }).format(new Date(movie.release_date))
-          : undefined,
+        release_date: formatDate(movie.release_date),
         genre_names:
           movie.genre_ids?.map((id) => genreMap.get(id)).filter(Boolean) ?? [],
       }) as TMDBMovieTrendingResult,

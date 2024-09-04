@@ -10,10 +10,15 @@ import type { Status } from "./types";
 import type { paths } from "~/tmdb/types";
 import { env } from "~/env";
 
+import { RevalidateTime } from "./constants/RevalidateTime";
+import { formatDate } from "./utils/formatDate";
+import { formatRuntime } from "./utils/formatRuntime";
+
 export type TMDBMovie =
   paths["/3/movie/{movie_id}"]["get"]["responses"]["200"]["content"]["application/json"];
 
-export type EnrichedTMDBMovie = TMDBMovie & {
+export type EnrichedTMDBMovie = Omit<TMDBMovie, "runtime"> & {
+  runtime: string;
   isRated: boolean;
   inWatchlist: boolean;
 };
@@ -31,7 +36,9 @@ export async function getMovie(
     url.searchParams.append(key, String(value)),
   );
 
-  const response = await fetch(url.toString());
+  const response = await fetch(url.toString(), {
+    next: { revalidate: RevalidateTime._24Hours },
+  });
 
   if (response.status !== 200) {
     return { type: "error", message: "Failed to fetch movie" };
@@ -41,10 +48,14 @@ export async function getMovie(
 
   const data = (await response.json()) as TMDBMovie;
 
+  const runtime = formatRuntime(data.runtime);
+  const release_date = formatDate(data.release_date);
+  const modifiedData = { ...data, runtime, release_date };
+
   if (!clerkId) {
     return {
       type: "success",
-      data: { ...data, isRated: false, inWatchlist: false },
+      data: { ...modifiedData, isRated: false, inWatchlist: false },
     };
   }
 
@@ -72,5 +83,5 @@ export async function getMovie(
     )
     .then((rows) => rows.length > 0);
 
-  return { type: "success", data: { ...data, isRated, inWatchlist } };
+  return { type: "success", data: { ...modifiedData, isRated, inWatchlist } };
 }
