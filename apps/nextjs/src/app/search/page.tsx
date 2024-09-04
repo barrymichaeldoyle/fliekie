@@ -1,5 +1,3 @@
-import { Suspense } from "react";
-
 import { searchMovies } from "~/server/api/searchMovies";
 
 import { SearchResults } from "./_components/SearchResults";

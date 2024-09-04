@@ -49,7 +49,7 @@ export function SearchResults(props: {
       setHasMore(false);
     }
     setLoading(false);
-  }, [loading, hasMore, page]);
+  }, [props.query, movieIds, loading, hasMore, page]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

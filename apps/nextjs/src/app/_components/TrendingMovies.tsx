@@ -48,7 +48,7 @@ export function TrendingMovies(props: {
       setHasMore(false);
     }
     setLoading(false);
-  }, [loading, hasMore, page]);
+  }, [movieIds, loading, hasMore, page]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
