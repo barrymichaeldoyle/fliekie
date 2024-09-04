@@ -4,7 +4,7 @@ import { EndOfResults } from "~/components/EndOfResults";
 
 export function InfiniteScrollStatus(props: {
   hasMore: boolean;
-  loading: boolean;
+  isLoading: boolean;
   error: string | null;
   observerRef: RefObject<HTMLDivElement>;
 }) {
@@ -15,7 +15,7 @@ export function InfiniteScrollStatus(props: {
           ref={props.observerRef}
           className="flex h-10 items-center justify-center"
         >
-          {props.loading ? (
+          {props.isLoading ? (
             <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-primary" />
           ) : (
             <div className="h-6 w-6" />

@@ -23,7 +23,7 @@ export function useInfiniteScroll<T extends { id: number }>({
     new Set<number>(initialItems.map((item) => item.id)),
   );
   const [page, setPage] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -37,7 +37,7 @@ export function useInfiniteScroll<T extends { id: number }>({
   }, []);
 
   const loadMoreItems = useCallback(async () => {
-    if (loading || !hasMore) return;
+    if (isLoading || !hasMore) return;
     setLoading(true);
     setError(null);
     const nextPage = page + 1;
@@ -59,7 +59,7 @@ export function useInfiniteScroll<T extends { id: number }>({
       setHasMore(false);
     }
     setLoading(false);
-  }, [fetchFn, itemIds, loading, hasMore, page]);
+  }, [fetchFn, itemIds, isLoading, hasMore, page]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -85,5 +85,5 @@ export function useInfiniteScroll<T extends { id: number }>({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loadMoreItems, ...dependencies]);
 
-  return { items, loading, hasMore, error, observerTarget, reset };
+  return { items, isLoading, hasMore, error, observerTarget, reset };
 }

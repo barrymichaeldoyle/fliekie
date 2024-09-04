@@ -1,20 +1,17 @@
 "use client";
 
+import type { TMDBMovieTrendingResult } from "~/server/api/getTrendingMovies";
 import { InfiniteScrollStatus } from "~/components/InfiniteScrollStatus";
 import { SearchResult, SearchResultGrid } from "~/components/SearchResult";
 import { useInfiniteScroll } from "~/hooks/useInfiniteScroll";
-import type {
-  TMDBMovieTrendingResult} from "~/server/api/getTrendingMovies";
-import {
-  getTrendingMovies
-} from "~/server/api/getTrendingMovies";
+import { getTrendingMovies } from "~/server/api/getTrendingMovies";
 
 export function TrendingMovies(props: {
   initialMovies: TMDBMovieTrendingResult[];
 }) {
   const {
     items: movies,
-    loading,
+    isLoading,
     hasMore,
     error,
     observerTarget,
@@ -32,7 +29,7 @@ export function TrendingMovies(props: {
       </SearchResultGrid>
       <InfiniteScrollStatus
         hasMore={hasMore}
-        loading={loading}
+        isLoading={isLoading}
         error={error}
         observerRef={observerTarget}
       />
