@@ -4,7 +4,6 @@ A side project that I'm building in public for the vibes.
 
 ## TODO:
 
-- [ ] Add movie runtime
 - [ ] Explore adding movie trailers
 - [ ] Create rating component
 
