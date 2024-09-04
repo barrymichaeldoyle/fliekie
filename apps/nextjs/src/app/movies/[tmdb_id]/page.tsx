@@ -49,7 +49,7 @@ export default async function MoviePage(props: {
                   </div>
                 )}
                 <div className="absolute bottom-2 right-2">
-                  <WatchlistButton movie={response.data} />
+                  <WatchlistButton movieId={response.data.id} inWatchlist />
                 </div>
               </div>
               <div className="flex flex-1 flex-col justify-start gap-2 p-4">

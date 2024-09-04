@@ -6,13 +6,13 @@ import { and, eq } from "drizzle-orm";
 import { db } from "@fliekie/db";
 import { ratings } from "@fliekie/db/schema";
 
-import type { Rating, Status, TMDBMovie } from "./types";
+import type { Rating, Status } from "./types";
 
 import { ensureUserExists } from "./utils/ensureUserExists";
 import { getOrCreateMovie } from "./utils/getOrCreateMovie";
 
 export async function rateMovie(args: {
-  movie: TMDBMovie;
+  tmdb_movie_id: number;
   rating: Rating;
   review: string;
 }): Promise<Status> {
@@ -22,7 +22,7 @@ export async function rateMovie(args: {
     return ensureUserExistsStatus;
   }
 
-  const getOrCreateMovieStatus = await getOrCreateMovie(args.movie);
+  const getOrCreateMovieStatus = await getOrCreateMovie(args.tmdb_movie_id);
 
   if (getOrCreateMovieStatus.type === "error") {
     return getOrCreateMovieStatus;
@@ -50,7 +50,7 @@ export async function rateMovie(args: {
     review: args.review,
   });
 
-  revalidatePath(`/movies/${args.movie.id}`);
+  revalidatePath(`/movies/${args.tmdb_movie_id}`);
 
   return { type: "success" };
 }

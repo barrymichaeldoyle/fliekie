@@ -6,19 +6,21 @@ import { and, eq } from "drizzle-orm";
 import { db } from "@fliekie/db";
 import { movies, ratings } from "@fliekie/db/schema";
 
-import type { Status, TMDBMovie } from "./types";
+import type { Status } from "./types";
 
 import { ensureUserExists } from "./utils/ensureUserExists";
 import { getOrCreateMovie } from "./utils/getOrCreateMovie";
 
-export async function removeMovieRating(movie: TMDBMovie): Promise<Status> {
+export async function removeMovieRating(
+  tmdb_movie_id: number,
+): Promise<Status> {
   const ensureUserExistsStatus = await ensureUserExists();
 
   if (ensureUserExistsStatus.type === "error") {
     return ensureUserExistsStatus;
   }
 
-  const getOrCreateMovieStatus = await getOrCreateMovie(movie);
+  const getOrCreateMovieStatus = await getOrCreateMovie(tmdb_movie_id);
 
   if (getOrCreateMovieStatus.type === "error") {
     return getOrCreateMovieStatus;
@@ -44,7 +46,7 @@ export async function removeMovieRating(movie: TMDBMovie): Promise<Status> {
     .delete(ratings)
     .where(eq(ratings.id, existingSeenlistEntry.ratings.id));
 
-  revalidatePath(`/movies/${movie.id}`);
+  revalidatePath(`/movies/${tmdb_movie_id}`);
 
   return { type: "success" };
 }

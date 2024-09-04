@@ -6,13 +6,11 @@ import { useAuth } from "@clerk/nextjs";
 import { Eye } from "lucide-react";
 import { toast } from "sonner";
 
-import type { EnrichedTMDBMovie } from "~/server/api/getMovie";
-import type { TMDBMovie } from "~/server/api/types";
 import { SubmitButton } from "~/components/SubmitButton";
 import { rateMovie } from "~/server/api/rateMovie";
 import { removeMovieRating } from "~/server/api/removeMovieRating";
 
-export function SeenlistButton(props: { movie: EnrichedTMDBMovie }) {
+export function SeenlistButton(props: { movieId: number; isRated: boolean }) {
   const { isSignedIn } = useAuth();
   const [pending, startTransition] = useTransition();
 
@@ -21,7 +19,7 @@ export function SeenlistButton(props: { movie: EnrichedTMDBMovie }) {
 
     startTransition(async () => {
       const status = await rateMovie({
-        movie: props.movie as TMDBMovie,
+        tmdb_movie_id: props.movieId,
         rating: 5,
         review: "",
       });
@@ -36,7 +34,7 @@ export function SeenlistButton(props: { movie: EnrichedTMDBMovie }) {
     e.preventDefault();
 
     startTransition(async () => {
-      const status = await removeMovieRating(props.movie as TMDBMovie);
+      const status = await removeMovieRating(props.movieId);
 
       if (status.type === "error") {
         toast.error("Failed to remove movie from seenlist");
@@ -48,7 +46,7 @@ export function SeenlistButton(props: { movie: EnrichedTMDBMovie }) {
     return null;
   }
 
-  if (props.movie.isRated) {
+  if (props.isRated) {
     return (
       <form onSubmit={onRemoveMovieFromSeenlistSubmit}>
         <SubmitButton isLoading={pending} loadingText="Removing">

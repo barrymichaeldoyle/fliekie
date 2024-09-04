@@ -14,13 +14,14 @@ import {
   TooltipTrigger,
 } from "@fliekie/ui/tooltip";
 
-import type { EnrichedTMDBMovie } from "~/server/api/getMovie";
-import type { TMDBMovie } from "~/server/api/types";
 import { SubmitButton } from "~/components/SubmitButton";
 import { addMovieToWatchlist } from "~/server/api/addMovieToWatchlist";
 import { removeMovieFromWatchlist } from "~/server/api/removeMovieFromWatchlist";
 
-export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
+export function WatchlistButton(props: {
+  inWatchlist: boolean;
+  movieId: number;
+}) {
   const { isSignedIn } = useAuth();
   const [pending, startTransition] = useTransition();
 
@@ -28,7 +29,7 @@ export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
     e.preventDefault();
 
     startTransition(async () => {
-      const status = await addMovieToWatchlist(props.movie as TMDBMovie);
+      const status = await addMovieToWatchlist(props.movieId);
 
       if (status.type === "error") {
         toast.error("Failed to add movie to watchlist");
@@ -40,7 +41,7 @@ export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
     e.preventDefault();
 
     startTransition(async () => {
-      const status = await removeMovieFromWatchlist(props.movie as TMDBMovie);
+      const status = await removeMovieFromWatchlist(props.movieId);
 
       if (status.type === "error") {
         toast.error("Failed to remove movie from watchlist");
@@ -48,8 +49,7 @@ export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
     });
   }
 
-  const { inWatchlist } = props.movie;
-  const Icon = inWatchlist ? Minus : Plus;
+  const Icon = props.inWatchlist ? Minus : Plus;
 
   return (
     <TooltipProvider delayDuration={0}>
@@ -57,7 +57,7 @@ export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
         {isSignedIn ? (
           <form
             onSubmit={
-              inWatchlist
+              props.inWatchlist
                 ? onRemoveMovieFromWatchlistSubmit
                 : onAddMovieToWatchlistSubmit
             }
@@ -78,7 +78,9 @@ export function WatchlistButton(props: { movie: EnrichedTMDBMovie }) {
           </SignInButton>
         )}
         <TooltipContent side="left">
-          <p>{inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}</p>
+          <p>
+            {props.inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}
+          </p>
         </TooltipContent>
       </Tooltip>
     </TooltipProvider>

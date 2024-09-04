@@ -4,6 +4,9 @@ import { db } from "@fliekie/db";
 import { collections, genres, movieGenres, movies } from "@fliekie/db/schema";
 
 import type { Status, TMDBMovie } from "../types";
+import { env } from "~/env";
+
+import { RevalidateTime } from "../constants/RevalidateTime";
 
 /**
  * A helper function to check if the movie is already in the database
@@ -13,12 +16,32 @@ import type { Status, TMDBMovie } from "../types";
  * @returns The inserted or existing movie id
  */
 export async function getOrCreateMovie(
-  movie: TMDBMovie,
+  tmdb_movie_id: number,
 ): Promise<Status<{ tmdb_movie_id: number }>> {
+  const url = new URL(`https://api.themoviedb.org/3/movie/${tmdb_movie_id}`);
+
+  const searchParams = {
+    api_key: env.TMDB_API_KEY,
+  };
+
+  Object.entries(searchParams).forEach(([key, value]) =>
+    url.searchParams.append(key, String(value)),
+  );
+
+  const response = await fetch(url.toString(), {
+    next: { revalidate: RevalidateTime._24Hours },
+  });
+
+  if (response.status !== 200) {
+    return { type: "error", message: "Failed to fetch movie" };
+  }
+
+  const movie = (await response.json()) as TMDBMovie;
+
   const existingMovie = await db
     .select()
     .from(movies)
-    .where(eq(movies.tmdb_movie_id, movie.id))
+    .where(eq(movies.tmdb_movie_id, tmdb_movie_id))
     .then((rows) => rows[0]);
 
   if (existingMovie) {
