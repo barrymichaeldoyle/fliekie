@@ -44,7 +44,7 @@ export function SearchInput() {
     <div className="relative w-full">
       <Search className="absolute left-2 top-2.5 h-4 w-4 text-muted-foreground" />
       <Input
-        defaultValue={searchParams.get("search") ?? ""}
+        defaultValue={searchParams.get("q") ?? ""}
         onChange={handleChange}
         placeholder="Search Movies"
         className="rounded-full pl-8 pr-24"
