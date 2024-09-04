@@ -6,6 +6,7 @@ A side project that I'm building in public for the vibes.
 
 - [ ] Add movie runtime
 - [ ] Explore adding movie trailers
+- [ ] Create rating component
 
 - [ ] Error management (w/ Sentry)
 - [ ] Analytics (posthog)
