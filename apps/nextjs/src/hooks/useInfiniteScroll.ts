@@ -23,7 +23,7 @@ export function useInfiniteScroll<T extends { id: number }>({
     new Set<number>(initialItems.map((item) => item.id)),
   );
   const [page, setPage] = useState(1);
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -31,14 +31,14 @@ export function useInfiniteScroll<T extends { id: number }>({
     setItems(newInitialItems);
     setItemIds(new Set<number>(newInitialItems.map((item) => item.id)));
     setPage(1);
-    setLoading(false);
+    setIsLoading(false);
     setHasMore(true);
     setError(null);
   }, []);
 
   const loadMoreItems = useCallback(async () => {
     if (isLoading || !hasMore) return;
-    setLoading(true);
+    setIsLoading(true);
     setError(null);
     const nextPage = page + 1;
     const response = await fetchFn(nextPage);
@@ -58,7 +58,7 @@ export function useInfiniteScroll<T extends { id: number }>({
       setError("Failed to load more items. Please try again.");
       setHasMore(false);
     }
-    setLoading(false);
+    setIsLoading(false);
   }, [fetchFn, itemIds, isLoading, hasMore, page]);
 
   useEffect(() => {
