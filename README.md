@@ -4,7 +4,8 @@ A side project that I'm building in public for the vibes.
 
 ## TODO:
 
-- [ ] Update default values of search based off param
+- [ ] Add movie runtime
+- [ ] Explore adding movie trailers
 
 - [ ] Error management (w/ Sentry)
 - [ ] Analytics (posthog)
