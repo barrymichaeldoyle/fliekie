@@ -22,7 +22,7 @@ export function InfiniteScrollStatus(props: {
           )}
         </div>
       )}
-      {props.error && <div className="text-red-500">{props.error}</div>}
+      {props.error && <p className="text-red-500">{props.error}</p>}
       {!props.hasMore && <EndOfResults />}
     </>
   );
